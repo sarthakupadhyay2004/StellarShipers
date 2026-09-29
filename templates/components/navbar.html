@@ -12,13 +12,18 @@
                 <a href="{% url 'pages:about' %}" class="hover:text-white transition-colors">About Us</a>
                 <a href="{% url 'products:list' %}" class="hover:text-white transition-colors">Products</a>
                 <a href="{% url 'pages:quality_process' %}" class="hover:text-white transition-colors">Quality & Process</a>
-                <a href="{% url 'pages:services' %}" class="hover:text-white transition-colors">Sourcing Services</a>
                 <a href="{% url 'pages:faq' %}" class="hover:text-white transition-colors">FAQ</a>
                 <a href="{% url 'pages:contact' %}" class="hover:text-white transition-colors">Contact</a>
             </nav>
 
-            <!-- Actions: Theme Toggle & Primary RFQ -->
+            <!-- Actions: Primary RFQ & Theme Toggle -->
             <div class="hidden md:flex items-center space-x-3">
+                <!-- RFQ Action -->
+                <a href="{% url 'rfq:submit' %}" class="metallic-silver-btn px-5 py-2.5 rounded text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 shadow-sm">
+                    <span>Request Quote</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+
                 <!-- Theme Switcher (Light / Dark) -->
                 <button type="button" class="theme-toggle-btn flex items-center bg-[#161A1E] border border-[#353B44] hover:border-[#4A5563] rounded-full p-1 transition-colors text-xs focus:outline-none focus:ring-1 focus:ring-blue-500" title="Switch Theme" aria-label="Toggle Theme">
                     <span class="theme-opt-light flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white shadow-sm transition-all" title="Light Theme">
@@ -28,12 +33,6 @@
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     </span>
                 </button>
-
-                <!-- RFQ Action -->
-                <a href="{% url 'rfq:submit' %}" class="metallic-silver-btn px-5 py-2.5 rounded text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 shadow-sm">
-                    <span>Request Quote</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
             </div>
 
             <!-- Mobile Hamburger Button & Quick Theme Toggle -->
@@ -59,7 +58,6 @@
         <a href="{% url 'pages:about' %}" class="block py-2 text-sm font-medium text-slate-300 hover:text-white border-b border-slate-800/60">About Us</a>
         <a href="{% url 'products:list' %}" class="block py-2 text-sm font-medium text-slate-300 hover:text-white border-b border-slate-800/60">Products Catalogue</a>
         <a href="{% url 'pages:quality_process' %}" class="block py-2 text-sm font-medium text-slate-300 hover:text-white border-b border-slate-800/60">Quality & Process</a>
-        <a href="{% url 'pages:services' %}" class="block py-2 text-sm font-medium text-slate-300 hover:text-white border-b border-slate-800/60">Sourcing Services</a>
         <a href="{% url 'pages:faq' %}" class="block py-2 text-sm font-medium text-slate-300 hover:text-white border-b border-slate-800/60">FAQ</a>
         <a href="{% url 'pages:contact' %}" class="block py-2 text-sm font-medium text-slate-300 hover:text-white border-b border-slate-800/60">Contact Export Desk</a>
         <div class="pt-2">

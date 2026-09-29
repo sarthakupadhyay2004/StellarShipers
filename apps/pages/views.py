@@ -1,4 +1,4 @@
-﻿from django.shortcuts import render
+from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 from apps.products.models import Product
@@ -45,16 +45,6 @@ class QualityProcessView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['meta_title'] = 'Quality & Verification Process | STELLAR SHIPERS'
         context['meta_desc'] = 'Source → Verify → Coordinate → Export. Our rigorous 4-step quality protocol ensuring certified technical data and zero untested claims.'
-        return context
-
-
-class ServicesView(TemplateView):
-    template_name = 'pages/services.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['meta_title'] = 'B2B Sourcing & Export Services | STELLAR SHIPERS'
-        context['meta_desc'] = 'End-to-end B2B supply chain solutions: contract procurement, specification customization, container logistics, and pre-shipment quality auditing.'
         return context
 
 

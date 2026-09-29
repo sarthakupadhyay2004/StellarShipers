@@ -13,23 +13,33 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'stellar-shipers-insecure-dev-key-change-in
 
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,.onrender.com').split(',') if host.strip()]
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,.onrender.com,.vercel.app').split(',') if host.strip()]
 
 # Automatic Render deployment host detection
 RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME and RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-# CSRF Trusted Origins for HTTPS on Render
+# Automatic Vercel deployment host detection
+VERCEL_URL = os.getenv('VERCEL_URL')
+if VERCEL_URL and VERCEL_URL not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(VERCEL_URL)
+
+# CSRF Trusted Origins for HTTPS on Render & Vercel
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
-    for origin in os.getenv('CSRF_TRUSTED_ORIGINS', 'https://*.onrender.com,http://localhost:8000,http://127.0.0.1:8000').split(',')
+    for origin in os.getenv('CSRF_TRUSTED_ORIGINS', 'https://*.onrender.com,https://*.vercel.app,http://localhost:8000,http://127.0.0.1:8000').split(',')
     if origin.strip()
 ]
 if RENDER_EXTERNAL_HOSTNAME:
     render_origin = f'https://{RENDER_EXTERNAL_HOSTNAME}'
     if render_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(render_origin)
+
+if VERCEL_URL:
+    vercel_origin = f'https://{VERCEL_URL}'
+    if vercel_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(vercel_origin)
 
 # Application definition
 INSTALLED_APPS = [
@@ -81,9 +91,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'stellar_shipers.wsgi.application'
 
 # Database Configuration
-# Default to self-contained SQLite (No Supabase or external database required for Render)
-# Automatically enables PostgreSQL if DATABASE_URL is optionally provided in future
+# Default to self-contained SQLite (No external database required for Render)
+# Automatically enables PostgreSQL if DATABASE_URL is optionally provided (Supabase, Neon, etc.)
 DATABASE_URL = os.getenv('DATABASE_URL')
+IS_VERCEL = os.getenv('VERCEL') == '1'
+
+def get_sqlite_path():
+    db_file = BASE_DIR / 'db.sqlite3'
+    if IS_VERCEL:
+        import shutil
+        tmp_db = '/tmp/db.sqlite3'
+        if not os.path.exists(tmp_db) and os.path.exists(db_file):
+            shutil.copy2(db_file, tmp_db)
+        return tmp_db
+    return db_file
+
 if DATABASE_URL:
     try:
         import dj_database_url
@@ -92,14 +114,14 @@ if DATABASE_URL:
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
+                'NAME': get_sqlite_path(),
             }
         }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': get_sqlite_path(),
         }
     }
 

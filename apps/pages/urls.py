@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    HomeView, AboutView, QualityProcessView, ServicesView,
+    HomeView, AboutView, QualityProcessView,
     ContactView, FAQView, PrivacyPolicyView, TermsOfUseView,
     robots_txt
 )
@@ -11,7 +11,6 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('about/', AboutView.as_view(), name='about'),
     path('quality-process/', QualityProcessView.as_view(), name='quality_process'),
-    path('services/', ServicesView.as_view(), name='services'),
     path('contact-rfq/', ContactView.as_view(), name='contact'),
     path('contact/', ContactView.as_view()),
     path('faq/', FAQView.as_view(), name='faq'),

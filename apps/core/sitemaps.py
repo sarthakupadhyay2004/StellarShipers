@@ -1,4 +1,4 @@
-﻿from django.contrib.sitemaps import Sitemap
+from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from apps.products.models import Product
 
@@ -11,7 +11,6 @@ class StaticViewSitemap(Sitemap):
             'pages:home',
             'pages:about',
             'pages:quality_process',
-            'pages:services',
             'pages:contact',
             'pages:faq',
             'pages:privacy',
