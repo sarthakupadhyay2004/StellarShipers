@@ -24,35 +24,33 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <!-- Left 5 Cols: Direct Contact Info (Page 2 & 12) -->
+            <!-- Left 5 Cols: Direct Communication & Legal Info -->
             <div class="lg:col-span-5 space-y-8">
-                <div class="bg-[#1E2328] border border-[#353B44] rounded-xl p-8 space-y-6">
-                    <h3 class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">Direct Communication Desk</h3>
+                <div class="bg-[#1E2328] border border-[#353B44] rounded-xl p-8 space-y-5">
+                    <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>Official Sourcing Desk</span>
+                    </div>
 
-                    <div class="space-y-6 text-xs font-mono">
-                        <div class="space-y-1">
-                            <span class="text-slate-400 uppercase block">Company Email (Official):</span>
-                            <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white hover:underline text-sm font-semibold">{{ PRIMARY_EMAIL }}</a>
-                        </div>
+                    <div class="space-y-2">
+                        <span class="text-xs font-mono text-slate-400 uppercase tracking-wider block">Company Email Address</span>
+                        <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white hover:underline text-lg font-bold font-mono tracking-tight block">
+                            {{ PRIMARY_EMAIL }}
+                        </a>
+                    </div>
 
-                        <div class="space-y-1">
-                            <span class="text-slate-400 uppercase block">Phone / WhatsApp:</span>
-                            <span class="text-slate-300 text-sm block">Available upon initial commercial enquiry</span>
-                        </div>
-
-                        <div class="space-y-1">
-                            <span class="text-slate-400 uppercase block">Producer Origin Location:</span>
-                            <span class="text-white font-semibold text-sm block">Jalgaon, Maharashtra, India</span>
-                        </div>
-
-                        <div class="space-y-1">
-                            <span class="text-slate-400 uppercase block">Primary Market Focus:</span>
-                            <span class="text-white text-sm block">Europe (Germany, France) & Global Industry</span>
-                        </div>
+                    <div class="pt-4 border-t border-[#353B44] space-y-3 text-xs font-mono text-slate-300">
+                        <div class="text-white font-semibold uppercase text-xs">Mailing & Inquiry Terms</div>
+                        <p class="text-slate-400 leading-relaxed">
+                            For technical drawing submissions, laboratory specification reviews, and formal tender inquiries, our export coordination team reviews correspondence directly.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Structured responses, initial specifications, and quotation parameters are provided within 24 to 48 business hours.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Registration & Legal Placeholder Area (Page 12) -->
+                <!-- Registration & Legal Placeholder Area -->
                 <div class="bg-[#1E2328]/60 border border-[#353B44] rounded-xl p-6 space-y-3 text-xs font-mono text-slate-300">
                     <div class="font-bold text-white uppercase text-xs">Official Trade Information</div>
                     <p class="text-slate-400">

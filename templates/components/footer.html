@@ -1,6 +1,6 @@
 <footer class="bg-[#181C21] border-t border-[#353B44] text-slate-400 text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             <!-- Brand Column -->
             <div class="lg:col-span-2 space-y-4">
                 <div class="flex items-center space-x-3">
@@ -13,11 +13,6 @@
                 <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
                     India-based international sourcing and export company connecting carefully selected Indian producers with global B2B buyers. Managing sourcing, quality verification, reasonable customization, and disciplined export coordination.
                 </p>
-
-                <div class="pt-2 text-xs text-slate-400 font-mono space-y-1">
-                    <div><span class="text-slate-300">Production Origin:</span> Jalgaon, Maharashtra, India</div>
-                    <div><span class="text-slate-300">Primary Markets:</span> Europe (Germany & France) & International</div>
-                </div>
             </div>
 
             <!-- Quick Sourcing Links -->
@@ -43,32 +38,11 @@
                     <li><a href="{% url 'pages:faq' %}" class="hover:text-white transition-colors">FAQ & MOQs (500 kg)</a></li>
                 </ul>
             </div>
-
-            <!-- Direct Contact Desk -->
-            <div class="space-y-3">
-                <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 font-mono">Commercial Desk</h4>
-                <div class="space-y-2 text-xs">
-                    <p class="text-slate-300">
-                        <span class="text-slate-300">Direct Email:</span><br>
-                        <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white hover:underline">{{ PRIMARY_EMAIL }}</a>
-                    </p>
-                    <p class="text-slate-300">
-                        <span class="text-slate-300">Phone / WhatsApp:</span><br>
-                        <span class="text-slate-400">Available upon commercial enquiry</span>
-                    </p>
-                    <p class="text-slate-300">
-                        <span class="text-slate-300">Location:</span><br>
-                        <span class="text-slate-400">Maharashtra, India</span>
-                    </p>
-                    <p class="text-slate-400 text-[11px] pt-1">Response SLA: Structured response within 24 to 48 business hours.</p>
-                </div>
-            </div>
         </div>
 
         <!-- Designated Clean Area for Legal / Registration Details (Page 12) -->
-        <div class="mt-12 pt-6 border-t border-[#2A313A] text-[11px] text-slate-300 font-mono grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="mt-12 pt-6 border-t border-[#2A313A] text-[11px] text-slate-300 font-mono grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div><span class="text-slate-400">Business Model:</span> Sourcing + Quality Control + Export Coordination</div>
-            <div><span class="text-slate-400">Origin Producer Hub:</span> Jalgaon, Maharashtra, India</div>
             <div><span class="text-slate-400">Trade Registrations:</span> GSTIN / IEC on file for commercial contracts</div>
             <div><span class="text-slate-400">Platform:</span> Wholesale B2B Gateway Only (No retail checkout)</div>
         </div>
@@ -76,7 +50,7 @@
         <!-- Divider & Bottom Bar -->
         <div class="mt-8 pt-6 border-t border-[#2A313A] flex flex-col md:flex-row items-center justify-between text-xs text-slate-300 space-y-4 md:space-y-0">
             <div>
-                &copy; {{ CURRENT_YEAR }} {{ SITE_NAME }}. Indian Sourcing &bull; International Standards.
+                &copy; {{ CURRENT_YEAR }} {{ SITE_NAME }}. All rights reserved.
             </div>
             <div class="flex items-center space-x-6">
                 <a href="{% url 'pages:privacy' %}" class="hover:text-slate-300 transition-colors">Privacy Policy</a>

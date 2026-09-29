@@ -36,13 +36,13 @@ class Command(BaseCommand):
                 'Natural, mechanically extracted and dried banana fiber sourced from G9 banana pseudostems, '
                 'supplied in cleaned/combed fiber bundles for textile and natural-fiber applications.'
             ),
-            raw_material='Musa plant pseudostems (G9 Grand Naine)',
+            raw_material='Musa plant pseudostems',
             extraction_method='Mechanical decortication',
             processing='Drying only; cleaned/combed fiber bundles; no chemical treatment.',
-            supplier_notes='Supplier location: Jalgaon, Maharashtra, India. Stored fiber stated to be available for dispatch. Expandable capacity 5-10 MT/month.',
+            supplier_notes='Supplier capacity: 15 MT/month. Packaging: inner LDPE liner and outer woven HDPE sacks.',
             harvest_origin='Jalgaon, Maharashtra, India',
-            moq='500 kg (Supplier-stated)',
-            packaging_details='Polythene / poly-woven bags recommended for long-distance export transport.',
+            moq='500 kg',
+            packaging_details='Inner LDPE liner and outer woven HDPE sacks for long-distance export transport.',
             hs_code='5305.00',
             applications=[
                 'Natural-fiber textile development',
@@ -51,36 +51,35 @@ class Command(BaseCommand):
                 'Home-textile and furnishing applications',
                 'Craft, specialty and other natural-fiber applications'
             ],
-            verified_specs={},  # Do not publish generic internet lab values per Page 3 & 5
+            verified_specs={},
             provisional_specs={
-                'Banana Variety': {'value': 'G9 (Grand Naine)', 'note': 'Supplier-stated'},
+                'Banana Variety': {'value': 'G9', 'note': 'Supplier-stated'},
                 'Raw Material': {'value': 'Musa plant pseudostems', 'note': 'Confirmed'},
                 'Extraction': {'value': 'Mechanical', 'note': 'Confirmed'},
                 'Post-extraction processing': {'value': 'Drying only', 'note': 'Supplier-stated'},
                 'Chemical treatment': {'value': 'No chemical treatment / 100% natural', 'note': 'Supplier-stated'},
-                'Typical fiber length': {'value': 'Approx. 4–5 ft', 'note': 'Supplier-stated'},
+                'Typical fiber length': {'value': 'upto 5 ft', 'note': 'Supplier-stated'},
                 'Colour': {'value': 'Golden', 'note': 'Supplier-stated / visually apparent'},
-                'Tensile & Fineness': {'value': 'Conducted per buyer specification', 'note': 'Testing on-demand'},
+                'Tensile Strength': {'value': 'test-measured per buyer specification', 'note': 'Testing on-demand'},
                 'Moisture': {'value': 'Requires accredited laboratory testing before export', 'note': 'Testing required'}
             },
             is_featured=True,
             is_active=True,
             display_order=1
         )
-        self.stdout.write(self.style.SUCCESS('Product "Textile-grade raw banana fiber" updated per Page 5.'))
+        self.stdout.write(self.style.SUCCESS('Product "Textile-grade raw banana fiber" updated.'))
 
         # 4. FAQs
         FAQ.objects.all().delete()
         faq_items = [
             ('SOURCING', 'Where is the raw banana fiber produced?', 'The initial raw banana fiber is produced in Jalgaon, Maharashtra, India—one of the largest banana cultivation belts in Asia. STELLAR SHIPERS oversees quality verification and export logistics from origin to international destinations.'),
-            ('SOURCING', 'What is your operational model?', 'We operate on a Buy & Resell / sourcing + export coordination model. Supplier production is external. We take full responsibility for requirement review, quality verification before export, reasonable customization, and disciplined export documentation.'),
-            ('SPECS', 'Why are generic tensile strength numbers not published on the website?', 'In strict compliance with our Specification Integrity standard (Page 5), we refuse to publish untested generic internet numbers as certified data. Tensile strength, fineness, and moisture parameters are formally verified by third-party testing laboratories according to buyer-specific testing protocols.'),
-            ('SAMPLES', 'Can we request a physical fiber sample for spinning trials?', 'Yes. We encourage European textile and yarn manufacturers to request an evaluation sample kit to test runnability, fineness, and fiber length on their specific machinery. Simply select "Request Product Sample" on our RFQ form.'),
-            ('LOGISTICS', 'What is the Minimum Order Quantity (MOQ)?', 'The supplier-stated MOQ is 500 kg, which can be scaled up to full container loads (FCL 20ft/40ft) with an expandable monthly capacity of 5–10 MT/month.'),
-            ('LOGISTICS', 'What are your primary export destinations?', 'Our primary focus is Europe, specifically Germany and France, alongside international natural-fiber wholesalers and distributors across the globe.'),
+            ('SAMPLES', 'Can we request a physical fiber sample for spinning trials?', 'Yes. We encourage textile and yarn manufacturers to request an evaluation sample kit to test runnability, fineness, and fiber length on their specific machinery. Simply select "Request Product Sample" on our RFQ form.'),
+            ('SAMPLES', 'Do you charge for samples?', 'Samples are complimentary; customers are only responsible for the actual shipping and delivery expenses. You may either provide your own courier account details for freight collect or have us calculate and invoice the shipping fee directly.'),
+            ('LOGISTICS', 'What is the Minimum Order Quantity (MOQ)?', 'The MOQ is 500 kg, which can be scaled up to full container loads (FCL 20ft/40ft) with a monthly supplier capacity of 15 MT/month.'),
+            ('LOGISTICS', 'What are your primary export destinations?', 'Our primary focus includes European markets such as Germany, France, Portugal, Sweden, and Switzerland, alongside international natural-fiber wholesalers and distributors across the globe.'),
             ('COMMERCIAL', 'How are prices quoted?', 'We do not publish fixed public retail prices. Prices are quoted based on required volume, packaging specifications, destination port, and applicable Incoterms (FOB, CIF, CFR).')
         ]
         for cat, q, a in faq_items:
             FAQ.objects.create(category=cat, question=q, answer=a, is_active=True)
 
-        self.stdout.write(self.style.SUCCESS('Database re-seeded successfully according to Handoff Doc.'))
+        self.stdout.write(self.style.SUCCESS('Database re-seeded successfully with updated specifications.'))

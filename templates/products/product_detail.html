@@ -16,14 +16,6 @@
 
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="space-y-2 max-w-3xl">
-                <div class="flex items-center space-x-3">
-                    <span class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
-                        Natural Textile Raw Material
-                    </span>
-                    <span class="badge-stated px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold">
-                        G9 GRAND NAINE &bull; JALGAON ORIGIN
-                    </span>
-                </div>
                 <h1 class="text-2xl sm:text-4xl font-bold text-white tracking-tight uppercase">
                     {{ product.name }}
                 </h1>
@@ -48,82 +40,55 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
             
-            <!-- Left 8 Cols: Product Specification Details (Page 5) -->
+            <!-- Left 8 Cols: Product Specification Details -->
             <div class="lg:col-span-8 space-y-10">
-                
-                <!-- Specification Integrity Notice (Page 5) -->
-                <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-3">
-                    <div class="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-amber-300">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span>Specification Integrity Standard (Page 5)</span>
-                    </div>
-                    <p class="text-xs text-slate-300 leading-relaxed font-mono">
-                        Product pages visually distinguish verified/tested specifications from supplier-provided or provisional information. In strict accordance with our policy: <strong>We do not present untested numbers as certified technical data, nor do we publish generic internet values.</strong>
-                    </p>
-                </div>
 
                 <!-- Parameters Table Strictly from Page 5 -->
                 <div class="bg-[#1E2328] border border-[#353B44] rounded-xl overflow-hidden">
-                    <div class="p-5 bg-[#1B2025] border-b border-[#353B44] flex items-center justify-between">
+                    <div class="p-5 bg-[#1B2025] border-b border-[#353B44]">
                         <h2 class="text-sm font-bold text-white uppercase font-mono tracking-wider">Product Technical Parameters</h2>
-                        <span class="text-xs text-[#9AA0A6] font-mono">Status & Disclosures</span>
                     </div>
 
                     <div class="divide-y divide-[#2D333B] text-xs font-mono">
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Banana Variety</span>
-                            <span class="text-slate-300">G9 (commonly associated with Grand Naine)</span>
-                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
+                            <span class="text-slate-300">G9</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Raw Material Source</span>
                             <span class="text-slate-300">Musa plant pseudostems</span>
-                            <span class="text-[11px] text-emerald-400 font-semibold uppercase">Confirmed</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Extraction Method</span>
                             <span class="text-slate-300">Mechanical decortication</span>
-                            <span class="text-[11px] text-emerald-400 font-semibold uppercase">Confirmed</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Post-Extraction Processing</span>
                             <span class="text-slate-300">Drying only</span>
-                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Chemical Treatment</span>
                             <span class="text-slate-300">Supplier states no chemical treatment / 100% natural</span>
-                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Typical Fiber Length</span>
-                            <span class="text-slate-300">Approx. 4–5 ft</span>
-                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
+                            <span class="text-slate-300">upto 5 ft</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Visual Colour</span>
                             <span class="text-slate-300">Golden</span>
-                            <span class="text-[11px] text-slate-400 uppercase">Visually apparent</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors bg-amber-950/20">
-                            <span class="text-white font-semibold">Fineness / Diameter</span>
-                            <span class="text-amber-200">No unverified number published; test-measured per buyer specification</span>
-                            <span class="text-[11px] text-amber-400 uppercase font-semibold">Testing on-demand</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors bg-amber-950/20">
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Tensile Strength</span>
-                            <span class="text-amber-200">No product-specific test data yet; no generic internet claims</span>
-                            <span class="text-[11px] text-amber-400 uppercase font-semibold">Testing on-demand</span>
+                            <span class="text-slate-300">test-measured per buyer specification</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors bg-amber-950/20">
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Moisture Content</span>
-                            <span class="text-amber-200">Requires accredited laboratory testing before export</span>
-                            <span class="text-[11px] text-amber-400 uppercase font-semibold">Requires testing</span>
+                            <span class="text-slate-300">Requires accredited laboratory testing before export</span>
                         </div>
                         <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
                             <span class="text-white font-semibold">Batch Consistency</span>
                             <span class="text-slate-300">Natural variation expected; QC tolerances defined per contract</span>
-                            <span class="text-[11px] text-slate-400 uppercase">Transparent</span>
                         </div>
                     </div>
                 </div>
@@ -145,7 +110,7 @@
 
             </div>
 
-            <!-- Right 4 Cols: Sourcing & Commercial Enquiry Card (Page 4 & 15) -->
+            <!-- Right 4 Cols: Sourcing & Commercial Enquiry Card -->
             <div class="lg:col-span-4 space-y-6">
                 <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-6 shadow-xl sticky top-28">
                     <div class="border-b border-[#353B44] pb-4">
@@ -155,24 +120,16 @@
 
                     <div class="space-y-3 text-xs font-mono">
                         <div class="flex justify-between py-1 border-b border-[#2D333B]">
-                            <span class="text-slate-400">Supplier Location:</span>
-                            <span class="text-white font-semibold">Jalgaon, Maharashtra, India</span>
-                        </div>
-                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
                             <span class="text-slate-400">Supplier MOQ:</span>
                             <span class="text-white font-semibold">500 kg</span>
                         </div>
                         <div class="flex justify-between py-1 border-b border-[#2D333B]">
-                            <span class="text-slate-400">Stated Capacity:</span>
-                            <span class="text-white">5–10 MT / month (expandable)</span>
+                            <span class="text-slate-400">Supplier Capacity:</span>
+                            <span class="text-white font-semibold">15 MT / month</span>
                         </div>
-                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
+                        <div class="flex flex-col sm:flex-row justify-between py-1 gap-1">
                             <span class="text-slate-400">Packaging:</span>
-                            <span class="text-white">Polythene / export bags</span>
-                        </div>
-                        <div class="flex justify-between py-1">
-                            <span class="text-slate-400">Target Buyer Market:</span>
-                            <span class="text-white">Europe (Germany, France) & Global</span>
+                            <span class="text-white text-right">inner LDPE liner and outer woven HDPE sacks</span>
                         </div>
                     </div>
 

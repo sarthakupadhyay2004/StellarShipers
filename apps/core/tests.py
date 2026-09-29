@@ -47,21 +47,17 @@ class StellarShiperHandoffComplianceTests(TestCase):
     def test_homepage_handoff_content_and_positioning(self):
         response = self.client.get(reverse('pages:home'))
         self.assertEqual(response.status_code, 200)
-        # Headline & supporting line (Page 3)
+        # Headline & supporting line
         self.assertContains(response, 'WHERE TRUST')
         self.assertContains(response, 'MEETS VALUE.')
         self.assertContains(response, 'Indian sourcing. International standards. Responsible export coordination.')
-        # Origin & MOQ
-        self.assertContains(response, 'Jalgaon, India')
-        self.assertContains(response, '500 kg')
-        # Brand pillars
-        self.assertContains(response, 'Trust — Non-Negotiable')
-        self.assertContains(response, 'Premium Value')
-        self.assertContains(response, 'International Professionalism')
-        # 6-Stage Process (Page 4)
+        # 6-Stage Process
         self.assertContains(response, 'Carefully selected sourcing network')
         self.assertContains(response, 'Requirement-led sourcing')
         self.assertContains(response, 'Quality verification before export')
+        # Assert removed sections are no longer on homepage
+        self.assertNotContains(response, 'Brand Foundations')
+        self.assertNotContains(response, 'Positioning & Transparency')
 
     def test_specification_integrity_rules(self):
         response = self.client.get(reverse('products:detail', kwargs={'slug': self.product.slug}))
@@ -69,8 +65,7 @@ class StellarShiperHandoffComplianceTests(TestCase):
         self.assertContains(response, 'Textile-grade raw banana fiber')
         self.assertContains(response, 'Musa plant pseudostems')
         self.assertContains(response, 'Mechanical decortication')
-        # Ensure notice about no generic internet values
-        self.assertContains(response, 'No unverified number published')
+        self.assertContains(response, 'test-measured per buyer specification')
 
     def test_rfq_submission_creates_record(self):
         data = {
