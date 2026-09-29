@@ -25,8 +25,8 @@ class Command(BaseCommand):
             }
         )
 
-        # 3. Featured Product: Textile-Grade Raw Banana Fiber (Page 5)
-        Product.objects.filter(slug='banana-fiber').delete()
+        # 3. Featured Product: Textile-Grade Raw Banana Fiber (Single Catalog Product)
+        Product.objects.all().delete()
         Product.objects.create(
             category=cat_fibers,
             slug='banana-fiber',
