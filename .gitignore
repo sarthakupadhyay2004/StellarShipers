@@ -22,5 +22,6 @@ staticfiles/
 .vscode/
 .idea/
 Thumbs.db
-db.sqlite3
-db.sqlite3-journal
+
+# Database journal
+*.sqlite3-journal
