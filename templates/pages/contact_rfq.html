@@ -3,71 +3,71 @@
 {% block title %}Contact & RFQ Desk | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-[#1E2328] border-b border-[#353B44] py-16">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-4">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">
+                <span class="theme-dot"></span>
                 <span>Commercial Inquiries & Export Coordination</span>
             </div>
-            <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
                 Contact & Sourcing RFQ
             </h1>
-            <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-mono">
+            <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-mono">
                 Connect directly with our Indian export coordination desk. Whether you need an indicative quotation, technical parameter review, or product sample kit, we respond within 24 to 48 business hours.
             </p>
         </div>
     </div>
 </div>
 
-<div class="bg-[#161A1E] py-20">
+<div class="bg-white dark:bg-[#161A1E] py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <!-- Left 5 Cols: Direct Communication & Legal Info -->
             <div class="lg:col-span-5 space-y-8">
-                <div class="bg-[#1E2328] border border-[#353B44] rounded-xl p-8 space-y-5">
-                    <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-8 space-y-5 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
+                    <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">
+                        <span class="theme-dot"></span>
                         <span>Official Sourcing Desk</span>
                     </div>
 
                     <div class="space-y-2">
-                        <span class="text-xs font-mono text-slate-400 uppercase tracking-wider block">Company Email Address</span>
-                        <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white hover:underline text-lg font-bold font-mono tracking-tight block">
+                        <span class="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Company Email Address</span>
+                        <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-blue-600 hover:underline text-lg font-bold font-mono tracking-tight block dark:text-white">
                             {{ PRIMARY_EMAIL }}
                         </a>
                     </div>
 
-                    <div class="pt-4 border-t border-[#353B44] space-y-3 text-xs font-mono text-slate-300">
-                        <div class="text-white font-semibold uppercase text-xs">Mailing & Inquiry Terms</div>
-                        <p class="text-slate-400 leading-relaxed">
+                    <div class="pt-4 border-t border-slate-200 dark:border-[#353B44] space-y-3 text-xs font-mono text-slate-600 dark:text-slate-300">
+                        <div class="text-slate-900 dark:text-white font-semibold uppercase text-xs">Mailing & Inquiry Terms</div>
+                        <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
                             For technical drawing submissions, laboratory specification reviews, and formal tender inquiries, our export coordination team reviews correspondence directly.
                         </p>
-                        <p class="text-slate-400 leading-relaxed">
+                        <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
                             Structured responses, initial specifications, and quotation parameters are provided within 24 to 48 business hours.
                         </p>
                     </div>
                 </div>
 
                 <!-- Registration & Legal Placeholder Area -->
-                <div class="bg-[#1E2328]/60 border border-[#353B44] rounded-xl p-6 space-y-3 text-xs font-mono text-slate-300">
-                    <div class="font-bold text-white uppercase text-xs">Official Trade Information</div>
-                    <p class="text-slate-400">
+                <div class="bg-slate-50/60 border border-slate-200 rounded-xl p-6 space-y-3 text-xs font-mono text-slate-600 dark:bg-[#1E2328]/60 dark:border-[#353B44] dark:text-slate-300">
+                    <div class="font-bold text-slate-900 dark:text-white uppercase text-xs">Official Trade Information</div>
+                    <p class="text-slate-500 dark:text-slate-400">
                         GSTIN, IEC and export registrations are maintained for official international commercial contracts and customs clearance. Full documentation provided alongside formal proforma invoices.
                     </p>
-                    <p class="text-slate-400">
+                    <p class="text-slate-500 dark:text-slate-400">
                         We routinely execute standard Mutual NDAs for proprietary client fiber compounding or spinning trials.
                     </p>
                 </div>
             </div>
 
             <!-- Right 7 Cols: Sourcing Enquiry Form -->
-            <div class="lg:col-span-7 bg-[#1E2328] border border-[#353B44] rounded-xl p-8 sm:p-10 shadow-2xl space-y-6">
-                <div class="border-b border-[#353B44] pb-4">
-                    <span class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">B2B Sourcing Form</span>
-                    <h3 class="text-xl font-bold text-white uppercase mt-1">Submit Request for Quotation (RFQ)</h3>
-                    <p class="text-xs text-slate-400 font-mono mt-1">Share your volume, application and target delivery country.</p>
+            <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-xl p-8 sm:p-10 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] dark:shadow-2xl space-y-6">
+                <div class="border-b border-slate-200 dark:border-[#353B44] pb-4">
+                    <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">B2B Sourcing Form</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white uppercase mt-1">Submit Request for Quotation (RFQ)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-1">Share your volume, application and target delivery country.</p>
                 </div>
 
                 <form method="post" action="{% url 'rfq:submit' %}" enctype="multipart/form-data" class="space-y-6">
@@ -79,88 +79,88 @@
                     </div>
 
                     {% if form.non_field_errors %}
-                    <div class="p-3 bg-rose-950/40 border border-rose-800 rounded text-rose-300 text-xs font-mono">
+                    <div class="p-3 bg-rose-50 border border-rose-200 text-rose-800 rounded dark:bg-rose-950/40 dark:border-rose-800 dark:text-rose-300 text-xs font-mono">
                         {{ form.non_field_errors.0 }}
                     </div>
                     {% endif %}
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Contact Name <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Contact Name <span class="text-rose-500">*</span></label>
                             {{ form.name }}
-                            {% if form.name.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.name.errors.0 }}</p>{% endif %}
+                            {% if form.name.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.name.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Company Name <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Company Name <span class="text-rose-500">*</span></label>
                             {{ form.company }}
-                            {% if form.company.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.company.errors.0 }}</p>{% endif %}
+                            {% if form.company.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.company.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Business Email <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Business Email <span class="text-rose-500">*</span></label>
                             {{ form.email }}
-                            {% if form.email.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.email.errors.0 }}</p>{% endif %}
+                            {% if form.email.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.email.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Phone / WhatsApp (Optional)</label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Phone / WhatsApp (Optional)</label>
                             {{ form.phone }}
-                            {% if form.phone.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.phone.errors.0 }}</p>{% endif %}
+                            {% if form.phone.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.phone.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Company Country <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Company Country <span class="text-rose-500">*</span></label>
                             {{ form.country }}
-                            {% if form.country.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.country.errors.0 }}</p>{% endif %}
+                            {% if form.country.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.country.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Destination Country / Port</label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Destination Country / Port</label>
                             {{ form.delivery_country }}
-                            {% if form.delivery_country.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.delivery_country.errors.0 }}</p>{% endif %}
+                            {% if form.delivery_country.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.delivery_country.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Product of Interest</label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Product of Interest</label>
                             {{ form.product }}
-                            {% if form.product.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.product.errors.0 }}</p>{% endif %}
+                            {% if form.product.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.product.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Required Quantity (MOQ: 500 kg) <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Required Quantity (MOQ: 500 kg) <span class="text-rose-500">*</span></label>
                             {{ form.quantity }}
-                            {% if form.quantity.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.quantity.errors.0 }}</p>{% endif %}
+                            {% if form.quantity.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.quantity.errors.0 }}</p>{% endif %}
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Application / Intended Use <span class="text-rose-400">*</span></label>
+                        <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Application / Intended Use <span class="text-rose-500">*</span></label>
                         {{ form.application }}
-                        {% if form.application.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.application.errors.0 }}</p>{% endif %}
+                        {% if form.application.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.application.errors.0 }}</p>{% endif %}
                     </div>
 
                     <div>
-                        <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Technical Specifications / Tolerances (Optional)</label>
+                        <label class="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1">Technical Specifications / Tolerances (Optional)</label>
                         {{ form.technical_requirements }}
-                        {% if form.technical_requirements.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.technical_requirements.errors.0 }}</p>{% endif %}
+                        {% if form.technical_requirements.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.technical_requirements.errors.0 }}</p>{% endif %}
                     </div>
 
-                    <div class="p-4 rounded bg-emerald-950/30 border border-emerald-800/50 flex items-start space-x-3">
+                    <div class="p-4 rounded bg-blue-50 border border-blue-200 text-blue-900 dark:bg-emerald-950/30 dark:border-emerald-800/50 dark:text-emerald-300 flex items-start space-x-3">
                         <div class="mt-0.5">
                             {{ form.sample_request }}
                         </div>
-                        <label for="{{ form.sample_request.id_for_label }}" class="text-xs font-mono text-emerald-300 cursor-pointer">
+                        <label for="{{ form.sample_request.id_for_label }}" class="text-xs font-mono text-blue-900 dark:text-emerald-300 cursor-pointer">
                             <strong>Request Product Sample:</strong> Check if a physical evaluation lot is required for spinning/laboratory trials before placing a commercial order.
                         </label>
                     </div>
 
-                    <div class="p-4 rounded bg-[#161A1E] border border-[#353B44] flex items-start space-x-3">
+                    <div class="p-4 rounded bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#353B44] flex items-start space-x-3">
                         <div class="mt-0.5">
                             {{ form.consent }}
                         </div>
                         <div>
-                            <label for="{{ form.consent.id_for_label }}" class="text-xs font-mono text-slate-300 cursor-pointer">
-                                I confirm this is an authentic commercial inquiry and consent to contact regarding this B2B requirement. <span class="text-rose-400">*</span>
+                            <label for="{{ form.consent.id_for_label }}" class="text-xs font-mono text-slate-700 dark:text-slate-300 cursor-pointer">
+                                I confirm this is an authentic commercial inquiry and consent to contact regarding this B2B requirement. <span class="text-rose-500">*</span>
                             </label>
-                            {% if form.consent.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.consent.errors.0 }}</p>{% endif %}
+                            {% if form.consent.errors %}<p class="text-xs text-rose-500 mt-1 font-mono">{{ form.consent.errors.0 }}</p>{% endif %}
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full metallic-silver-btn py-4 rounded text-xs uppercase tracking-widest font-bold shadow-lg">
+                    <button type="submit" class="w-full metallic-silver-btn py-4 rounded text-xs uppercase tracking-widest font-bold shadow-md">
                         Submit RFQ / Commercial Enquiry
                     </button>
                 </form>

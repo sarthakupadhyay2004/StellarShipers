@@ -1,5 +1,8 @@
-﻿// STELLAR SHIPERS Client Script
+// STELLAR SHIPERS Client Script
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Theme Toggle Handler
+    initThemeToggle();
+
     // 1. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
@@ -22,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = btn.querySelector('.faq-icon');
             if (content) {
                 const isHidden = content.classList.contains('hidden');
-                // Close all in this category if desired or toggle
                 content.classList.toggle('hidden');
                 if (icon) {
                     icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
@@ -70,3 +72,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 6000);
     });
 });
+
+/**
+ * Initializes and manages theme switching between Light (default) and Dark.
+ */
+function initThemeToggle() {
+    const savedTheme = localStorage.getItem('stellar_theme') || 'light';
+    applyTheme(savedTheme);
+
+    const toggleButtons = document.querySelectorAll('.theme-toggle-btn');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isDark = document.documentElement.classList.contains('dark');
+            const nextTheme = isDark ? 'light' : 'dark';
+            applyTheme(nextTheme);
+        });
+    });
+}
+
+function applyTheme(theme) {
+    if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('stellar_theme', 'dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('stellar_theme', 'light');
+    }
+    updateToggleButtons(theme);
+}
+
+function updateToggleButtons(theme) {
+    const isDark = theme === 'dark';
+    const buttons = document.querySelectorAll('.theme-toggle-btn');
+    buttons.forEach(btn => {
+        const lightPill = btn.querySelector('.theme-opt-light');
+        const darkPill = btn.querySelector('.theme-opt-dark');
+        if (lightPill && darkPill) {
+            if (isDark) {
+                lightPill.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+                lightPill.classList.add('text-slate-400');
+                darkPill.classList.remove('text-slate-400');
+                darkPill.classList.add('bg-slate-700', 'text-white', 'shadow-sm');
+            } else {
+                lightPill.classList.remove('text-slate-400');
+                lightPill.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+                darkPill.classList.remove('bg-slate-700', 'text-white', 'shadow-sm');
+                darkPill.classList.add('text-slate-400');
+            }
+        }
+        btn.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
+        btn.setAttribute('aria-label', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
+    });
+}

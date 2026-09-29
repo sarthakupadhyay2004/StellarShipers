@@ -21,67 +21,67 @@ class RFQForm(forms.ModelForm):
         ]
         widgets = {
             'name': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., Jonathan Vance, VP Procurement'
             }),
             'company': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., NovaTech Composites GmbH'
             }),
             'country': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., Germany'
             }),
             'email': forms.EmailInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'name@enterprise.com'
             }),
             'phone': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': '+49 89 12345678 (Direct / WhatsApp)'
             }),
             'product': forms.Select(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors'
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors'
             }),
             'product_interest': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'Or specify custom raw material / specification needed'
             }),
             'quantity': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., 20 Metric Tons / trial lot 5 MT'
             }),
             'application': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., Compression molded door panels for automotive'
             }),
             'technical_requirements': forms.Textarea(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors h-24',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors h-24',
                 'placeholder': 'Specify target tensile strength, moisture threshold, staple length, fiber diameter, degumming protocol...'
             }),
             'technical_file': forms.FileInput(attrs={
-                'class': 'w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-slate-200 hover:file:bg-slate-700 cursor-pointer'
+                'class': 'w-full text-sm text-slate-500 dark:text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-slate-800 dark:file:text-slate-200 dark:hover:file:bg-slate-700 cursor-pointer'
             }),
             'packaging': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., 100kg hydraulic bales with PP wrap / Palletized'
             }),
             'delivery_country': forms.TextInput(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors',
                 'placeholder': 'e.g., Port of Hamburg, Germany or Rotterdam, NL'
             }),
             'incoterms': forms.Select(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors'
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors'
             }),
             'message': forms.Textarea(attrs={
-                'class': 'w-full bg-slate-900/80 border border-slate-700/80 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 text-white rounded px-4 py-3 text-sm placeholder-slate-500 transition-colors h-20',
+                'class': 'w-full bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-slate-900 dark:text-white rounded px-4 py-3 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition-colors h-20',
                 'placeholder': 'Estimated schedule, testing timeline, or specific export documentation needed.'
             }),
             'sample_request': forms.CheckboxInput(attrs={
-                'class': 'w-4 h-4 text-emerald-500 bg-slate-900 border-slate-700 rounded focus:ring-slate-500'
+                'class': 'w-4 h-4 text-blue-600 dark:text-emerald-500 bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 rounded focus:ring-blue-500 dark:focus:ring-slate-500'
             }),
             'consent': forms.CheckboxInput(attrs={
-                'class': 'w-4 h-4 text-slate-400 bg-slate-900 border-slate-700 rounded focus:ring-slate-500',
+                'class': 'w-4 h-4 text-blue-600 dark:text-slate-400 bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 rounded focus:ring-blue-500 dark:focus:ring-slate-500',
                 'required': 'required'
             }),
         }

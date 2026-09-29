@@ -1,38 +1,39 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Privacy Policy | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-[#0B0F17] border-b border-slate-800 py-16">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#0B0F17] dark:border-slate-800 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-4">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-slate-300">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-slate-300">
+                <span class="theme-dot"></span>
                 <span>Governance & Compliance</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
                 B2B Commercial Privacy Policy
             </h1>
-            <p class="text-slate-400 text-sm leading-relaxed">
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                 Last updated: January 2026. This policy outlines how STELLAR SHIPERS collects, processes, and protects corporate and commercial sourcing data submitted across our wholesale gateway.
             </p>
         </div>
     </div>
 </div>
 
-<div class="bg-[#070A0F] py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 text-slate-300 text-sm leading-relaxed font-sans">
+<div class="bg-white dark:bg-[#070A0F] py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-sans">
         
         <section class="space-y-3">
-            <h2 class="text-lg font-bold text-white uppercase font-mono tracking-wider">1. Scope of B2B Commercial Data Processing</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">1. Scope of B2B Commercial Data Processing</h2>
             <p>
                 STELLAR SHIPERS operates strictly as a business-to-business (B2B) international sourcing and export entity. We do not provide consumer e-commerce services, nor do we solicit personal consumer transactions. Information submitted through our portal (such as corporate representative names, corporate email addresses, phone numbers, technical specifications, and enterprise details) is gathered solely for commercial inquiry evaluation, Request for Quotation (RFQ) processing, and international export logistics execution.
             </p>
         </section>
 
         <section class="space-y-3">
-            <h2 class="text-lg font-bold text-white uppercase font-mono tracking-wider">2. Information We Collect</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">2. Information We Collect</h2>
             <p>We collect information submitted directly by authorized procurement agents and representatives:</p>
-            <ul class="list-disc list-inside space-y-2 text-slate-400 text-xs font-mono">
+            <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-400 text-xs font-mono">
                 <li>Enterprise Identifiers: Corporate entity name, registered country, operational headquarters.</li>
                 <li>Commercial Contact Data: Representative name, corporate email address, direct telephone / WhatsApp.</li>
                 <li>Sourcing Specifications: Target raw material, required volume, intended application, technical drawing attachments, packaging requirements, destination port.</li>
@@ -41,9 +42,9 @@
         </section>
 
         <section class="space-y-3">
-            <h2 class="text-lg font-bold text-white uppercase font-mono tracking-wider">3. Commercial Purpose of Use</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">3. Commercial Purpose of Use</h2>
             <p>We process collected data strictly for the following purposes:</p>
-            <ul class="list-disc list-inside space-y-2 text-slate-400 text-xs font-mono">
+            <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-400 text-xs font-mono">
                 <li>Evaluating raw material availability, mill capacity, and laboratory testing requirements.</li>
                 <li>Formulating formal Requests for Quotations (RFQs) and proforma commercial invoices.</li>
                 <li>Dispatching laboratory sample evaluation kits and technical data sheets (TDS).</li>
@@ -52,16 +53,16 @@
         </section>
 
         <section class="space-y-3">
-            <h2 class="text-lg font-bold text-white uppercase font-mono tracking-wider">4. Technical Confidentiality & Non-Disclosure</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">4. Technical Confidentiality & Non-Disclosure</h2>
             <p>
                 We treat all proprietary compounding requirements, engineering specifications, and CAD drawings uploaded by buyers as strictly confidential trade secrets. We never sell, monetize, or disclose client technical requirements to unauthorized third parties. Disclosure is limited strictly to accredited testing laboratories, ocean freight carriers, and statutory customs authorities strictly necessary to fulfill trade obligations.
             </p>
         </section>
 
         <section class="space-y-3">
-            <h2 class="text-lg font-bold text-white uppercase font-mono tracking-wider">5. Contact Regarding Commercial Privacy</h2>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">5. Contact Regarding Commercial Privacy</h2>
             <p>
-                To request data verification, update your corporate records, or execute a formal Non-Disclosure Agreement (NDA), please contact our legal desk at <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white underline">{{ PRIMARY_EMAIL }}</a>.
+                To request data verification, update your corporate records, or execute a formal Non-Disclosure Agreement (NDA), please contact our legal desk at <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-blue-600 hover:underline dark:text-white">{{ PRIMARY_EMAIL }}</a>.
             </p>
         </section>
 

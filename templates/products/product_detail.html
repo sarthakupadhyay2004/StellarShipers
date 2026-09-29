@@ -3,32 +3,32 @@
 {% block title %}{{ product.name }} | Sourcing & Specifications - {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-[#1E2328] border-b border-[#353B44] py-10">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Breadcrumb -->
-        <nav class="flex items-center space-x-2 text-xs font-mono text-slate-400 mb-4">
-            <a href="{% url 'pages:home' %}" class="hover:text-white">Home</a>
+        <nav class="flex items-center space-x-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-4">
+            <a href="{% url 'pages:home' %}" class="hover:text-blue-600 dark:hover:text-white transition-colors">Home</a>
             <span>/</span>
-            <a href="{% url 'products:list' %}" class="hover:text-white">Products</a>
+            <a href="{% url 'products:list' %}" class="hover:text-blue-600 dark:hover:text-white transition-colors">Products</a>
             <span>/</span>
-            <span class="text-white">{{ product.name }}</span>
+            <span class="text-slate-900 dark:text-white font-semibold">{{ product.name }}</span>
         </nav>
 
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="space-y-2 max-w-3xl">
-                <h1 class="text-2xl sm:text-4xl font-bold text-white tracking-tight uppercase">
+                <h1 class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
                     {{ product.name }}
                 </h1>
-                <p class="text-slate-300 text-sm font-sans leading-relaxed">
+                <p class="text-slate-600 dark:text-slate-300 text-sm font-sans leading-relaxed">
                     Natural, mechanically extracted and dried banana fiber sourced from G9 banana pseudostems, supplied in cleaned/combed fiber bundles for textile and natural-fiber applications.
                 </p>
             </div>
 
             <div class="shrink-0 flex items-center space-x-3">
-                <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="metallic-silver-btn px-6 py-3 rounded text-xs uppercase tracking-widest font-bold">
+                <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="metallic-silver-btn px-6 py-3 rounded text-xs uppercase tracking-widest font-bold shadow-sm">
                     Request Quote
                 </a>
-                <a href="{% url 'rfq:submit' %}?product={{ product.slug }}&sample=1" class="px-5 py-3 rounded text-xs uppercase tracking-widest font-semibold border border-[#4A5563] bg-[#252A30] hover:bg-[#2F363F] text-slate-200 transition-colors">
+                <a href="{% url 'rfq:submit' %}?product={{ product.slug }}&sample=1" class="theme-btn-secondary px-5 py-3 rounded text-xs uppercase tracking-widest font-semibold">
                     Request Sample
                 </a>
             </div>
@@ -36,75 +36,75 @@
     </div>
 </div>
 
-<div class="bg-[#161A1E] py-16">
+<div class="bg-white dark:bg-[#161A1E] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
             
             <!-- Left 8 Cols: Product Specification Details -->
             <div class="lg:col-span-8 space-y-10">
 
-                <!-- Parameters Table Strictly from Page 5 -->
-                <div class="bg-[#1E2328] border border-[#353B44] rounded-xl overflow-hidden">
-                    <div class="p-5 bg-[#1B2025] border-b border-[#353B44]">
-                        <h2 class="text-sm font-bold text-white uppercase font-mono tracking-wider">Product Technical Parameters</h2>
+                <!-- Parameters Table -->
+                <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] rounded-xl overflow-hidden">
+                    <div class="p-5 bg-slate-50 border-b border-slate-200 dark:bg-[#1B2025] dark:border-[#353B44]">
+                        <h2 class="text-sm font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">Product Technical Parameters</h2>
                     </div>
 
-                    <div class="divide-y divide-[#2D333B] text-xs font-mono">
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Banana Variety</span>
-                            <span class="text-slate-300">G9</span>
+                    <div class="divide-y divide-slate-200 dark:divide-[#2D333B] text-xs font-mono">
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Banana Variety</span>
+                            <span class="text-slate-600 dark:text-slate-300">G9</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Raw Material Source</span>
-                            <span class="text-slate-300">Musa plant pseudostems</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Raw Material Source</span>
+                            <span class="text-slate-600 dark:text-slate-300">Musa plant pseudostems</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Extraction Method</span>
-                            <span class="text-slate-300">Mechanical decortication</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Extraction Method</span>
+                            <span class="text-slate-600 dark:text-slate-300">Mechanical decortication</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Post-Extraction Processing</span>
-                            <span class="text-slate-300">Drying only</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Post-Extraction Processing</span>
+                            <span class="text-slate-600 dark:text-slate-300">Drying only</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Chemical Treatment</span>
-                            <span class="text-slate-300">Supplier states no chemical treatment / 100% natural</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Chemical Treatment</span>
+                            <span class="text-slate-600 dark:text-slate-300">Supplier states no chemical treatment / 100% natural</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Typical Fiber Length</span>
-                            <span class="text-slate-300">upto 5 ft</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Typical Fiber Length</span>
+                            <span class="text-slate-600 dark:text-slate-300">upto 5 ft</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Visual Colour</span>
-                            <span class="text-slate-300">Golden</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Visual Colour</span>
+                            <span class="text-slate-600 dark:text-slate-300">Golden</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Tensile Strength</span>
-                            <span class="text-slate-300">test-measured per buyer specification</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Tensile Strength</span>
+                            <span class="text-slate-600 dark:text-slate-300">test-measured per buyer specification</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Moisture Content</span>
-                            <span class="text-slate-300">Requires accredited laboratory testing before export</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Moisture Content</span>
+                            <span class="text-slate-600 dark:text-slate-300">Requires accredited laboratory testing before export</span>
                         </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
-                            <span class="text-white font-semibold">Batch Consistency</span>
-                            <span class="text-slate-300">Natural variation expected; QC tolerances defined per contract</span>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                            <span class="text-slate-900 dark:text-white font-semibold">Batch Consistency</span>
+                            <span class="text-slate-600 dark:text-slate-300">Natural variation expected; QC tolerances defined per contract</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Potential Applications (Page 5) -->
-                <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-4">
-                    <h3 class="text-xs font-mono uppercase tracking-wider text-[#9AA0A6]">Potential Applications / Uses (Page 5)</h3>
-                    <p class="text-xs text-slate-400 font-mono">
+                <!-- Potential Applications -->
+                <div class="p-6 rounded-xl bg-slate-50 border border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] space-y-4">
+                    <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">Potential Applications / Uses</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
                         These are presented as potential applications, not guarantees. Final application claims should be tied to test results and buyer requirements.
                     </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-200">
-                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Natural-fiber textile development</div>
-                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Blended yarn / textile development where technically suitable</div>
-                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Woven or nonwoven material development</div>
-                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Home-textile and furnishing applications</div>
-                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B] sm:col-span-2">&bull; Craft, specialty and other natural-fiber applications</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-700 dark:text-slate-200">
+                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Natural-fiber textile development</div>
+                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Blended yarn / textile development where technically suitable</div>
+                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Woven or nonwoven material development</div>
+                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Home-textile and furnishing applications</div>
+                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded sm:col-span-2">&bull; Craft, specialty and other natural-fiber applications</div>
                     </div>
                 </div>
 
@@ -112,24 +112,24 @@
 
             <!-- Right 4 Cols: Sourcing & Commercial Enquiry Card -->
             <div class="lg:col-span-4 space-y-6">
-                <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-6 shadow-xl sticky top-28">
-                    <div class="border-b border-[#353B44] pb-4">
-                        <span class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">Commercial Summary</span>
-                        <h3 class="text-base font-bold text-white uppercase mt-1">Sourcing Parameters</h3>
+                <div class="p-6 rounded-xl bg-slate-50 border border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] space-y-6 shadow-sm sticky top-28">
+                    <div class="border-b border-slate-200 dark:border-[#353B44] pb-4">
+                        <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">Commercial Summary</span>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white uppercase mt-1">Sourcing Parameters</h3>
                     </div>
 
                     <div class="space-y-3 text-xs font-mono">
-                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
-                            <span class="text-slate-400">Supplier MOQ:</span>
-                            <span class="text-white font-semibold">500 kg</span>
+                        <div class="flex justify-between py-1 border-b border-slate-200 dark:border-[#2D333B]">
+                            <span class="text-slate-500 dark:text-slate-400">Supplier MOQ:</span>
+                            <span class="text-slate-900 dark:text-white font-semibold">500 kg</span>
                         </div>
-                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
-                            <span class="text-slate-400">Supplier Capacity:</span>
-                            <span class="text-white font-semibold">15 MT / month</span>
+                        <div class="flex justify-between py-1 border-b border-slate-200 dark:border-[#2D333B]">
+                            <span class="text-slate-500 dark:text-slate-400">Supplier Capacity:</span>
+                            <span class="text-slate-900 dark:text-white font-semibold">15 MT / month</span>
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between py-1 gap-1">
-                            <span class="text-slate-400">Packaging:</span>
-                            <span class="text-white text-right">inner LDPE liner and outer woven HDPE sacks</span>
+                            <span class="text-slate-500 dark:text-slate-400">Packaging:</span>
+                            <span class="text-slate-900 dark:text-white text-right">inner LDPE liner and outer woven HDPE sacks</span>
                         </div>
                     </div>
 
@@ -137,12 +137,12 @@
                         <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="w-full block text-center metallic-silver-btn py-3.5 rounded text-xs uppercase tracking-widest font-bold">
                             Request Commercial Quote
                         </a>
-                        <a href="{% url 'rfq:submit' %}?product={{ product.slug }}&sample=1" class="w-full block text-center border border-[#4A5563] bg-[#161A1E] hover:bg-[#252A30] text-slate-200 py-3 rounded text-xs uppercase tracking-wider font-semibold transition-colors">
+                        <a href="{% url 'rfq:submit' %}?product={{ product.slug }}&sample=1" class="w-full block text-center theme-btn-secondary py-3 rounded text-xs uppercase tracking-wider font-semibold">
                             Request Physical Sample
                         </a>
                     </div>
 
-                    <div class="pt-2 text-[11px] font-mono text-slate-400 space-y-1 border-t border-[#2D333B]">
+                    <div class="pt-2 text-[11px] font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-[#2D333B]">
                         <div>&bull; Direct B2B commercial evaluation</div>
                         <div>&bull; Sample charges/freight quoted clearly</div>
                         <div>&bull; Responsible export documentation</div>

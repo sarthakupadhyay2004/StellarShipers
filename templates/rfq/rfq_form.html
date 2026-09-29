@@ -1,39 +1,39 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Request for Quotation (RFQ) | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-[#0B0F17] border-b border-slate-800 py-12">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#0B0F17] dark:border-slate-800 py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-3">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-slate-300">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-slate-300">
+                <span class="theme-dot"></span>
                 <span>Direct B2B Commercial Inquiry</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
                 Request for Quotation (RFQ)
             </h1>
-            <p class="text-slate-400 text-sm leading-relaxed">
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                 Submit your target specifications, required quantities, and destination port. In accordance with our brand principle—WHERE TRUST MEETS VALUE—every quotation is formulated with certified technical tolerances and direct origin economics.
             </p>
         </div>
     </div>
 </div>
 
-<div class="bg-[#070A0F] py-16">
+<div class="bg-white dark:bg-[#070A0F] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <!-- Left 8 Cols: The RFQ Form -->
-            <div class="lg:col-span-8 bg-slate-900/90 border border-slate-800 rounded-xl p-8 sm:p-10 shadow-2xl space-y-8">
+            <div class="lg:col-span-8 bg-slate-50 border border-slate-200 rounded-xl p-8 sm:p-10 shadow-sm dark:bg-slate-900/90 dark:border-slate-800 dark:shadow-2xl space-y-8">
                 
                 {% if preselected_product %}
-                    <div class="p-4 rounded bg-slate-950 border border-slate-800 flex items-center justify-between text-xs font-mono">
+                    <div class="p-4 rounded bg-blue-50 border border-blue-200 dark:bg-slate-950 dark:border-slate-800 flex items-center justify-between text-xs font-mono">
                         <div>
-                            <span class="text-slate-300 uppercase block">Selected Catalog Product:</span>
-                            <span class="text-white font-bold text-sm">{{ preselected_product.name }}</span>
+                            <span class="text-blue-700 dark:text-slate-300 uppercase block">Selected Catalog Product:</span>
+                            <span class="text-slate-900 dark:text-white font-bold text-sm">{{ preselected_product.name }}</span>
                         </div>
-                        <a href="{% url 'products:detail' preselected_product.slug %}" target="_blank" class="text-slate-300 hover:text-white underline">
+                        <a href="{% url 'products:detail' preselected_product.slug %}" target="_blank" class="text-blue-600 hover:text-blue-800 underline dark:text-slate-300 dark:hover:text-white">
                             View Specs &nearr;
                         </a>
                     </div>
@@ -49,149 +49,149 @@
 
                     <!-- 1. Enterprise Contact Info -->
                     <div class="space-y-4">
-                        <div class="border-b border-slate-800 pb-2">
-                            <h3 class="text-xs font-mono uppercase tracking-wider text-slate-300">1. Buyer Enterprise Credentials</h3>
+                        <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
+                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">1. Buyer Enterprise Credentials</h3>
                         </div>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Contact Name & Title <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Contact Name & Title <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.name }}
-                                {% if form.name.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.name.errors.0 }}</p>{% endif %}
+                                {% if form.name.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.name.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Enterprise / Company Name <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Enterprise / Company Name <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.company }}
-                                {% if form.company.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.company.errors.0 }}</p>{% endif %}
+                                {% if form.company.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.company.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Corporate Email Address <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Corporate Email Address <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.email }}
-                                {% if form.email.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.email.errors.0 }}</p>{% endif %}
+                                {% if form.email.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.email.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Direct Phone / WhatsApp
                                 </label>
                                 {{ form.phone }}
-                                {% if form.phone.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.phone.errors.0 }}</p>{% endif %}
+                                {% if form.phone.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.phone.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Headquarter Country <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Headquarter Country <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.country }}
-                                {% if form.country.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.country.errors.0 }}</p>{% endif %}
+                                {% if form.country.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.country.errors.0 }}</p>{% endif %}
                             </div>
                         </div>
                     </div>
 
                     <!-- 2. Product & Sourcing Specs -->
                     <div class="space-y-4">
-                        <div class="border-b border-slate-800 pb-2">
-                            <h3 class="text-xs font-mono uppercase tracking-wider text-slate-300">2. Sourcing Parameters & Volume</h3>
+                        <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
+                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">2. Sourcing Parameters & Volume</h3>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Select Product
                                 </label>
                                 {{ form.product }}
-                                {% if form.product.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.product.errors.0 }}</p>{% endif %}
+                                {% if form.product.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.product.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Or Custom Raw Material Specification
                                 </label>
                                 {{ form.product_interest }}
-                                {% if form.product_interest.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.product_interest.errors.0 }}</p>{% endif %}
+                                {% if form.product_interest.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.product_interest.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Required Volume / Quantity <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Required Volume / Quantity <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.quantity }}
-                                {% if form.quantity.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.quantity.errors.0 }}</p>{% endif %}
+                                {% if form.quantity.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.quantity.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Intended Industrial Application <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Intended Industrial Application <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.application }}
-                                {% if form.application.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.application.errors.0 }}</p>{% endif %}
+                                {% if form.application.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.application.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Target Technical & Quality Requirements
                                 </label>
                                 {{ form.technical_requirements }}
-                                <p class="text-[11px] text-slate-400 font-mono mt-1">Specify tensile limits, max moisture %, fiber length, or required testing standards (ASTM/ISO).</p>
-                                {% if form.technical_requirements.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.technical_requirements.errors.0 }}</p>{% endif %}
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-1">Specify tensile limits, max moisture %, fiber length, or required testing standards (ASTM/ISO).</p>
+                                {% if form.technical_requirements.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.technical_requirements.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Upload Technical Specification / Drawing (Optional)
                                 </label>
                                 {{ form.technical_file }}
-                                <p class="text-[11px] text-slate-400 font-mono mt-1">Accepted: PDF, DOC, DOCX, TXT, PNG, JPG (Max 10MB).</p>
-                                {% if form.technical_file.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.technical_file.errors.0 }}</p>{% endif %}
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-1">Accepted: PDF, DOC, DOCX, TXT, PNG, JPG (Max 10MB).</p>
+                                {% if form.technical_file.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.technical_file.errors.0 }}</p>{% endif %}
                             </div>
                         </div>
                     </div>
 
                     <!-- 3. Logistics & Delivery -->
                     <div class="space-y-4">
-                        <div class="border-b border-slate-800 pb-2">
-                            <h3 class="text-xs font-mono uppercase tracking-wider text-slate-300">3. Logistics & Shipping Terms</h3>
+                        <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
+                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">3. Logistics & Shipping Terms</h3>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
-                                    Destination Port / Discharge Country <span class="text-rose-400">*</span>
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                                    Destination Port / Discharge Country <span class="text-rose-500">*</span>
                                 </label>
                                 {{ form.delivery_country }}
-                                {% if form.delivery_country.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.delivery_country.errors.0 }}</p>{% endif %}
+                                {% if form.delivery_country.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.delivery_country.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div>
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Preferred Incoterms
                                 </label>
                                 {{ form.incoterms }}
-                                {% if form.incoterms.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.incoterms.errors.0 }}</p>{% endif %}
+                                {% if form.incoterms.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.incoterms.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Packaging Format
                                 </label>
                                 {{ form.packaging }}
-                                {% if form.packaging.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.packaging.errors.0 }}</p>{% endif %}
+                                {% if form.packaging.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.packaging.errors.0 }}</p>{% endif %}
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1">
+                                <label class="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                                     Commercial Notes / Timeline
                                 </label>
                                 {{ form.message }}
-                                {% if form.message.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.message.errors.0 }}</p>{% endif %}
+                                {% if form.message.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.message.errors.0 }}</p>{% endif %}
                             </div>
                         </div>
                     </div>
@@ -199,40 +199,40 @@
                     <!-- 4. Sample Request & Commercial Consent -->
                     <div class="space-y-4 pt-2">
                         <!-- Sample Request Callout -->
-                        <div class="p-4 rounded-lg bg-emerald-950/30 border border-emerald-800/60 flex items-start space-x-3">
+                        <div class="p-4 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 dark:bg-emerald-950/30 dark:border-emerald-800/60 dark:text-emerald-300 flex items-start space-x-3">
                             <div class="mt-0.5">
                                 {{ form.sample_request }}
                             </div>
                             <div>
-                                <label for="{{ form.sample_request.id_for_label }}" class="text-xs font-bold text-emerald-300 font-mono uppercase cursor-pointer">
+                                <label for="{{ form.sample_request.id_for_label }}" class="text-xs font-bold text-blue-900 dark:text-emerald-300 font-mono uppercase cursor-pointer">
                                     Request Physical Sample Evaluation Kit
                                 </label>
-                                <p class="text-xs text-emerald-200/70 mt-1">
+                                <p class="text-xs text-blue-800/80 dark:text-emerald-200/70 mt-1">
                                     Check this box if your technical team requires a laboratory-grade physical sample lot for trials prior to final commercial order placement.
                                 </p>
                             </div>
                         </div>
 
                         <!-- B2B Commercial Consent -->
-                        <div class="p-4 rounded-lg bg-slate-950 border border-slate-800 flex items-start space-x-3">
+                        <div class="p-4 rounded-lg bg-white border border-slate-200 dark:bg-slate-950 dark:border-slate-800 flex items-start space-x-3">
                             <div class="mt-0.5">
                                 {{ form.consent }}
                             </div>
                             <div>
-                                <label for="{{ form.consent.id_for_label }}" class="text-xs text-slate-300 font-mono cursor-pointer">
-                                    I confirm that this is a legitimate commercial inquiry. I consent to STELLAR SHIPERS processing our corporate technical parameters for quotation and logistics planning. <span class="text-rose-400">*</span>
+                                <label for="{{ form.consent.id_for_label }}" class="text-xs text-slate-700 dark:text-slate-300 font-mono cursor-pointer">
+                                    I confirm that this is a legitimate commercial inquiry. I consent to STELLAR SHIPERS processing our corporate technical parameters for quotation and logistics planning. <span class="text-rose-500">*</span>
                                 </label>
-                                {% if form.consent.errors %}<p class="text-xs text-rose-400 mt-1">{{ form.consent.errors.0 }}</p>{% endif %}
+                                {% if form.consent.errors %}<p class="text-xs text-rose-500 mt-1">{{ form.consent.errors.0 }}</p>{% endif %}
                             </div>
                         </div>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="pt-4">
-                        <button type="submit" class="w-full silver-gradient-btn py-4 rounded text-xs uppercase tracking-widest font-bold shadow-xl">
+                        <button type="submit" class="w-full metallic-silver-btn py-4 rounded text-xs uppercase tracking-widest font-bold shadow-md">
                             Submit Request for Quotation (RFQ)
                         </button>
-                        <p class="text-center text-[11px] text-slate-400 font-mono mt-3">
+                        <p class="text-center text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-3">
                             SLA: Our international export desk issues verified quotes within 24 to 48 business hours.
                         </p>
                     </div>
@@ -243,26 +243,26 @@
             <div class="lg:col-span-4 space-y-6">
                 
                 <!-- Trust Guarantee Box -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
-                    <div class="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-slate-300">
-                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                    <div class="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">
+                        <svg class="w-4 h-4 text-blue-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                         <span>Commercial Protocol</span>
                     </div>
-                    <h3 class="text-base font-bold text-white">The Stellar RFQ Commitment</h3>
-                    <div class="space-y-3 text-xs text-slate-400 leading-relaxed font-mono">
-                        <p><strong class="text-slate-200">1. Certified Tolerances:</strong> Every quote is accompanied by documented tolerance ranges (tensile, moisture, cellulose).</p>
-                        <p><strong class="text-slate-200">2. Origin Traceability:</strong> All biomass traced directly to certified agricultural estates and processing mills.</p>
-                        <p><strong class="text-slate-200">3. Incoterms Pricing:</strong> Clear, unbundled breakdowns of FOB, CIF, or CFR shipping freight and marine insurance.</p>
-                        <p><strong class="text-slate-200">4. Physical Sample Kit:</strong> Sample lots dispatched via international courier with verified laboratory COA.</p>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white">The Stellar RFQ Commitment</h3>
+                    <div class="space-y-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
+                        <p><strong class="text-slate-900 dark:text-slate-200">1. Certified Tolerances:</strong> Every quote is accompanied by documented tolerance ranges (tensile, moisture, cellulose).</p>
+                        <p><strong class="text-slate-900 dark:text-slate-200">2. Origin Traceability:</strong> All biomass traced directly to certified agricultural estates and processing mills.</p>
+                        <p><strong class="text-slate-900 dark:text-slate-200">3. Incoterms Pricing:</strong> Clear, unbundled breakdowns of FOB, CIF, or CFR shipping freight and marine insurance.</p>
+                        <p><strong class="text-slate-900 dark:text-slate-200">4. Physical Sample Kit:</strong> Sample lots dispatched via international courier with verified laboratory COA.</p>
                     </div>
                 </div>
 
                 <!-- Contact Fallback -->
-                <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 space-y-3 text-xs">
-                    <h4 class="font-bold text-white uppercase font-mono tracking-wider">Direct Inquiries</h4>
-                    <p class="text-slate-400">For tender submissions, specialized NDA signing, or direct vessel chartering inquiries:</p>
-                    <div class="space-y-1 font-mono text-slate-300 pt-1">
-                        <div>Email: <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white hover:underline">{{ PRIMARY_EMAIL }}</a></div>
+                <div class="bg-slate-50/60 border border-slate-200 rounded-xl p-6 space-y-3 text-xs dark:bg-slate-900/60 dark:border-slate-800">
+                    <h4 class="font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">Direct Inquiries</h4>
+                    <p class="text-slate-500 dark:text-slate-400">For tender submissions, specialized NDA signing, or direct vessel chartering inquiries:</p>
+                    <div class="space-y-1 font-mono text-slate-700 dark:text-slate-300 pt-1">
+                        <div>Email: <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-blue-600 hover:underline dark:text-white">{{ PRIMARY_EMAIL }}</a></div>
                         <div>Direct Desk: {{ PRIMARY_PHONE }}</div>
                     </div>
                 </div>

@@ -1,60 +1,60 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}RFQ Submitted Successfully | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-[#070A0F] py-20">
+<div class="bg-white dark:bg-[#070A0F] py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 sm:p-12 shadow-2xl space-y-8 text-center">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-12 shadow-xl dark:bg-slate-900 dark:border-slate-800 space-y-8 text-center">
             
             <!-- Success Icon -->
-            <div class="w-16 h-16 rounded-full bg-emerald-950 border border-emerald-700/80 mx-auto flex items-center justify-center text-emerald-400 shadow-inner">
+            <div class="w-16 h-16 rounded-full bg-blue-50 border border-blue-200 mx-auto flex items-center justify-center text-blue-600 shadow-inner dark:bg-emerald-950 dark:border-emerald-700/80 dark:text-emerald-400">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
             </div>
 
             <!-- Title -->
             <div class="space-y-2">
-                <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">RFQ Transmission Confirmed</span>
-                <h1 class="text-3xl font-extrabold text-white tracking-tight uppercase">
+                <span class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400">RFQ Transmission Confirmed</span>
+                <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
                     Commercial Sourcing Inquiry Registered
                 </h1>
-                <p class="text-slate-400 text-sm max-w-lg mx-auto">
+                <p class="text-slate-600 dark:text-slate-400 text-sm max-w-lg mx-auto">
                     Your Request for Quotation has been logged into our enterprise supply chain desk. A formal confirmation has been dispatched to your corporate email.
                 </p>
             </div>
 
             <!-- Reference Tracking ID -->
-            <div class="p-6 rounded-xl bg-slate-950 border border-slate-800 space-y-2 max-w-md mx-auto">
-                <span class="text-xs font-mono uppercase text-slate-300">Inquiry Tracking Reference ID:</span>
-                <div class="text-2xl sm:text-3xl font-mono font-bold text-white tracking-widest">{{ reference_id }}</div>
-                <p class="text-[11px] text-slate-400 font-mono">Please cite this reference in all future commercial communications.</p>
+            <div class="p-6 rounded-xl bg-white border border-slate-200 dark:bg-slate-950 dark:border-slate-800 space-y-2 max-w-md mx-auto shadow-sm">
+                <span class="text-xs font-mono uppercase text-slate-500 dark:text-slate-300">Inquiry Tracking Reference ID:</span>
+                <div class="text-2xl sm:text-3xl font-mono font-bold text-blue-600 dark:text-white tracking-widest">{{ reference_id }}</div>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Please cite this reference in all future commercial communications.</p>
             </div>
 
             <!-- Next Steps -->
-            <div class="text-left bg-slate-950/60 border border-slate-800/80 rounded-xl p-6 space-y-4 text-xs font-mono">
-                <div class="font-bold text-slate-300 uppercase tracking-wider">Our Sourcing Operations SLA:</div>
-                <div class="space-y-3 text-slate-400">
+            <div class="text-left bg-slate-100/70 border border-slate-200 dark:bg-slate-950/60 dark:border-slate-800/80 rounded-xl p-6 space-y-4 text-xs font-mono">
+                <div class="font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Our Sourcing Operations SLA:</div>
+                <div class="space-y-3 text-slate-600 dark:text-slate-400">
                     <div class="flex items-start space-x-3">
-                        <span class="text-emerald-400 font-bold">1.</span>
-                        <span><strong>Specification Verification (0-24 Hours):</strong> Our technical team cross-references your requirements with current regional mill inventory and laboratory test batches.</span>
+                        <span class="text-blue-600 dark:text-emerald-400 font-bold">1.</span>
+                        <span><strong class="text-slate-900 dark:text-slate-200">Specification Verification (0-24 Hours):</strong> Our technical team cross-references your requirements with current regional mill inventory and laboratory test batches.</span>
                     </div>
                     <div class="flex items-start space-x-3">
-                        <span class="text-emerald-400 font-bold">2.</span>
-                        <span><strong>Freight & Tariff Audit (24-48 Hours):</strong> Our maritime logistics desk calculates current container slot rates, phytosanitary requirements, and port tariffs.</span>
+                        <span class="text-blue-600 dark:text-emerald-400 font-bold">2.</span>
+                        <span><strong class="text-slate-900 dark:text-slate-200">Freight & Tariff Audit (24-48 Hours):</strong> Our maritime logistics desk calculates current container slot rates, phytosanitary requirements, and port tariffs.</span>
                     </div>
                     <div class="flex items-start space-x-3">
-                        <span class="text-emerald-400 font-bold">3.</span>
-                        <span><strong>Quotation Dossier Delivery:</strong> You will receive an unbundled commercial quote, preliminary Technical Data Sheet (TDS), and sample dispatch tracking (if requested).</span>
+                        <span class="text-blue-600 dark:text-emerald-400 font-bold">3.</span>
+                        <span><strong class="text-slate-900 dark:text-slate-200">Quotation Dossier Delivery:</strong> You will receive an unbundled commercial quote, preliminary Technical Data Sheet (TDS), and sample dispatch tracking (if requested).</span>
                     </div>
                 </div>
             </div>
 
             <!-- Actions -->
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="{% url 'products:list' %}" class="w-full sm:w-auto silver-gradient-btn px-6 py-3 rounded text-xs uppercase tracking-wider font-semibold">
+                <a href="{% url 'products:list' %}" class="w-full sm:w-auto metallic-silver-btn px-6 py-3 rounded text-xs uppercase tracking-wider font-semibold">
                     Return to Products Catalog
                 </a>
-                <a href="{% url 'pages:home' %}" class="w-full sm:w-auto border border-slate-700 bg-slate-800 text-slate-300 hover:text-white px-6 py-3 rounded text-xs uppercase tracking-wider font-semibold transition-colors">
+                <a href="{% url 'pages:home' %}" class="w-full sm:w-auto theme-btn-secondary px-6 py-3 rounded text-xs uppercase tracking-wider font-semibold">
                     Back to Homepage
                 </a>
             </div>

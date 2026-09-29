@@ -4,29 +4,29 @@
 
 {% block content %}
 
-<!-- 1. HERO SECTION (Dark Charcoal to Black per Page 6 & 14) -->
-<section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-[#1E2328] border-b border-[#353B44]">
+<!-- 1. HERO SECTION -->
+<section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-6">
             <!-- Strategic Positioning Badge -->
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded border border-[#4A5563] bg-[#161A1E] text-[11px] font-mono tracking-widest text-slate-300 uppercase">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded border border-blue-200 bg-blue-50 text-blue-900 dark:border-[#4A5563] dark:bg-[#161A1E] text-[11px] font-mono tracking-widest dark:text-slate-300 uppercase shadow-sm">
+                <span class="theme-dot"></span>
                 <span>India-Based Sourcing & Export Company</span>
             </div>
 
-            <!-- Suggested Homepage Headline (Page 3) -->
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white uppercase font-sans leading-tight">
+            <!-- Homepage Headline -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white uppercase font-sans leading-tight">
                 WHERE TRUST <br>
                 <span class="metallic-silver-text">MEETS VALUE.</span>
             </h1>
 
-            <!-- Suggested Supporting Line (Page 3) -->
-            <p class="text-lg sm:text-xl font-medium text-slate-300 font-mono tracking-wide">
+            <!-- Supporting Line -->
+            <p class="text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-300 font-mono tracking-wide">
                 Indian sourcing. International standards. Responsible export coordination.
             </p>
 
-            <!-- Suggested Homepage Introduction (Page 3) -->
-            <p class="text-base text-slate-300 leading-relaxed max-w-2xl">
+            <!-- Homepage Introduction -->
+            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
                 STELLAR SHIPERS connects carefully selected Indian producers with global B2B buyers while managing sourcing, quality verification, customization and export coordination.
             </p>
 
@@ -35,7 +35,7 @@
                 <a href="{% url 'rfq:submit' %}" class="metallic-silver-btn px-8 py-4 rounded text-xs uppercase tracking-widest font-bold text-center shadow-md">
                     Request Quote
                 </a>
-                <a href="{% url 'products:detail' 'banana-fiber' %}" class="px-8 py-4 rounded text-xs uppercase tracking-widest font-semibold text-center border border-[#4A5563] bg-[#252A30] hover:bg-[#2F363F] text-slate-200 transition-colors">
+                <a href="{% url 'products:detail' 'banana-fiber' %}" class="theme-btn-secondary px-8 py-4 rounded text-xs uppercase tracking-widest font-semibold text-center">
                     View Banana Fiber Specs
                 </a>
             </div>
@@ -45,28 +45,28 @@
 </section>
 
 <!-- 2. ABOUT PREVIEW -->
-<section class="py-20 bg-[#161A1E] border-b border-[#353B44]">
+<section class="py-20 bg-white border-b border-slate-200 dark:bg-[#161A1E] dark:border-[#353B44]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-6">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">
                 <span>Company Story</span>
             </div>
-            <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+            <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
                 Bridging Indian Production with Global B2B Markets
             </h2>
-            <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+            <div class="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                 <p>
                     STELLAR SHIPERS was built around a simple belief: capable Indian producers should have better access to international markets, and global buyers should have dependable partners who can bridge sourcing and execution.
                 </p>
                 <p>
                     We work to connect carefully selected Indian production capabilities with international B2B buyers. Our role goes beyond arranging a product. We coordinate sourcing, review product quality, communicate requirements, support reasonable customization and coordinate the export process.
                 </p>
-                <p class="text-slate-400 text-sm font-mono">
+                <p class="text-slate-500 dark:text-slate-400 text-sm font-mono">
                     Our long-term objective is to build a trusted Indian export house known for responsible sourcing, premium value and international professionalism.
                 </p>
             </div>
             <div class="pt-2">
-                <a href="{% url 'pages:about' %}" class="inline-flex items-center space-x-2 text-xs uppercase tracking-widest font-mono text-white border-b border-slate-500 pb-1 hover:border-white transition-colors">
+                <a href="{% url 'pages:about' %}" class="inline-flex items-center space-x-2 text-xs uppercase tracking-widest font-mono text-blue-600 border-b border-blue-600 pb-1 hover:text-blue-700 hover:border-blue-700 dark:text-white dark:border-slate-500 dark:hover:border-white transition-colors">
                     <span>Read Our Full Operating Model</span>
                     <span>&rarr;</span>
                 </a>
@@ -75,80 +75,80 @@
     </div>
 </section>
 
-<!-- 5. HOW WE WORK (6-Stage Process - Page 4 & 15) -->
-<section class="py-20 bg-[#1E2328] border-b border-[#353B44]">
+<!-- 3. HOW WE WORK (6-Stage Process) -->
+<section class="py-20 bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">Operating Model</h2>
-            <p class="text-2xl sm:text-3xl font-bold text-white tracking-tight">How STELLAR SHIPERS Operates</p>
-            <p class="text-xs sm:text-sm text-slate-300 font-mono">
+            <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">Operating Model</h2>
+            <p class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">How STELLAR SHIPERS Operates</p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-mono">
                 Supplier produces &rarr; STELLAR SHIPERS verifies &rarr; approved material is exported &rarr; buyer receives professional communication.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-[#161A1E] border border-[#353B44] rounded-lg p-6 space-y-3">
+            <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#161A1E] dark:border-[#353B44] rounded-lg p-6 space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-[#9AA0A6] font-bold">STAGE 01</span>
-                    <span class="text-[10px] font-mono uppercase bg-[#1E2328] px-2 py-0.5 rounded text-slate-300">Sourcing</span>
+                    <span class="text-xs font-mono text-blue-600 dark:text-[#9AA0A6] font-bold">STAGE 01</span>
+                    <span class="text-[10px] font-mono uppercase bg-slate-100 text-slate-700 dark:bg-[#1E2328] dark:text-slate-300 px-2 py-0.5 rounded">Sourcing</span>
                 </div>
-                <h3 class="text-base font-bold text-white">Carefully selected sourcing network</h3>
-                <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Carefully selected sourcing network</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
                     Identify suitable Indian producers and production capability with confirmed origin feedstock.
                 </p>
             </div>
 
-            <div class="bg-[#161A1E] border border-[#353B44] rounded-lg p-6 space-y-3">
+            <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#161A1E] dark:border-[#353B44] rounded-lg p-6 space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-[#9AA0A6] font-bold">STAGE 02</span>
-                    <span class="text-[10px] font-mono uppercase bg-[#1E2328] px-2 py-0.5 rounded text-slate-300">Requirement</span>
+                    <span class="text-xs font-mono text-blue-600 dark:text-[#9AA0A6] font-bold">STAGE 02</span>
+                    <span class="text-[10px] font-mono uppercase bg-slate-100 text-slate-700 dark:bg-[#1E2328] dark:text-slate-300 px-2 py-0.5 rounded">Requirement</span>
                 </div>
-                <h3 class="text-base font-bold text-white">Requirement-led sourcing</h3>
-                <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Requirement-led sourcing</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
                     Understand the buyer's application, technical specifications, volume, and commercial requirements.
                 </p>
             </div>
 
-            <div class="bg-[#161A1E] border border-[#353B44] rounded-lg p-6 space-y-3">
+            <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#161A1E] dark:border-[#353B44] rounded-lg p-6 space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-emerald-400 font-bold">STAGE 03</span>
-                    <span class="text-[10px] font-mono uppercase bg-emerald-950 px-2 py-0.5 rounded text-emerald-300">Inspection</span>
+                    <span class="text-xs font-mono text-blue-600 dark:text-emerald-400 font-bold">STAGE 03</span>
+                    <span class="text-[10px] font-mono uppercase bg-blue-100 text-blue-800 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded">Inspection</span>
                 </div>
-                <h3 class="text-base font-bold text-white">Quality verification before export</h3>
-                <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Quality verification before export</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
                     Personally review supplier output before approval where practical to ensure lot standards.
                 </p>
             </div>
 
-            <div class="bg-[#161A1E] border border-[#353B44] rounded-lg p-6 space-y-3">
+            <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#161A1E] dark:border-[#353B44] rounded-lg p-6 space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-[#9AA0A6] font-bold">STAGE 04</span>
-                    <span class="text-[10px] font-mono uppercase bg-[#1E2328] px-2 py-0.5 rounded text-slate-300">Quality Control</span>
+                    <span class="text-xs font-mono text-blue-600 dark:text-[#9AA0A6] font-bold">STAGE 04</span>
+                    <span class="text-[10px] font-mono uppercase bg-slate-100 text-slate-700 dark:bg-[#1E2328] dark:text-slate-300 px-2 py-0.5 rounded">Quality Control</span>
                 </div>
-                <h3 class="text-base font-bold text-white">Non-conforming material is not approved</h3>
-                <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Non-conforming material is not approved</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
                     If material is not acceptable, request correction/reproduction or use another qualified producer.
                 </p>
             </div>
 
-            <div class="bg-[#161A1E] border border-[#353B44] rounded-lg p-6 space-y-3">
+            <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#161A1E] dark:border-[#353B44] rounded-lg p-6 space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-[#9AA0A6] font-bold">STAGE 05</span>
-                    <span class="text-[10px] font-mono uppercase bg-[#1E2328] px-2 py-0.5 rounded text-slate-300">Coordination</span>
+                    <span class="text-xs font-mono text-blue-600 dark:text-[#9AA0A6] font-bold">STAGE 05</span>
+                    <span class="text-[10px] font-mono uppercase bg-slate-100 text-slate-700 dark:bg-[#1E2328] dark:text-slate-300 px-2 py-0.5 rounded">Coordination</span>
                 </div>
-                <h3 class="text-base font-bold text-white">One professional point of contact</h3>
-                <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">One professional point of contact</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
                     Manage buyer communication, reasonable customization, packaging, and commercial coordination.
                 </p>
             </div>
 
-            <div class="bg-[#161A1E] border border-[#353B44] rounded-lg p-6 space-y-3">
+            <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#161A1E] dark:border-[#353B44] rounded-lg p-6 space-y-3">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-[#9AA0A6] font-bold">STAGE 06</span>
-                    <span class="text-[10px] font-mono uppercase bg-[#1E2328] px-2 py-0.5 rounded text-slate-300">Logistics</span>
+                    <span class="text-xs font-mono text-blue-600 dark:text-[#9AA0A6] font-bold">STAGE 06</span>
+                    <span class="text-[10px] font-mono uppercase bg-slate-100 text-slate-700 dark:bg-[#1E2328] dark:text-slate-300 px-2 py-0.5 rounded">Logistics</span>
                 </div>
-                <h3 class="text-base font-bold text-white">Responsible export coordination</h3>
-                <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Responsible export coordination</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-mono">
                     Coordinate approved orders and disciplined export documentation, phytosanitary, and maritime logistics.
                 </p>
             </div>
@@ -156,36 +156,36 @@
     </div>
 </section>
 
-<!-- 6. WHY STELLAR SHIPERS (Page 4 & 15) -->
-<section class="py-20 bg-[#161A1E] border-b border-[#353B44]">
+<!-- 4. WHY STELLAR SHIPERS -->
+<section class="py-20 bg-white border-b border-slate-200 dark:bg-[#161A1E] dark:border-[#353B44]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">Value Creation</h2>
-            <p class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Why Choose STELLAR SHIPERS</p>
-            <p class="text-sm text-slate-400">A reliable sourcing partner creating value around the product.</p>
+            <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">Value Creation</h2>
+            <p class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Why Choose STELLAR SHIPERS</p>
+            <p class="text-sm text-slate-600 dark:text-slate-400">A reliable sourcing partner creating value around the product.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-6 rounded-lg bg-[#1E2328] border border-[#353B44] space-y-3">
-                <div class="text-xs font-mono text-emerald-400 font-semibold">VALUE-ADDED SOURCING</div>
-                <h4 class="text-base font-bold text-white">Not Merely an Intermediary</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
+            <div class="p-6 rounded-lg bg-slate-50 border border-slate-200 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] space-y-3">
+                <div class="text-xs font-mono text-blue-600 dark:text-emerald-400 font-semibold">VALUE-ADDED SOURCING</div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Not Merely an Intermediary</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                     We create real value around the product by taking active responsibility for communication, sourcing review, quality verification, and export logistics.
                 </p>
             </div>
 
-            <div class="p-6 rounded-lg bg-[#1E2328] border border-[#353B44] space-y-3">
-                <div class="text-xs font-mono text-slate-300 font-semibold">QUALITY RESPONSIBILITY</div>
-                <h4 class="text-base font-bold text-white">Pre-Export Verification</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
+            <div class="p-6 rounded-lg bg-slate-50 border border-slate-200 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] space-y-3">
+                <div class="text-xs font-mono text-slate-600 dark:text-slate-300 font-semibold">QUALITY RESPONSIBILITY</div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Pre-Export Verification</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                     We review supplier output personally before approval and never describe supplier statements as independently verified facts.
                 </p>
             </div>
 
-            <div class="p-6 rounded-lg bg-[#1E2328] border border-[#353B44] space-y-3">
-                <div class="text-xs font-mono text-slate-300 font-semibold">BUYER COMMUNICATION</div>
-                <h4 class="text-base font-bold text-white">Clear & Professional Contact</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
+            <div class="p-6 rounded-lg bg-slate-50 border border-slate-200 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] space-y-3">
+                <div class="text-xs font-mono text-slate-600 dark:text-slate-300 font-semibold">BUYER COMMUNICATION</div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Clear & Professional Contact</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                     We bridge international procurement teams in Europe and worldwide with dependable Indian producers, managing all export documentation seamlessly.
                 </p>
             </div>
@@ -193,31 +193,31 @@
     </div>
 </section>
 
-<!-- 7. B2B RFQ CTA SECTION (Page 15) -->
-<section class="py-20 bg-[#1E2328] relative overflow-hidden">
+<!-- 5. B2B RFQ CTA SECTION -->
+<section class="py-20 bg-slate-100 dark:bg-[#1E2328] relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-xl bg-[#161A1E] border border-[#353B44] p-8 sm:p-14 shadow-2xl">
+        <div class="rounded-xl bg-white border border-slate-200 p-8 sm:p-14 shadow-xl dark:bg-[#161A1E] dark:border-[#353B44]">
             <div class="max-w-3xl space-y-6">
-                <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">
+                    <span class="theme-dot"></span>
                     <span>Start a Commercial Conversation</span>
                 </div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
                     Request a Quotation or Product Sample
                 </h2>
-                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                     Submit your application details, volume requirements, and destination port. We review buyer requirements and provide transparent commercial quotations and sample options.
                 </p>
                 <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <a href="{% url 'rfq:submit' %}" class="metallic-silver-btn px-8 py-4 rounded text-xs uppercase tracking-widest font-bold text-center">
                         Request Quote / Enquiry
                     </a>
-                    <a href="{% url 'rfq:submit' %}?sample=1" class="px-8 py-4 rounded text-xs uppercase tracking-widest font-semibold text-center border border-[#4A5563] text-slate-200 hover:text-white hover:bg-[#252A30] transition-colors">
+                    <a href="{% url 'rfq:submit' %}?sample=1" class="theme-btn-secondary px-8 py-4 rounded text-xs uppercase tracking-widest font-semibold text-center">
                         Request Product Sample
                     </a>
                 </div>
-                <div class="pt-2 text-xs font-mono text-slate-400">
-                    Email direct inquiries: <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-white underline">{{ PRIMARY_EMAIL }}</a>
+                <div class="pt-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+                    Email direct inquiries: <a href="mailto:{{ PRIMARY_EMAIL }}" class="text-blue-600 hover:underline dark:text-white">{{ PRIMARY_EMAIL }}</a>
                 </div>
             </div>
         </div>

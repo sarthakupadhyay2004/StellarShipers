@@ -1,29 +1,30 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Export Products Catalog | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-[#0B0F17] border-b border-slate-800 py-12">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#0B0F17] dark:border-slate-800 py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-3">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-slate-300">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-slate-300">
+                <span class="theme-dot"></span>
                 <span>Verified Sourcing Portfolio</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
                 Raw Materials & Natural Fibers
             </h1>
-            <p class="text-slate-400 text-sm leading-relaxed">
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                 Explore our export-grade portfolio of natural fibers and agro-industrial biomaterials. Every product features strictly delineated technical data—clearly separating certified lab metrics from supplier estimates.
             </p>
         </div>
 
         <!-- Category Filters -->
-        <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-slate-800">
-            <a href="{% url 'products:list' %}" class="px-4 py-2 rounded text-xs font-mono uppercase tracking-wider transition-colors {% if not selected_category %}bg-slate-200 text-slate-900 font-bold{% else %}bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:border-slate-700{% endif %}">
+        <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <a href="{% url 'products:list' %}" class="px-4 py-2 rounded text-xs font-mono uppercase tracking-wider transition-colors {% if not selected_category %}bg-blue-600 text-white font-bold shadow-sm dark:bg-slate-200 dark:text-slate-900{% else %}bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-600 dark:bg-slate-900 dark:text-slate-400 dark:border-slate-800 dark:hover:text-white{% endif %}">
                 All Products
             </a>
             {% for cat in categories %}
-                <a href="{% url 'products:list' %}?category={{ cat.slug }}" class="px-4 py-2 rounded text-xs font-mono uppercase tracking-wider transition-colors {% if selected_category == cat.slug %}bg-slate-200 text-slate-900 font-bold{% else %}bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:border-slate-700{% endif %}">
+                <a href="{% url 'products:list' %}?category={{ cat.slug }}" class="px-4 py-2 rounded text-xs font-mono uppercase tracking-wider transition-colors {% if selected_category == cat.slug %}bg-blue-600 text-white font-bold shadow-sm dark:bg-slate-200 dark:text-slate-900{% else %}bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-600 dark:bg-slate-900 dark:text-slate-400 dark:border-slate-800 dark:hover:text-white{% endif %}">
                     {{ cat.name }}
                 </a>
             {% endfor %}
@@ -32,20 +33,20 @@
 </div>
 
 <!-- Product Grid -->
-<div class="bg-[#070A0F] py-16">
+<div class="bg-white dark:bg-[#070A0F] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {% if products %}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {% for product in products %}
-                    <div class="bg-slate-900/90 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl group">
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between hover:border-blue-300 hover:shadow-md transition-all shadow-sm group dark:bg-slate-900/90 dark:border-slate-800 dark:hover:border-slate-700 dark:shadow-xl">
                         <div class="p-6 space-y-4">
                             <!-- Category & Badge -->
                             <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-mono uppercase tracking-widest text-slate-300">
+                                <span class="text-[11px] font-mono uppercase tracking-widest text-blue-600 dark:text-slate-300">
                                     {{ product.category.name|default:"Natural Biomaterials" }}
                                 </span>
                                 {% if product.verified_specs %}
-                                    <span class="badge-verified px-2 py-0.5 rounded text-[10px] font-mono font-semibold">
+                                    <span class="theme-badge-blue px-2 py-0.5 rounded text-[10px] font-mono font-semibold">
                                         LAB VERIFIED
                                     </span>
                                 {% endif %}
@@ -53,45 +54,45 @@
 
                             <!-- Name & Tagline -->
                             <div>
-                                <h3 class="text-xl font-bold text-white group-hover:text-slate-200 transition-colors">
+                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-slate-200 transition-colors">
                                     <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                                 </h3>
                                 {% if product.tagline %}
-                                    <p class="text-xs text-slate-400 mt-1">{{ product.tagline }}</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ product.tagline }}</p>
                                 {% endif %}
                             </div>
 
                             <!-- Short Description -->
-                            <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
                                 {{ product.description }}
                             </p>
 
                             <!-- Key Specs Preview -->
-                            <div class="pt-3 border-t border-slate-800/80 space-y-2 text-xs font-mono">
-                                <div class="flex justify-between text-slate-400">
+                            <div class="pt-3 border-t border-slate-200 dark:border-slate-800/80 space-y-2 text-xs font-mono">
+                                <div class="flex justify-between text-slate-500 dark:text-slate-400">
                                     <span>Raw Material:</span>
-                                    <span class="text-slate-200">{{ product.raw_material }}</span>
+                                    <span class="text-slate-800 dark:text-slate-200">{{ product.raw_material }}</span>
                                 </div>
-                                <div class="flex justify-between text-slate-400">
+                                <div class="flex justify-between text-slate-500 dark:text-slate-400">
                                     <span>Minimum Order (MOQ):</span>
-                                    <span class="text-slate-200">{{ product.moq }}</span>
+                                    <span class="text-slate-800 dark:text-slate-200">{{ product.moq }}</span>
                                 </div>
                                 {% if product.hs_code %}
-                                    <div class="flex justify-between text-slate-400">
+                                    <div class="flex justify-between text-slate-500 dark:text-slate-400">
                                         <span>HS Tariff Code:</span>
-                                        <span class="text-slate-200">{{ product.hs_code }}</span>
+                                        <span class="text-slate-800 dark:text-slate-200">{{ product.hs_code }}</span>
                                     </div>
                                 {% endif %}
                             </div>
                         </div>
 
                         <!-- Card Footer CTAs -->
-                        <div class="p-6 bg-slate-950/60 border-t border-slate-800/80 flex items-center justify-between gap-2">
-                            <a href="{{ product.get_absolute_url }}" class="text-xs uppercase tracking-wider font-mono text-slate-300 hover:text-white flex items-center space-x-1">
+                        <div class="p-6 bg-slate-50 border-t border-slate-200 dark:bg-slate-950/60 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                            <a href="{{ product.get_absolute_url }}" class="text-xs uppercase tracking-wider font-mono text-blue-600 hover:text-blue-700 dark:text-slate-300 dark:hover:text-white flex items-center space-x-1">
                                 <span>Technical Specs</span>
                                 <span>&rarr;</span>
                             </a>
-                            <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="silver-gradient-btn px-4 py-2 rounded text-xs uppercase tracking-wider font-semibold">
+                            <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="metallic-silver-btn px-4 py-2 rounded text-xs uppercase tracking-wider font-semibold">
                                 Request RFQ
                             </a>
                         </div>
@@ -99,9 +100,9 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="text-center py-20 bg-slate-900/40 rounded-xl border border-slate-800 space-y-4">
-                <p class="text-slate-400 text-sm font-mono">No products found in this category.</p>
-                <a href="{% url 'products:list' %}" class="inline-block silver-gradient-btn px-6 py-2 rounded text-xs uppercase tracking-wider font-semibold">
+            <div class="text-center py-20 bg-slate-50 border border-slate-200 dark:bg-slate-900/40 rounded-xl dark:border-slate-800 space-y-4">
+                <p class="text-slate-500 dark:text-slate-400 text-sm font-mono">No products found in this category.</p>
+                <a href="{% url 'products:list' %}" class="inline-block metallic-silver-btn px-6 py-2 rounded text-xs uppercase tracking-wider font-semibold">
                     View All Categories
                 </a>
             </div>
@@ -110,14 +111,14 @@
 </div>
 
 <!-- Bottom Sourcing Notice -->
-<div class="bg-[#0B0F17] py-12 border-t border-slate-800">
+<div class="bg-slate-50 border-t border-slate-200 dark:bg-[#0B0F17] py-12 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-slate-900/60 border border-slate-800 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="bg-white border border-slate-200 dark:bg-slate-900/60 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm dark:border-slate-800">
             <div class="space-y-1">
-                <h4 class="text-base font-bold text-white">Need a Non-Standard Agricultural Raw Material?</h4>
-                <p class="text-xs text-slate-400">Our direct mill sourcing network can procure, test, and process custom biomass to your target engineering specifications.</p>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">Need a Non-Standard Agricultural Raw Material?</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-400">Our direct mill sourcing network can procure, test, and process custom biomass to your target engineering specifications.</p>
             </div>
-            <a href="{% url 'rfq:submit' %}" class="silver-gradient-btn px-6 py-3 rounded text-xs uppercase tracking-widest font-semibold shrink-0">
+            <a href="{% url 'rfq:submit' %}" class="metallic-silver-btn px-6 py-3 rounded text-xs uppercase tracking-widest font-semibold shrink-0">
                 Submit Custom Specification
             </a>
         </div>

@@ -151,3 +151,20 @@ class StellarShiperHandoffComplianceTests(TestCase):
         self.assertEqual(rfq.country, 'Germany')
         self.assertEqual(rfq.delivery_country, 'Germany')
         self.assertEqual(rfq.incoterms, 'CIF')
+
+    def test_light_theme_structure_and_navbar_toggle(self):
+        response = self.client.get(reverse('pages:home'))
+        self.assertEqual(response.status_code, 200)
+        # Theme toggle present in navbar
+        self.assertContains(response, 'theme-toggle-btn')
+        self.assertContains(response, 'theme-opt-light')
+        self.assertContains(response, 'theme-opt-dark')
+        # Navbar and Footer stay dark
+        self.assertContains(response, 'bg-[#1E2328]/95')
+        self.assertContains(response, 'bg-[#181C21]')
+        # Body default has light background with dark variant
+        self.assertContains(response, 'bg-white')
+        self.assertContains(response, 'dark:bg-[#0B0F17]')
+        # Theme dot indicator present
+        self.assertContains(response, 'theme-dot')
+

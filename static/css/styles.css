@@ -1,20 +1,30 @@
-﻿/* STELLAR SHIPERS — Approved Brand Guidelines & Design System (Page 14) */
+/* STELLAR SHIPERS — Approved Brand Guidelines & Design System */
 :root {
   --color-primary: #252A30;       /* Deep Charcoal */
   --color-secondary: #4A5563;     /* Slate Grey */
   --color-accent: #9AA0A6;        /* Soft Silver */
-  --color-bg-light: #F7F5F0;      /* Warm White */
+  --color-bg-light: #FFFFFF;      /* Pure White */
   --color-dark-surface: #1E2328;  /* Elevated Charcoal */
   --color-dark-border: #353B44;   /* Subtle Charcoal Border */
+  --color-blue-primary: #2563EB;  /* Royal Blue */
+  --color-blue-hover: #1D4ED8;    /* Deep Royal Blue */
+  --color-blue-light: #EFF6FF;    /* Ice Blue Tint */
+  --color-blue-border: #BFDBFE;   /* Soft Blue Border */
   --color-verified: #10B981;
   --color-provisional: #D97706;
 }
 
 body {
-  background-color: var(--color-primary);
-  color: #E5E7EB;
+  background-color: #FFFFFF;
+  color: #1E293B;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark body {
+  background-color: #0B0F17;
+  color: #E2E8F0;
 }
 
 /* Brand Typography */
@@ -30,73 +40,194 @@ body {
   font-weight: 400;
 }
 
-/* Metallic Silver Appearance for Dark Charcoal-to-Black Backgrounds */
-.metallic-silver-text {
+/* Headline Metallic Accent Text */
+html:not(.dark) .metallic-silver-text {
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark .metallic-silver-text {
   background: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 40%, #9AA0A6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.metallic-silver-btn {
+/* Header & Footer always maintain metallic silver buttons */
+header .metallic-silver-btn,
+footer .metallic-silver-btn {
   background: linear-gradient(135deg, #FFFFFF 0%, #E5E7EB 50%, #D1D5DB 100%);
-  color: #1F242A;
+  color: #1F242A !important;
   font-weight: 600;
-  transition: all 0.2s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.2s ease-in-out;
 }
-.metallic-silver-btn:hover {
+header .metallic-silver-btn:hover,
+footer .metallic-silver-btn:hover {
   background: #FFFFFF;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* Warm White / Light Neutral Content Sections */
-.section-warm-light {
-  background-color: var(--color-bg-light);
-  color: #1F2937;
+/* Main Content Buttons — Royal Blue in Light Mode, Metallic in Dark Mode */
+html:not(.dark) main .metallic-silver-btn,
+html:not(.dark) main .silver-gradient-btn,
+html:not(.dark) .theme-btn-primary {
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  border: 1px solid #1D4ED8;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+html:not(.dark) main .metallic-silver-btn:hover,
+html:not(.dark) main .silver-gradient-btn:hover,
+html:not(.dark) .theme-btn-primary:hover {
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
 }
 
-.card-warm-light {
-  background-color: #FFFFFF;
-  border: 1px solid #E5E7EB;
+html.dark main .metallic-silver-btn,
+html.dark main .silver-gradient-btn,
+html.dark .theme-btn-primary {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E5E7EB 50%, #D1D5DB 100%) !important;
+  color: #1F242A !important;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+html.dark main .metallic-silver-btn:hover,
+html.dark main .silver-gradient-btn:hover,
+html.dark .theme-btn-primary:hover {
+  background: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* Dark Section Containers */
-.card-charcoal {
-  background-color: var(--color-dark-surface);
-  border: 1px solid var(--color-dark-border);
+/* Secondary Button */
+html:not(.dark) .theme-btn-secondary {
+  background-color: #FFFFFF !important;
+  color: #1E293B !important;
+  border: 1px solid #CBD5E1 !important;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+html:not(.dark) .theme-btn-secondary:hover {
+  background-color: #F8FAFC !important;
+  border-color: #94A3B8 !important;
+  color: #0F172A !important;
 }
 
-/* Badges for Specification Integrity */
-.badge-stated {
-  background: rgba(154, 160, 166, 0.15);
-  border: 1px solid rgba(154, 160, 166, 0.4);
-  color: #D1D5DB;
+html.dark .theme-btn-secondary {
+  background-color: #252A30 !important;
+  color: #E2E8F0 !important;
+  border: 1px solid #4A5563 !important;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+html.dark .theme-btn-secondary:hover {
+  background-color: #2F363F !important;
+  color: #FFFFFF !important;
 }
 
-.badge-pending {
-  background: rgba(217, 119, 6, 0.12);
-  border: 1px solid rgba(217, 119, 6, 0.35);
-  color: #FBBF24;
+/* Status Indicator Dots (Blue in Light Theme, Emerald in Dark Theme) */
+.theme-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #2563EB;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+  transition: background-color 0.2s ease;
+}
+
+html.dark .theme-dot {
+  background-color: #34D399;
+  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.25);
+}
+
+/* Blue Badge in Light Mode, Neutral/Green in Dark Mode */
+.theme-badge-blue {
+  background-color: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1D4ED8;
+}
+html.dark .theme-badge-blue {
+  background-color: #161A1E;
+  border: 1px solid #4A5563;
+  color: #CBD5E1;
 }
 
 .badge-verified {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1D4ED8;
+}
+html.dark .badge-verified {
   background: rgba(16, 185, 129, 0.12);
   border: 1px solid rgba(16, 185, 129, 0.35);
   color: #34D399;
 }
 
-/* Clean Custom Scrollbar */
+.badge-stated {
+  background: rgba(154, 160, 166, 0.15);
+  border: 1px solid rgba(154, 160, 166, 0.4);
+  color: #475569;
+}
+html.dark .badge-stated {
+  color: #D1D5DB;
+}
+
+/* Form Controls in Light Mode */
+html:not(.dark) main form input[type="text"],
+html:not(.dark) main form input[type="email"],
+html:not(.dark) main form select,
+html:not(.dark) main form textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+html:not(.dark) main form input[type="text"]:focus,
+html:not(.dark) main form input[type="email"]:focus,
+html:not(.dark) main form select:focus,
+html:not(.dark) main form textarea:focus {
+  border-color: #2563EB !important;
+  box-shadow: 0 0 0 1px #2563EB !important;
+}
+html:not(.dark) main form input::placeholder,
+html:not(.dark) main form textarea::placeholder {
+  color: #94A3B8 !important;
+}
+html:not(.dark) main form input[type="checkbox"] {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #2563EB !important;
+}
+html:not(.dark) main form input[type="checkbox"]:focus {
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+html.dark ::-webkit-scrollbar-track {
   background: #1A1E24;
 }
 ::-webkit-scrollbar-thumb {
-  background: #353B44;
+  background: #CBD5E1;
   border-radius: 3px;
 }
+html.dark ::-webkit-scrollbar-thumb {
+  background: #353B44;
+}
 ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: #4A5563;
 }
