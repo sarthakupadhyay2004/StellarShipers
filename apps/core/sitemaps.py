@@ -11,6 +11,7 @@ class StaticViewSitemap(Sitemap):
             'pages:home',
             'pages:about',
             'pages:quality_process',
+            'pages:services',
             'pages:contact',
             'pages:faq',
             'pages:privacy',

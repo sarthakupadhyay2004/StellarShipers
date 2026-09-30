@@ -72,14 +72,25 @@ class Command(BaseCommand):
         # 4. FAQs
         FAQ.objects.all().delete()
         faq_items = [
-            ('SOURCING', 'Where is the raw banana fiber produced?', 'The initial raw banana fiber is produced in Jalgaon, Maharashtra, India—one of the largest banana cultivation belts in Asia. STELLAR SHIPERS oversees quality verification and export logistics from origin to international destinations.'),
-            ('SAMPLES', 'Can we request a physical fiber sample for spinning trials?', 'Yes. We encourage textile and yarn manufacturers to request an evaluation sample kit to test runnability, fineness, and fiber length on their specific machinery. Simply select "Request Product Sample" on our RFQ form.'),
-            ('SAMPLES', 'Do you charge for samples?', 'Samples are complimentary; customers are only responsible for the actual shipping and delivery expenses. You may either provide your own courier account details for freight collect or have us calculate and invoice the shipping fee directly.'),
-            ('LOGISTICS', 'What is the Minimum Order Quantity (MOQ)?', 'The MOQ is 500 kg, which can be scaled up to full container loads (FCL 20ft/40ft) with a monthly supplier capacity of 15 MT/month.'),
-            ('LOGISTICS', 'What are your primary export destinations?', 'Our primary focus includes European markets such as Germany, France, Portugal, Sweden, and Switzerland, alongside international natural-fiber wholesalers and distributors across the globe.'),
-            ('COMMERCIAL', 'How are prices quoted?', 'We do not publish fixed public retail prices. Prices are quoted based on required volume, packaging specifications, destination port, and applicable Incoterms (FOB, CIF, CFR).')
+            # SOURCING
+            ('SOURCING', 'What exactly does STELLAR SHIPERS supply?', 'STELLAR SHIPERS currently supplies natural, mechanically extracted, unspun banana fiber sourced from Indian banana pseudostems for textile and other natural-fiber applications. We work with buyers to develop specifications according to their intended application, required processing and technical requirements.', 1),
+            ('SOURCING', 'Do you work only with banana fiber?', 'Banana fiber is our current featured product. STELLAR SHIPERS is being developed as a broader Indian sourcing and export partner for natural fibers and sustainable materials. Additional products are evaluated based on buyer demand, supplier capability and quality requirements.', 2),
+            ('SOURCING', 'Can you supply fiber according to our required specifications?', 'Yes, subject to technical feasibility. We follow a requirement-led sourcing model and can evaluate specifications such as fiber length, moisture, cleanliness, fineness, processing requirements and packaging. Where testing or additional processing is required, we coordinate the relevant evaluation before confirming commercial supply.', 3),
+            ('SOURCING', 'Where is the raw banana fiber produced?', 'The initial raw banana fiber is produced in Jalgaon, Maharashtra, India—one of the largest banana cultivation belts in Asia. STELLAR SHIPERS oversees quality verification and export logistics from origin to international destinations.', 4),
+
+            # SAMPLES
+            ('SAMPLES', 'Can we request a physical fiber sample for spinning trials?', 'Yes. We encourage textile and yarn manufacturers to request an evaluation sample kit to test runnability, fineness, and fiber length on their specific machinery. Simply select "Request Product Sample" on our RFQ form.', 5),
+            ('SAMPLES', 'Do you charge for samples?', 'Samples are complimentary; customers are only responsible for the actual shipping and delivery expenses. You may either provide your own courier account details for freight collect or have us calculate and invoice the shipping fee directly.', 6),
+
+            # LOGISTICS
+            ('LOGISTICS', 'Can STELLAR SHIPERS handle export documentation and logistics?', 'Yes. We coordinate the commercial export process, including agreed documentation, packaging, shipment coordination and logistics with the relevant service providers. Shipping terms, destination requirements and documentation are confirmed for each order.', 7),
+            ('LOGISTICS', 'What is the Minimum Order Quantity (MOQ)?', 'The MOQ is 500 kg, which can be scaled up to full container loads (FCL 20ft/40ft) with a monthly supplier capacity of 15 MT/month.', 8),
+            ('LOGISTICS', 'What are your primary export destinations?', 'Our primary focus includes European markets such as Germany, France, Portugal, Sweden, and Switzerland, alongside international natural-fiber wholesalers and distributors across the globe.', 9),
+
+            # COMMERCIAL
+            ('COMMERCIAL', 'How are prices quoted?', 'We do not publish fixed public retail prices. Prices are quoted based on required volume, packaging specifications, destination port, and applicable Incoterms (FOB, CIF, CFR).', 10),
         ]
-        for cat, q, a in faq_items:
-            FAQ.objects.create(category=cat, question=q, answer=a, is_active=True)
+        for cat, q, a, order in faq_items:
+            FAQ.objects.create(category=cat, question=q, answer=a, display_order=order, is_active=True)
 
         self.stdout.write(self.style.SUCCESS('Database re-seeded successfully with updated specifications.'))

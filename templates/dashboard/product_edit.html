@@ -1,0 +1,261 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Edit {{ product.name }} | Technical Specifications{% endblock %}
+{% block page_title %}
+<a href="{% url 'dashboard:product_list' %}" class="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">Products</a>
+<span class="text-slate-400">/</span>
+<span class="font-mono text-blue-600 dark:text-blue-400">{{ product.name }}</span>
+{% endblock %}
+
+{% block header_actions %}
+<div class="flex items-center space-x-2">
+    <a href="{% url 'products:detail' product.slug %}" target="_blank" class="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+        <span>View Live Page ↗</span>
+    </a>
+    <a href="{% url 'dashboard:product_list' %}" class="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+        <span>← All Products</span>
+    </a>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'dashboard:product_edit' product.slug %}" class="space-y-6">
+    {% csrf_token %}
+
+    <!-- Top Action Banner -->
+    <div class="bg-white dark:bg-[#111827] p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Edit Product & Technical Specifications</h2>
+            <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">
+                Visual parameter editor. No manual JSON editing required.
+            </p>
+        </div>
+        <button type="submit" class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-mono font-semibold transition-colors shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Save Product & Specifications</span>
+        </button>
+    </div>
+
+    <!-- Section 1: Core Product Information -->
+    <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 space-y-5">
+        <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-2">
+            01. Core Product Information
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Product Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}<p class="mt-1 text-xs text-rose-500 font-mono">{{ form.name.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Category</label>
+                {{ form.category }}
+                {% if form.category.errors %}<p class="mt-1 text-xs text-rose-500 font-mono">{{ form.category.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Commercial Tagline</label>
+                {{ form.tagline }}
+                {% if form.tagline.errors %}<p class="mt-1 text-xs text-rose-500 font-mono">{{ form.tagline.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Product Overview / Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}<p class="mt-1 text-xs text-rose-500 font-mono">{{ form.description.errors.0 }}</p>{% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Technical Sourcing & Origin Parameters -->
+    <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 space-y-5">
+        <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-2">
+            02. Sourcing & Origin Parameters
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Raw Material Origin</label>
+                {{ form.raw_material }}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Extraction Method</label>
+                {{ form.extraction_method }}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Processing / State</label>
+                {{ form.processing }}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Harvest Hub / Origin</label>
+                {{ form.harvest_origin }}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Minimum Order Qty (MOQ)</label>
+                {{ form.moq }}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">HS / Tariff Code</label>
+                {{ form.hs_code }}
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Packaging Specification</label>
+                {{ form.packaging_details }}
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Display Order</label>
+                {{ form.display_order }}
+            </div>
+
+            <div class="md:col-span-3">
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Supplier & Production Notes</label>
+                {{ form.supplier_notes }}
+            </div>
+
+            <div class="md:col-span-3">
+                <label class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">Intended Applications (One per line)</label>
+                {{ form.applications_raw }}
+                <p class="mt-1 text-[11px] font-mono text-slate-400">Enter each target industrial application on a new line.</p>
+            </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center space-x-6">
+            <label class="inline-flex items-center space-x-2 text-xs font-mono text-slate-700 dark:text-slate-300 cursor-pointer">
+                {{ form.is_active }}
+                <span class="font-bold">Active in Catalog</span>
+            </label>
+
+            <label class="inline-flex items-center space-x-2 text-xs font-mono text-slate-700 dark:text-slate-300 cursor-pointer">
+                {{ form.is_featured }}
+                <span class="font-bold">Featured on Home Page</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Section 3: Visual Technical Specification Row Manager -->
+    <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 dark:border-slate-800 pb-3 gap-3">
+            <div>
+                <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider">
+                    03. Visual Specification Parameters Manager
+                </h3>
+                <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
+                    Add, edit, or remove technical parameters (length, moisture, impurities, tensile strength).
+                </p>
+            </div>
+            <button type="button" onclick="addSpecRow()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/80 text-xs font-mono font-semibold transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                <span>+ Add Specification Parameter</span>
+            </button>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                    <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                        <th class="py-2.5 px-3 w-1/4">Parameter Key</th>
+                        <th class="py-2.5 px-3 w-1/4">Specification Value</th>
+                        <th class="py-2.5 px-3 w-1/3">Testing Method / Note</th>
+                        <th class="py-2.5 px-3">Classification</th>
+                        <th class="py-2.5 px-3 text-right">Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="spec-rows-container" class="divide-y divide-slate-100 dark:divide-slate-800/80 font-mono">
+                    {% for row in spec_rows %}
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                            <td class="py-2.5 px-3">
+                                <input type="text" name="spec_key[]" value="{{ row.key }}" placeholder="e.g. Moisture Content" class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+                            </td>
+                            <td class="py-2.5 px-3">
+                                <input type="text" name="spec_val[]" value="{{ row.value }}" placeholder="e.g. 10% – 12%" class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+                            </td>
+                            <td class="py-2.5 px-3">
+                                <input type="text" name="spec_note[]" value="{{ row.note }}" placeholder="e.g. Test-measured per spec" class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+                            </td>
+                            <td class="py-2.5 px-3">
+                                <select name="spec_type[]" class="w-full px-2 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+                                    <option value="provisional" {% if row.spec_type == 'provisional' %}selected{% endif %}>Provisional / Requirement</option>
+                                    <option value="verified" {% if row.spec_type == 'verified' %}selected{% endif %}>Verified / Tested</option>
+                                </select>
+                            </td>
+                            <td class="py-2.5 px-3 text-right">
+                                <button type="button" onclick="removeSpecRow(this)" class="p-1 rounded text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/60 transition-colors" title="Remove Parameter">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr id="no-specs-row">
+                            <td colspan="5" class="py-6 text-center text-slate-400 font-mono text-xs">
+                                No technical parameters defined yet. Click "+ Add Specification Parameter" above to add rows.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bottom Save Button Bar -->
+    <div class="flex items-center justify-end space-x-3 pt-2">
+        <a href="{% url 'dashboard:product_list' %}" class="px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-mono text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            Cancel
+        </a>
+        <button type="submit" class="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-mono font-semibold transition-colors shadow-sm">
+            Save Product & Specifications
+        </button>
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function addSpecRow() {
+    const container = document.getElementById('spec-rows-container');
+    const emptyRow = document.getElementById('no-specs-row');
+    if (emptyRow) {
+        emptyRow.remove();
+    }
+
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors';
+    tr.innerHTML = `
+        <td class="py-2.5 px-3">
+            <input type="text" name="spec_key[]" placeholder="e.g. Moisture Content" class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+        </td>
+        <td class="py-2.5 px-3">
+            <input type="text" name="spec_val[]" placeholder="e.g. 10% – 12%" class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+        </td>
+        <td class="py-2.5 px-3">
+            <input type="text" name="spec_note[]" placeholder="e.g. Test-measured per spec" class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+        </td>
+        <td class="py-2.5 px-3">
+            <select name="spec_type[]" class="w-full px-2 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-1 focus:ring-blue-500 focus:outline-none">
+                <option value="provisional" selected>Provisional / Requirement</option>
+                <option value="verified">Verified / Tested</option>
+            </select>
+        </td>
+        <td class="py-2.5 px-3 text-right">
+            <button type="button" onclick="removeSpecRow(this)" class="p-1 rounded text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/60 transition-colors" title="Remove Parameter">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            </button>
+        </td>
+    `;
+    container.appendChild(tr);
+}
+
+function removeSpecRow(button) {
+    const tr = button.closest('tr');
+    tr.remove();
+}
+</script>
+{% endblock %}

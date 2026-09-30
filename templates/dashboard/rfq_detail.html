@@ -1,0 +1,235 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}RFQ {{ rfq.reference_id }} | Operations Desk{% endblock %}
+{% block page_title %}
+<a href="{% url 'dashboard:rfq_list' %}" class="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">Inquiries</a>
+<span class="text-slate-400">/</span>
+<span class="font-mono text-blue-600 dark:text-blue-400">{{ rfq.reference_id }}</span>
+{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'dashboard:rfq_list' %}" class="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+    <span>← Back to Inquiries</span>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Inquiry Header Banner -->
+    <div class="bg-white dark:bg-[#111827] p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <div class="flex items-center space-x-3">
+                <span class="text-xl sm:text-2xl font-bold font-mono text-slate-900 dark:text-white">{{ rfq.reference_id }}</span>
+                {% if rfq.sample_request %}
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                        SAMPLE REQUESTED
+                    </span>
+                {% endif %}
+            </div>
+            <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">
+                Submitted on {{ rfq.created_at|date:"F d, Y \a\t H:i" }} UTC
+            </p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <div class="text-right sm:block hidden">
+                <div class="text-[10px] font-mono text-slate-400 uppercase">Current Status</div>
+                <div class="text-xs font-mono font-bold text-slate-900 dark:text-white">{{ rfq.get_status_display }}</div>
+            </div>
+            <a href="mailto:{{ rfq.email }}?subject=RE:%20STELLAR%20SHIPERS%20Inquiry%20{{ rfq.reference_id }}%20-%20{{ rfq.product.name|default:rfq.product_interest }}" class="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-mono font-semibold transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <span>Reply to Buyer</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Grid: Inquiry Specs vs Staff Operations Panel -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Left Column: Inquiry Details (2/3) -->
+        <div class="lg:col-span-2 space-y-6">
+
+            <!-- Buyer Details & Corporate Info -->
+            <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+                <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">
+                    01. Buyer & Corporate Entity
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Company / Organization</span>
+                        <span class="font-bold font-sans text-sm text-slate-900 dark:text-white">{{ rfq.company }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Primary Contact Person</span>
+                        <span class="font-medium text-slate-900 dark:text-white">{{ rfq.name }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Direct Business Email</span>
+                        <a href="mailto:{{ rfq.email }}" class="text-blue-600 dark:text-blue-400 hover:underline">{{ rfq.email }}</a>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Telephone / WhatsApp</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ rfq.phone|default:"Not provided" }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Origin Country of Buyer</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ rfq.country }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Destination Port / Country</span>
+                        <span class="text-slate-900 dark:text-white font-semibold">{{ rfq.delivery_country|default:rfq.country }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commercial Sourcing Parameters -->
+            <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+                <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">
+                    02. Commercial & Material Parameters
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Product of Interest</span>
+                        <span class="font-bold text-slate-900 dark:text-white">
+                            {% if rfq.product %}
+                                <a href="{% url 'products:detail' rfq.product.slug %}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                    {{ rfq.product.name }} ↗
+                                </a>
+                            {% else %}
+                                {{ rfq.product_interest }}
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Required Quantity / Volume</span>
+                        <span class="font-bold text-slate-900 dark:text-white">{{ rfq.quantity }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Incoterms Preference</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ rfq.get_incoterms_display }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Target Dispatch / Delivery Date</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ rfq.target_date|default:"Flexible / Requirement-led" }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Intended Application</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ rfq.application|default:"Standard Industrial / Textile" }}</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[11px]">Packaging Preference</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ rfq.packaging|default:"Standard export bales / bags" }}</span>
+                    </div>
+                </div>
+
+                {% if rfq.sample_request and rfq.sample_details %}
+                    <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <span class="text-amber-600 dark:text-amber-400 font-mono text-xs font-semibold block mb-1">
+                            Sample Evaluation Notes:
+                        </span>
+                        <p class="text-xs font-mono bg-amber-50/50 dark:bg-amber-950/30 p-3 rounded-lg border border-amber-200 dark:border-amber-900 text-amber-900 dark:text-amber-200">
+                            {{ rfq.sample_details }}
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Technical Specifications & Requirements -->
+            <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+                <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">
+                    03. Technical Requirements & Remarks
+                </h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-slate-400 block text-[11px] font-mono mb-1">Buyer Technical Specifications</span>
+                        <div class="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-slate-200 whitespace-pre-line leading-relaxed">
+                            {{ rfq.technical_requirements|default:"None specified in initial submission." }}
+                        </div>
+                    </div>
+
+                    {% if rfq.message %}
+                        <div>
+                            <span class="text-slate-400 block text-[11px] font-mono mb-1">Buyer Notes / Message</span>
+                            <div class="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                                {{ rfq.message }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if rfq.file_upload %}
+                        <div class="pt-2">
+                            <span class="text-slate-400 block text-[11px] font-mono mb-1.5">Attached Specification Document</span>
+                            <a href="{{ rfq.file_upload.url }}" download class="inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 text-xs font-mono hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors">
+                                <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                <span>Download Attached Buyer File</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Sourcing Operations Management (1/3) -->
+        <div class="space-y-6">
+
+            <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 sticky top-6">
+                <h3 class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">
+                    Operations Status & Notes
+                </h3>
+
+                <form method="POST" action="{% url 'dashboard:rfq_detail' rfq.pk %}" class="space-y-4">
+                    {% csrf_token %}
+
+                    <div>
+                        <label for="{{ form.status.id_for_label }}" class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+                            Pipeline Status
+                        </label>
+                        {{ form.status }}
+                        {% if form.status.errors %}
+                            <p class="mt-1 text-xs text-rose-500 font-mono">{{ form.status.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <label for="{{ form.admin_notes.id_for_label }}" class="block text-xs font-mono font-medium text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+                            Private Sourcing Notes
+                        </label>
+                        <p class="text-[10px] text-slate-400 mb-1.5 font-mono">
+                            Internal operations only. Log producer allocations, freight quotes, sample courier AWB, or spec test notes.
+                        </p>
+                        {{ form.admin_notes }}
+                        {% if form.admin_notes.errors %}
+                            <p class="mt-1 text-xs text-rose-500 font-mono">{{ form.admin_notes.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="w-full py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-mono font-semibold transition-colors shadow-sm">
+                        Save Status & Notes
+                    </button>
+                </form>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2 text-[11px] font-mono text-slate-400">
+                    <div class="flex justify-between">
+                        <span>Database ID:</span>
+                        <span class="text-slate-600 dark:text-slate-300">#{{ rfq.pk }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Created:</span>
+                        <span class="text-slate-600 dark:text-slate-300">{{ rfq.created_at|date:"Y-m-d H:i" }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Last Updated:</span>
+                        <span class="text-slate-600 dark:text-slate-300">{{ rfq.updated_at|date:"Y-m-d H:i" }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

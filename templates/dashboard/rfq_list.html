@@ -1,0 +1,182 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}RFQ & Sourcing Inquiries{% endblock %}
+{% block page_title %}<span>RFQs & Inquiries</span> <span class="text-xs font-mono font-normal text-slate-400">/ Commercial Pipeline</span>{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'dashboard:rfq_export' %}" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+    <span>Export All (CSV)</span>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Filter & Search Controls Bar -->
+    <div class="bg-white dark:bg-[#111827] p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <form method="GET" class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <!-- Search Input -->
+            <div class="relative flex-1 max-w-md">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="text" name="q" value="{{ search_query }}" placeholder="Search company, buyer, email, ref ID..." class="w-full pl-9 pr-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap items-center gap-2">
+                <!-- Status Dropdown -->
+                <select name="status" class="py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="">All Statuses</option>
+                    {% for code, label in status_choices %}
+                        <option value="{{ code }}" {% if current_status == code %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Sample Filter -->
+                <select name="sample" class="py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="">All Types</option>
+                    <option value="1" {% if current_sample == '1' %}selected{% endif %}>Sample Requests Only</option>
+                </select>
+
+                <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-mono font-semibold transition-colors">
+                    Filter
+                </button>
+
+                {% if search_query or current_status or current_sample %}
+                    <a href="{% url 'dashboard:rfq_list' %}" class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-mono transition-colors">
+                        Reset
+                    </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <!-- RFQs Pipeline Table -->
+    <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                    <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                        <th class="py-3 px-4">Ref ID</th>
+                        <th class="py-3 px-4">Date</th>
+                        <th class="py-3 px-4">Buyer Company</th>
+                        <th class="py-3 px-4">Contact</th>
+                        <th class="py-3 px-4">Destination</th>
+                        <th class="py-3 px-4">Product / Vol</th>
+                        <th class="py-3 px-4">Terms</th>
+                        <th class="py-3 px-4">Sample</th>
+                        <th class="py-3 px-4">Status</th>
+                        <th class="py-3 px-4 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 font-mono">
+                    {% for rfq in rfqs %}
+                        <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                            <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                                <a href="{% url 'dashboard:rfq_detail' rfq.pk %}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                    {{ rfq.reference_id }}
+                                </a>
+                            </td>
+                            <td class="py-3.5 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                                {{ rfq.created_at|date:"Y-m-d H:i" }}
+                            </td>
+                            <td class="py-3.5 px-4 font-sans font-semibold text-slate-900 dark:text-slate-100">
+                                {{ rfq.company }}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                <div class="text-slate-700 dark:text-slate-300">{{ rfq.name }}</div>
+                                <div class="text-[11px] text-slate-400">{{ rfq.email }}</div>
+                            </td>
+                            <td class="py-3.5 px-4 text-slate-600 dark:text-slate-300">
+                                {{ rfq.delivery_country|default:rfq.country }}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                <div class="text-slate-900 dark:text-white font-medium">{{ rfq.product.name|default:rfq.product_interest }}</div>
+                                <div class="text-[11px] text-slate-500">{{ rfq.quantity }}</div>
+                            </td>
+                            <td class="py-3.5 px-4 text-slate-600 dark:text-slate-300">
+                                {{ rfq.incoterms|default:"FOB" }}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                {% if rfq.sample_request %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                                        YES
+                                    </span>
+                                {% else %}
+                                    <span class="text-slate-400 text-[11px]">No</span>
+                                {% endif %}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                {% if rfq.status == 'NEW' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                                        NEW
+                                    </span>
+                                {% elif rfq.status == 'REVIEWING' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-800">
+                                        REVIEWING
+                                    </span>
+                                {% elif rfq.status == 'EVALUATED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/80 text-indigo-800 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-800">
+                                        EVALUATED
+                                    </span>
+                                {% elif rfq.status == 'SAMPLE_DISPATCHED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 border border-purple-300 dark:border-purple-800">
+                                        SAMPLE DISPATCHED
+                                    </span>
+                                {% elif rfq.status == 'QUOTED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                                        COMMERCIAL OFFER
+                                    </span>
+                                {% elif rfq.status == 'CLOSED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
+                                        CLOSED
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
+                                        {{ rfq.status }}
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="py-3.5 px-4 text-right">
+                                <a href="{% url 'dashboard:rfq_detail' rfq.pk %}" class="inline-flex items-center px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-[11px] text-slate-700 dark:text-slate-300 transition-colors">
+                                    Manage →
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10" class="py-12 text-center text-slate-500 dark:text-slate-400 font-mono text-xs">
+                                No RFQs found matching the selected filter criteria.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-500 dark:text-slate-400">
+                    Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+                <div class="flex items-center space-x-2">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if current_status %}&status={{ current_status }}{% endif %}{% if current_sample %}&sample={{ current_sample }}{% endif %}" class="px-3 py-1 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">
+                            ← Previous
+                        </a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if current_status %}&status={{ current_status }}{% endif %}{% if current_sample %}&sample={{ current_sample }}{% endif %}" class="px-3 py-1 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">
+                            Next →
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

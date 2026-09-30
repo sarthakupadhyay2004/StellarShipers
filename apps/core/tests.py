@@ -32,6 +32,7 @@ class StellarShiperHandoffComplianceTests(TestCase):
             ('products:list', {}),
             ('products:detail', {'slug': self.product.slug}),
             ('pages:quality_process', {}),
+            ('pages:services', {}),
             ('pages:contact', {}),
             ('pages:faq', {}),
             ('pages:privacy', {}),

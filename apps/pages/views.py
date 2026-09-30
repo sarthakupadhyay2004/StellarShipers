@@ -48,6 +48,16 @@ class QualityProcessView(TemplateView):
         return context
 
 
+class ServicesView(TemplateView):
+    template_name = 'pages/services.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['meta_title'] = 'Sourcing Services | STELLAR SHIPERS'
+        context['meta_desc'] = 'From requirement to reliable supply. We help international B2B buyers source selected natural fibers and sustainable materials from India according to clear specifications.'
+        return context
+
+
 class ContactView(TemplateView):
     template_name = 'pages/contact_rfq.html'
 

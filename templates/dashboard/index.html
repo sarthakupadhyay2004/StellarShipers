@@ -1,0 +1,205 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Operations Overview{% endblock %}
+{% block page_title %}<span>Operations Desk</span> <span class="text-xs font-mono font-normal text-slate-400">/ Live Dashboard</span>{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'dashboard:rfq_export' %}" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+    <span>Export CSV</span>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- KPI Metric Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Total Inquiries -->
+        <div class="p-5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Inquiries</span>
+                <span class="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </span>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+                <div class="text-2xl font-mono font-bold text-slate-900 dark:text-white">{{ total_rfqs }}</div>
+                <a href="{% url 'dashboard:rfq_list' %}" class="text-[11px] font-mono text-blue-600 dark:text-blue-400 hover:underline">View Pipeline →</a>
+            </div>
+        </div>
+
+        <!-- New / Unreviewed -->
+        <div class="p-5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-mono uppercase tracking-wider text-amber-600 dark:text-amber-400 font-semibold">New / Unreviewed</span>
+                <span class="w-7 h-7 rounded-lg bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-900 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </span>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+                <div class="text-2xl font-mono font-bold text-slate-900 dark:text-white">{{ new_rfqs }}</div>
+                <a href="{% url 'dashboard:rfq_list' %}?status=NEW" class="text-[11px] font-mono text-amber-600 dark:text-amber-400 hover:underline">Filter New →</a>
+            </div>
+        </div>
+
+        <!-- Sample Requests -->
+        <div class="p-5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold">Sample Requests</span>
+                <span class="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-900 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                </span>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+                <div class="text-2xl font-mono font-bold text-slate-900 dark:text-white">{{ sample_rfqs }}</div>
+                <a href="{% url 'dashboard:rfq_list' %}?sample=1" class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 hover:underline">Filter Samples →</a>
+            </div>
+        </div>
+
+        <!-- Catalog & Knowledge Base -->
+        <div class="p-5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">Catalog & FAQs</span>
+                <span class="w-7 h-7 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </span>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+                <div class="text-xs font-mono text-slate-700 dark:text-slate-300">
+                    <span class="text-xl font-bold text-slate-900 dark:text-white">{{ active_products }}</span> Prod / <span class="text-xl font-bold text-slate-900 dark:text-white">{{ total_faqs }}</span> FAQs
+                </div>
+                <a href="{% url 'dashboard:product_list' %}" class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 hover:underline">Manage →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Operations Navigation -->
+    <div class="p-4 rounded-xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/60 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+            <span class="text-xs font-mono font-semibold text-blue-900 dark:text-blue-300 uppercase tracking-wider">Fast Action Shortcuts:</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{% url 'dashboard:rfq_list' %}" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 shadow-sm transition-colors">
+                Browse All Inquiries
+            </a>
+            <a href="{% url 'dashboard:product_list' %}" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 shadow-sm transition-colors">
+                Edit Product Specs
+            </a>
+            <a href="{% url 'dashboard:faq_create' %}" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 shadow-sm transition-colors">
+                + Add FAQ
+            </a>
+            <a href="/admin/" target="_blank" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white shadow-sm transition-colors">
+                Django Admin ↗
+            </a>
+        </div>
+    </div>
+
+    <!-- Recent Inquiries Table -->
+    <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <div>
+                <h2 class="text-sm font-bold text-slate-900 dark:text-white">Recent Buyer Inquiries & RFQs</h2>
+                <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">Most recent inquiries received through the commercial desk</p>
+            </div>
+            <a href="{% url 'dashboard:rfq_list' %}" class="text-xs font-mono text-blue-600 dark:text-blue-400 hover:underline">
+                View All Inquiries ({{ total_rfqs }}) →
+            </a>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                    <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                        <th class="py-3 px-4">Ref ID</th>
+                        <th class="py-3 px-4">Date</th>
+                        <th class="py-3 px-4">Buyer Company</th>
+                        <th class="py-3 px-4">Destination</th>
+                        <th class="py-3 px-4">Product / Volume</th>
+                        <th class="py-3 px-4">Sample</th>
+                        <th class="py-3 px-4">Status</th>
+                        <th class="py-3 px-4 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 font-mono">
+                    {% for rfq in recent_rfqs %}
+                        <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                            <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">
+                                <a href="{% url 'dashboard:rfq_detail' rfq.pk %}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                    {{ rfq.reference_id }}
+                                </a>
+                            </td>
+                            <td class="py-3.5 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                                {{ rfq.created_at|date:"M d, H:i" }}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                <div class="font-sans font-semibold text-slate-900 dark:text-slate-100">{{ rfq.company }}</div>
+                                <div class="text-[11px] text-slate-500">{{ rfq.name }}</div>
+                            </td>
+                            <td class="py-3.5 px-4 text-slate-600 dark:text-slate-300">
+                                {{ rfq.delivery_country|default:rfq.country }}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                <div class="text-slate-900 dark:text-white font-medium">{{ rfq.product.name|default:rfq.product_interest }}</div>
+                                <div class="text-[11px] text-slate-500">{{ rfq.quantity }}</div>
+                            </td>
+                            <td class="py-3.5 px-4">
+                                {% if rfq.sample_request %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                                        SAMPLE
+                                    </span>
+                                {% else %}
+                                    <span class="text-slate-400 text-[11px]">—</span>
+                                {% endif %}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                {% if rfq.status == 'NEW' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                                        NEW
+                                    </span>
+                                {% elif rfq.status == 'REVIEWING' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-800">
+                                        REVIEWING
+                                    </span>
+                                {% elif rfq.status == 'EVALUATED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 dark:bg-indigo-950/80 text-indigo-800 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-800">
+                                        EVALUATED
+                                    </span>
+                                {% elif rfq.status == 'SAMPLE_DISPATCHED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 border border-purple-300 dark:border-purple-800">
+                                        SAMPLE SENT
+                                    </span>
+                                {% elif rfq.status == 'QUOTED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                                        OFFER SENT
+                                    </span>
+                                {% elif rfq.status == 'CLOSED' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
+                                        CLOSED
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
+                                        {{ rfq.status }}
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="py-3.5 px-4 text-right">
+                                <a href="{% url 'dashboard:rfq_detail' rfq.pk %}" class="inline-flex items-center px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-[11px] text-slate-700 dark:text-slate-300 transition-colors">
+                                    Manage →
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="8" class="py-8 text-center text-slate-500 dark:text-slate-400 font-mono text-xs">
+                                No inquiries recorded in database yet. New inquiries submitted through the contact or RFQ form will appear here immediately.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

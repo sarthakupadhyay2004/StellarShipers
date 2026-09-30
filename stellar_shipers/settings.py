@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'apps.products.apps.ProductsConfig',
     'apps.rfq.apps.RfqConfig',
     'apps.pages.apps.PagesConfig',
+    'apps.dashboard.apps.DashboardConfig',
 ]
 
 MIDDLEWARE = [

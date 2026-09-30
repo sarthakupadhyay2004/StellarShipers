@@ -1,0 +1,101 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block title %}Products & Technical Specs{% endblock %}
+{% block page_title %}<span>Products & Specifications</span> <span class="text-xs font-mono font-normal text-slate-400">/ Material Catalog</span>{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Information Header -->
+    <div class="bg-white dark:bg-[#111827] p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Commercial Product Catalog & Technical Parameters</h2>
+            <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">
+                Maintain export specifications, provisional/verified parameters, and commercial sourcing parameters.
+            </p>
+        </div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span>Requirement-led Indian Sourcing</span>
+        </div>
+    </div>
+
+    <!-- Products Table -->
+    <div class="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                    <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                        <th class="py-3 px-4">Product Name</th>
+                        <th class="py-3 px-4">Category</th>
+                        <th class="py-3 px-4">Harvest Origin</th>
+                        <th class="py-3 px-4">MOQ</th>
+                        <th class="py-3 px-4">HS Code</th>
+                        <th class="py-3 px-4">Catalog Status</th>
+                        <th class="py-3 px-4 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 font-mono">
+                    {% for product in products %}
+                        <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+                            <td class="py-4 px-4">
+                                <div class="font-sans font-bold text-sm text-slate-900 dark:text-white">
+                                    <a href="{% url 'dashboard:product_edit' product.slug %}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        {{ product.name }}
+                                    </a>
+                                </div>
+                                <div class="text-[11px] text-slate-400">{{ product.slug }}</div>
+                            </td>
+                            <td class="py-4 px-4 text-slate-600 dark:text-slate-300">
+                                {{ product.category.name|default:"Unassigned" }}
+                            </td>
+                            <td class="py-4 px-4 text-slate-700 dark:text-slate-200">
+                                {{ product.harvest_origin|default:"India" }}
+                            </td>
+                            <td class="py-4 px-4 text-slate-900 dark:text-white font-semibold">
+                                {{ product.moq|default:"Per Requirement" }}
+                            </td>
+                            <td class="py-4 px-4 text-slate-500 dark:text-slate-400">
+                                {{ product.hs_code|default:"—" }}
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center space-x-1.5">
+                                    {% if product.is_active %}
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                                            ACTIVE
+                                        </span>
+                                    {% else %}
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700">
+                                            INACTIVE
+                                        </span>
+                                    {% endif %}
+                                    {% if product.is_featured %}
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-800">
+                                            FEATURED
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-right space-x-2">
+                                <a href="{% url 'products:detail' product.slug %}" target="_blank" class="inline-flex items-center px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700 text-[11px] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                                    View Live ↗
+                                </a>
+                                <a href="{% url 'dashboard:product_edit' product.slug %}" class="inline-flex items-center px-3 py-1 rounded bg-blue-600 hover:bg-blue-700 text-[11px] font-semibold text-white transition-colors">
+                                    Edit Specs →
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7" class="py-8 text-center text-slate-500 font-mono text-xs">
+                                No products found in database.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

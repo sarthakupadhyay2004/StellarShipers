@@ -1,4 +1,4 @@
-﻿from django.contrib import admin
+from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -17,6 +17,7 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', include('apps.dashboard.urls', namespace='dashboard')),
     path('products/', include('apps.products.urls', namespace='products')),
     path('rfq/', include('apps.rfq.urls', namespace='rfq')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
