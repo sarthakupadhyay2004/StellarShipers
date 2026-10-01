@@ -3,10 +3,10 @@
 {% block title %}Frequently Asked Questions (FAQ) | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#0B0F17] dark:border-slate-800 py-16">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-4">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-slate-300">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">
                 <span class="theme-dot"></span>
                 <span>Operational & Commercial Knowledge Base</span>
             </div>
@@ -20,26 +20,26 @@
     </div>
 </div>
 
-<div class="bg-white dark:bg-[#070A0F] py-20">
+<div class="bg-white dark:bg-[#161A1E] py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {% if grouped_faqs %}
             {% for category_name, faqs in grouped_faqs.items %}
                 <div class="space-y-4">
-                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400 border-b border-slate-200 dark:border-slate-800 pb-2">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400 border-b border-slate-200 dark:border-[#353B44] pb-2">
                         // {{ category_name }}
                     </h2>
                     
                     <div class="space-y-3">
                         {% for faq in faqs %}
-                            <div class="bg-white border border-slate-200 rounded-lg overflow-hidden transition-colors hover:border-blue-300 shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-700">
+                            <div class="bg-white border border-slate-200 rounded-lg overflow-hidden transition-colors hover:border-blue-300 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] dark:hover:border-[#4A5563]">
                                 <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4 focus:outline-none">
                                     <span class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white">{{ faq.question }}</span>
                                     <span class="faq-icon text-slate-400 shrink-0 transition-transform duration-200">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                     </span>
                                 </button>
-                                <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-4 space-y-2">
+                                <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-[#2D333B] pt-4 space-y-2">
                                     {{ faq.answer|linebreaks }}
                                 </div>
                             </div>
@@ -51,36 +51,36 @@
             <!-- Default FAQ content if not yet seeded in database -->
             <div class="space-y-8">
                 <div class="space-y-4">
-                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400 border-b border-slate-200 dark:border-slate-800 pb-2">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400 border-b border-slate-200 dark:border-[#353B44] pb-2">
                         // SAMPLES & COMMERCIAL TERMS
                     </h2>
                     <div class="space-y-3">
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
                             <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4">
                                 <span class="text-sm font-semibold text-slate-900 dark:text-white">Do you charge for samples?</span>
                                 <span class="faq-icon text-slate-400 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>
                             </button>
-                            <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                            <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-[#2D333B] pt-4">
                                 Product samples are provided complimentary upon qualified request. The buyer is only responsible for the courier / shipping charges to their destination.
                             </div>
                         </div>
 
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
                             <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4">
                                 <span class="text-sm font-semibold text-slate-900 dark:text-white">Can we order a physical sample kit before placing a commercial order?</span>
                                 <span class="faq-icon text-slate-400 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>
                             </button>
-                            <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                            <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-[#2D333B] pt-4">
                                 Yes. We supply physical sample lots for compounding trials, pilot extrusions, or laboratory testing. Simply check "Request Product Sample" on the RFQ form.
                             </div>
                         </div>
 
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
                             <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4">
                                 <span class="text-sm font-semibold text-slate-900 dark:text-white">What Incoterms and payment methods do you support?</span>
                                 <span class="faq-icon text-slate-400 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>
                             </button>
-                            <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                            <div class="faq-content hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-[#2D333B] pt-4">
                                 We standardly quote under FOB, CIF, or CFR (Incoterms 2020). Commercial terms for qualified corporate buyers include Irrevocable Letter of Credit (L/C at sight), CAD (Cash Against Documents), and T/T deposit structures with balance against clean Bill of Lading copy.
                             </div>
                         </div>
@@ -90,7 +90,7 @@
         {% endif %}
 
         <!-- FAQ CTA Box -->
-        <div class="mt-12 p-8 rounded-xl bg-slate-50 border border-slate-200 dark:bg-slate-900/60 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+        <div class="mt-12 p-8 rounded-xl bg-slate-50 border border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
             <div>
                 <h3 class="text-base font-bold text-slate-900 dark:text-white">Have a Specific Technical Question?</h3>
                 <p class="text-xs text-slate-600 dark:text-slate-400">Our engineering and export desk is available for detailed consultation.</p>

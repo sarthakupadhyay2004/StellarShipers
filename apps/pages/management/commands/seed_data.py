@@ -40,7 +40,7 @@ class Command(BaseCommand):
             extraction_method='Mechanical decortication',
             processing='Drying only; cleaned/combed fiber bundles; no chemical treatment.',
             supplier_notes='Supplier capacity: 15 MT/month. Packaging: inner LDPE liner and outer woven HDPE sacks.',
-            harvest_origin='Jalgaon, Maharashtra, India',
+            harvest_origin='Maharashtra & Tamil Nadu, India',
             moq='500 kg',
             packaging_details='Inner LDPE liner and outer woven HDPE sacks for long-distance export transport.',
             hs_code='5305.00',
@@ -76,7 +76,7 @@ class Command(BaseCommand):
             ('SOURCING', 'What exactly does STELLAR SHIPERS supply?', 'STELLAR SHIPERS currently supplies natural, mechanically extracted, unspun banana fiber sourced from Indian banana pseudostems for textile and other natural-fiber applications. We work with buyers to develop specifications according to their intended application, required processing and technical requirements.', 1),
             ('SOURCING', 'Do you work only with banana fiber?', 'Banana fiber is our current featured product. STELLAR SHIPERS is being developed as a broader Indian sourcing and export partner for natural fibers and sustainable materials. Additional products are evaluated based on buyer demand, supplier capability and quality requirements.', 2),
             ('SOURCING', 'Can you supply fiber according to our required specifications?', 'Yes, subject to technical feasibility. We follow a requirement-led sourcing model and can evaluate specifications such as fiber length, moisture, cleanliness, fineness, processing requirements and packaging. Where testing or additional processing is required, we coordinate the relevant evaluation before confirming commercial supply.', 3),
-            ('SOURCING', 'Where is the raw banana fiber produced?', 'The initial raw banana fiber is produced in Jalgaon, Maharashtra, India—one of the largest banana cultivation belts in Asia. STELLAR SHIPERS oversees quality verification and export logistics from origin to international destinations.', 4),
+            ('SOURCING', 'Where is the raw banana fiber produced?', 'The raw banana fiber is sourced from major banana cultivation regions in India, such as Maharashtra and Tamil Nadu. STELLAR SHIPERS coordinates requirement-led sourcing, quality verification, and export logistics from origin to international destinations.', 4),
 
             # SAMPLES
             ('SAMPLES', 'Can we request a physical fiber sample for spinning trials?', 'Yes. We encourage textile and yarn manufacturers to request an evaluation sample kit to test runnability, fineness, and fiber length on their specific machinery. Simply select "Request Product Sample" on our RFQ form.', 5),

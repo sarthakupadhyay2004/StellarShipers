@@ -14,7 +14,7 @@ class StellarShiperHandoffComplianceTests(TestCase):
             raw_material='Musa plant pseudostems (G9 Grand Naine)',
             extraction_method='Mechanical decortication',
             processing='Drying only',
-            harvest_origin='Jalgaon, Maharashtra, India',
+            harvest_origin='Maharashtra & Tamil Nadu, India',
             moq='500 kg',
             verified_specs={},
             provisional_specs={
