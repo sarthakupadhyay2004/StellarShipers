@@ -11,6 +11,10 @@
             <span>/</span>
             <a href="{% url 'products:list' %}" class="hover:text-blue-600 dark:hover:text-white transition-colors">Products</a>
             <span>/</span>
+            {% if product.category %}
+                <a href="{% url 'products:list' %}?category={{ product.category.slug }}" class="hover:text-blue-600 dark:hover:text-white transition-colors">{{ product.category.name }}</a>
+                <span>/</span>
+            {% endif %}
             <span class="text-slate-900 dark:text-white font-semibold">{{ product.name }}</span>
         </nav>
 
@@ -19,8 +23,13 @@
                 <h1 class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
                     {{ product.name }}
                 </h1>
+                {% if product.tagline %}
+                    <p class="text-xs font-mono font-semibold uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">
+                        {{ product.tagline }}
+                    </p>
+                {% endif %}
                 <p class="text-slate-600 dark:text-slate-300 text-sm font-sans leading-relaxed">
-                    Natural, mechanically extracted and dried banana fiber sourced from G9 banana pseudostems, supplied in cleaned/combed fiber bundles for textile and natural-fiber applications.
+                    {{ product.description }}
                 </p>
             </div>
 
@@ -45,68 +54,53 @@
 
                 <!-- Parameters Table -->
                 <div class="bg-white border border-slate-200 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] rounded-xl overflow-hidden">
-                    <div class="p-5 bg-slate-50 border-b border-slate-200 dark:bg-[#1B2025] dark:border-[#353B44]">
+                    <div class="p-5 bg-slate-50 border-b border-slate-200 dark:bg-[#1B2025] dark:border-[#353B44] flex items-center justify-between">
                         <h2 class="text-sm font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">Product Technical Parameters</h2>
+                        <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Specification Schedule</span>
                     </div>
 
                     <div class="divide-y divide-slate-200 dark:divide-[#2D333B] text-xs font-mono">
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Banana Variety</span>
-                            <span class="text-slate-600 dark:text-slate-300">G9</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Raw Material Source</span>
-                            <span class="text-slate-600 dark:text-slate-300">Musa plant pseudostems</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Extraction Method</span>
-                            <span class="text-slate-600 dark:text-slate-300">Mechanical decortication</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Post-Extraction Processing</span>
-                            <span class="text-slate-600 dark:text-slate-300">Drying only</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Chemical Treatment</span>
-                            <span class="text-slate-600 dark:text-slate-300">Supplier states no chemical treatment / 100% natural</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Typical Fiber Length</span>
-                            <span class="text-slate-600 dark:text-slate-300">upto 5 ft</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Visual Colour</span>
-                            <span class="text-slate-600 dark:text-slate-300">Golden</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Tensile Strength</span>
-                            <span class="text-slate-600 dark:text-slate-300">test-measured per buyer specification</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Moisture Content</span>
-                            <span class="text-slate-600 dark:text-slate-300">Requires accredited laboratory testing before export</span>
-                        </div>
-                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
-                            <span class="text-slate-900 dark:text-white font-semibold">Batch Consistency</span>
-                            <span class="text-slate-600 dark:text-slate-300">Natural variation expected; QC tolerances defined per contract</span>
-                        </div>
+                        {% for spec in product.formatted_specs %}
+                            <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-slate-50 dark:hover:bg-[#22272E] transition-colors">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-slate-900 dark:text-white font-semibold">{{ spec.name }}</span>
+                                    {% if spec.is_verified %}
+                                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-100 dark:bg-emerald-950 text-blue-800 dark:text-emerald-300 border border-blue-200 dark:border-emerald-800">
+                                            VERIFIED
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <div class="flex flex-col sm:items-end">
+                                    <span class="text-slate-700 dark:text-slate-300 font-medium">{{ spec.value }}</span>
+                                    {% if spec.note %}
+                                        <span class="text-[11px] text-slate-400 font-mono">{{ spec.note }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="p-6 text-center text-slate-400 font-mono text-xs">
+                                Technical parameters and testing metrics available upon requirement specification.
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
 
                 <!-- Potential Applications -->
-                <div class="p-6 rounded-xl bg-slate-50 border border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] space-y-4">
-                    <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">Potential Applications / Uses</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
-                        These are presented as potential applications, not guarantees. Final application claims should be tied to test results and buyer requirements.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-700 dark:text-slate-200">
-                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Natural-fiber textile development</div>
-                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Blended yarn / textile development where technically suitable</div>
-                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Woven or nonwoven material development</div>
-                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">&bull; Home-textile and furnishing applications</div>
-                        <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded sm:col-span-2">&bull; Craft, specialty and other natural-fiber applications</div>
+                {% if product.applications %}
+                    <div class="p-6 rounded-xl bg-slate-50 border border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] space-y-4">
+                        <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">Potential Applications / Uses</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                            These are presented as potential applications, not guarantees. Final application claims should be tied to test results and buyer requirements.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-700 dark:text-slate-200">
+                            {% for app in product.applications %}
+                                <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">
+                                    &bull; {{ app }}
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
 
             </div>
 
@@ -119,18 +113,36 @@
                     </div>
 
                     <div class="space-y-3 text-xs font-mono">
-                        <div class="flex justify-between py-1 border-b border-slate-200 dark:border-[#2D333B]">
-                            <span class="text-slate-500 dark:text-slate-400">Supplier MOQ:</span>
-                            <span class="text-slate-900 dark:text-white font-semibold">500 kg</span>
-                        </div>
-                        <div class="flex justify-between py-1 border-b border-slate-200 dark:border-[#2D333B]">
-                            <span class="text-slate-500 dark:text-slate-400">Supplier Capacity:</span>
-                            <span class="text-slate-900 dark:text-white font-semibold">15 MT / month</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row justify-between py-1 gap-1">
-                            <span class="text-slate-500 dark:text-slate-400">Packaging:</span>
-                            <span class="text-slate-900 dark:text-white text-right">inner LDPE liner and outer woven HDPE sacks</span>
-                        </div>
+                        {% if product.harvest_origin %}
+                            <div class="flex justify-between py-1 border-b border-slate-200 dark:border-[#2D333B]">
+                                <span class="text-slate-500 dark:text-slate-400">Harvest Origin:</span>
+                                <span class="text-slate-900 dark:text-white font-semibold text-right">{{ product.harvest_origin }}</span>
+                            </div>
+                        {% endif %}
+                        {% if product.moq %}
+                            <div class="flex justify-between py-1 border-b border-slate-200 dark:border-[#2D333B]">
+                                <span class="text-slate-500 dark:text-slate-400">Supplier MOQ:</span>
+                                <span class="text-slate-900 dark:text-white font-semibold">{{ product.moq }}</span>
+                            </div>
+                        {% endif %}
+                        {% if product.supplier_notes %}
+                            <div class="flex flex-col sm:flex-row justify-between py-1 border-b border-slate-200 dark:border-[#2D333B] gap-1">
+                                <span class="text-slate-500 dark:text-slate-400 shrink-0">Supplier Notes:</span>
+                                <span class="text-slate-900 dark:text-white text-right font-medium">{{ product.supplier_notes }}</span>
+                            </div>
+                        {% endif %}
+                        {% if product.packaging_details %}
+                            <div class="flex flex-col sm:flex-row justify-between py-1 {% if product.hs_code %}border-b border-slate-200 dark:border-[#2D333B]{% endif %} gap-1">
+                                <span class="text-slate-500 dark:text-slate-400 shrink-0">Packaging:</span>
+                                <span class="text-slate-900 dark:text-white text-right">{{ product.packaging_details }}</span>
+                            </div>
+                        {% endif %}
+                        {% if product.hs_code %}
+                            <div class="flex justify-between py-1">
+                                <span class="text-slate-500 dark:text-slate-400">HS Tariff Code:</span>
+                                <span class="text-slate-900 dark:text-white font-semibold">{{ product.hs_code }}</span>
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="pt-2 space-y-2">

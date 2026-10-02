@@ -140,6 +140,17 @@ class DashboardSecurityTests(TestCase):
         self.assertIn('Tensile Strength', self.product.verified_specs)
         self.assertEqual(self.product.applications, ['Yarn Spinning', 'Composite Reinforcement'])
 
+        # Verify that changes show up on the public product detail page
+        resp_detail = self.client.get(reverse('products:detail', kwargs={'slug': self.product.slug}))
+        self.assertEqual(resp_detail.status_code, 200)
+        self.assertContains(resp_detail, 'High tensile test fiber')
+        self.assertContains(resp_detail, 'Yarn Spinning')
+        self.assertContains(resp_detail, 'Composite Reinforcement')
+        self.assertContains(resp_detail, 'Moisture Content')
+        self.assertContains(resp_detail, '10% - 12%')
+        self.assertContains(resp_detail, 'Tensile Strength')
+        self.assertContains(resp_detail, 'Tamil Nadu')
+
     def test_staff_faq_crud(self):
         self.client.login(username='staff_test', password='Password123!')
         

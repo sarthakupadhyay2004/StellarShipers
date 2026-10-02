@@ -1,4 +1,4 @@
-﻿from django.db import models
+from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 
@@ -72,6 +72,57 @@ class Product(models.Model):
         if primary:
             return primary
         return self.images.first()
+
+    @property
+    def formatted_specs(self):
+        """
+        Returns a normalized list of specification dicts:
+        [{'name': key, 'value': value, 'note': note, 'is_verified': bool}, ...]
+        Verified parameters are listed first, followed by provisional parameters.
+        """
+        specs = []
+        seen = set()
+        if isinstance(self.verified_specs, dict):
+            for k, v in self.verified_specs.items():
+                val = v.get('value', '') if isinstance(v, dict) else str(v)
+                note = v.get('note', '') if isinstance(v, dict) else ''
+                specs.append({'name': k, 'value': val, 'note': note, 'is_verified': True})
+                seen.add(k.lower())
+        if isinstance(self.provisional_specs, dict):
+            for k, v in self.provisional_specs.items():
+                val = v.get('value', '') if isinstance(v, dict) else str(v)
+                note = v.get('note', '') if isinstance(v, dict) else ''
+                specs.append({'name': k, 'value': val, 'note': note, 'is_verified': False})
+                seen.add(k.lower())
+
+        # Include core botanical and extraction specs if not explicitly overridden in specs
+        if self.raw_material and 'raw material' not in seen and 'raw material source' not in seen:
+            specs.insert(0 if not specs else 1, {
+                'name': 'Raw Material Source',
+                'value': self.raw_material,
+                'note': 'Confirmed',
+                'is_verified': False
+            })
+            seen.add('raw material source')
+
+        if self.extraction_method and 'extraction' not in seen and 'extraction method' not in seen:
+            specs.append({
+                'name': 'Extraction Method',
+                'value': self.extraction_method,
+                'note': 'Confirmed',
+                'is_verified': False
+            })
+            seen.add('extraction method')
+
+        if self.processing and 'processing' not in seen and 'post-extraction processing' not in seen:
+            specs.append({
+                'name': 'Post-Extraction Processing',
+                'value': self.processing,
+                'note': 'Supplier-stated',
+                'is_verified': False
+            })
+
+        return specs
 
     def __str__(self):
         return self.name

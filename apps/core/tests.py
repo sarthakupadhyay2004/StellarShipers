@@ -19,7 +19,8 @@ class StellarShiperHandoffComplianceTests(TestCase):
             verified_specs={},
             provisional_specs={
                 'Banana Variety': {'value': 'G9 (Grand Naine)', 'note': 'Supplier-stated'},
-                'Extraction': {'value': 'Mechanical', 'note': 'Confirmed'}
+                'Extraction Method': {'value': 'Mechanical decortication', 'note': 'Confirmed'},
+                'Tensile Strength': {'value': 'test-measured per buyer specification', 'note': 'Testing on-demand'}
             },
             is_active=True,
             is_featured=True

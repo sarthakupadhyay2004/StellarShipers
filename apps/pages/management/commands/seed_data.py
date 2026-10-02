@@ -55,7 +55,7 @@ class Command(BaseCommand):
             provisional_specs={
                 'Banana Variety': {'value': 'G9', 'note': 'Supplier-stated'},
                 'Raw Material': {'value': 'Musa plant pseudostems', 'note': 'Confirmed'},
-                'Extraction': {'value': 'Mechanical', 'note': 'Confirmed'},
+                'Extraction Method': {'value': 'Mechanical decortication', 'note': 'Confirmed'},
                 'Post-extraction processing': {'value': 'Drying only', 'note': 'Supplier-stated'},
                 'Chemical treatment': {'value': 'No chemical treatment / 100% natural', 'note': 'Supplier-stated'},
                 'Typical fiber length': {'value': 'upto 5 ft', 'note': 'Supplier-stated'},
