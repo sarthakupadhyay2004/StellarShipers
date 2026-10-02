@@ -13,7 +13,24 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'stellar-shipers-insecure-dev-key-change-in
 
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,.onrender.com,.vercel.app').split(',') if host.strip()]
+# Base allowed hosts from environment variable or standard defaults
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv(
+        'ALLOWED_HOSTS',
+        'localhost,127.0.0.1,testserver,.onrender.com,.vercel.app,stellarshipers.com,www.stellarshipers.com'
+    ).split(',')
+    if host.strip()
+]
+
+# Guarantee production custom domains are always permitted
+PRODUCTION_DOMAINS = [
+    'stellarshipers.com',
+    'www.stellarshipers.com',
+]
+for domain in PRODUCTION_DOMAINS:
+    if domain not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(domain)
 
 # Automatic Render deployment host detection
 RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
@@ -25,12 +42,24 @@ VERCEL_URL = os.getenv('VERCEL_URL')
 if VERCEL_URL and VERCEL_URL not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(VERCEL_URL)
 
-# CSRF Trusted Origins for HTTPS on Render & Vercel
+# CSRF Trusted Origins for HTTPS on Render, Vercel & Production Custom Domain
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
-    for origin in os.getenv('CSRF_TRUSTED_ORIGINS', 'https://*.onrender.com,https://*.vercel.app,http://localhost:8000,http://127.0.0.1:8000').split(',')
+    for origin in os.getenv(
+        'CSRF_TRUSTED_ORIGINS',
+        'https://*.onrender.com,https://*.vercel.app,http://localhost:8000,http://127.0.0.1:8000,https://stellarshipers.com,https://www.stellarshipers.com'
+    ).split(',')
     if origin.strip()
 ]
+
+PRODUCTION_CSRF_ORIGINS = [
+    'https://stellarshipers.com',
+    'https://www.stellarshipers.com',
+]
+for origin in PRODUCTION_CSRF_ORIGINS:
+    if origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(origin)
+
 if RENDER_EXTERNAL_HOSTNAME:
     render_origin = f'https://{RENDER_EXTERNAL_HOSTNAME}'
     if render_origin not in CSRF_TRUSTED_ORIGINS:

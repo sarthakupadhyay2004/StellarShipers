@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+from django.conf import settings
 from apps.products.models import Product, Category
 from apps.rfq.models import RFQ
 
@@ -168,4 +169,21 @@ class StellarShiperHandoffComplianceTests(TestCase):
         self.assertContains(response, 'dark:bg-[#0B0F17]')
         # Theme dot indicator present
         self.assertContains(response, 'theme-dot')
+
+    def test_custom_domains_in_allowed_hosts_and_csrf(self):
+        # 1. Verify domains in ALLOWED_HOSTS
+        self.assertIn('stellarshipers.com', settings.ALLOWED_HOSTS)
+        self.assertIn('www.stellarshipers.com', settings.ALLOWED_HOSTS)
+
+        # 2. Verify origins in CSRF_TRUSTED_ORIGINS
+        self.assertIn('https://stellarshipers.com', settings.CSRF_TRUSTED_ORIGINS)
+        self.assertIn('https://www.stellarshipers.com', settings.CSRF_TRUSTED_ORIGINS)
+
+        # 3. Simulate requests with Host header set to custom domains
+        resp_root = self.client.get(reverse('pages:home'), HTTP_HOST='stellarshipers.com')
+        self.assertEqual(resp_root.status_code, 200)
+
+        resp_www = self.client.get(reverse('pages:home'), HTTP_HOST='www.stellarshipers.com')
+        self.assertEqual(resp_www.status_code, 200)
+
 
