@@ -1,9 +1,6 @@
-import os
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
 from apps.products.models import Category, Product
 from apps.pages.models import FAQ
-from apps.rfq.models import RFQ
 
 class Command(BaseCommand):
     help = 'Seeds production-grade initial fixtures for STELLAR SHIPERS per Handoff Doc'
@@ -11,17 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write('Seeding database with updated handoff specifications...')
 
-        # 1. Superuser
-        if not User.objects.filter(is_superuser=True).exists():
-            su_username = os.getenv('DJANGO_SUPERUSER_USERNAME', 'admin')
-            su_email = os.getenv('DJANGO_SUPERUSER_EMAIL', 'stellarshipper45@gmail.com')
-            su_password = os.getenv('DJANGO_SUPERUSER_PASSWORD', 'stellar2026!')
-            User.objects.create_superuser(su_username, su_email, su_password)
-            self.stdout.write(self.style.SUCCESS(f'Superuser "{su_username}" created successfully.'))
-        else:
-            self.stdout.write('Superuser already exists, skipping creation.')
-
-        # 2. Categories
+        # 1. Categories
         cat_fibers, _ = Category.objects.get_or_create(
             slug='natural-plant-fibers',
             defaults={
