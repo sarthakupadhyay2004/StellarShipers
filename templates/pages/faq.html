@@ -10,7 +10,7 @@
                 <span class="theme-dot"></span>
                 <span>Operational & Commercial Knowledge Base</span>
             </div>
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
                 Frequently Asked Questions
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
@@ -26,13 +26,13 @@
         {% if grouped_faqs %}
             {% for category_name, faqs in grouped_faqs.items %}
                 <div class="space-y-4">
-                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400 border-b border-slate-200 dark:border-[#353B44] pb-2">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6] border-b border-slate-200 dark:border-[#353B44] pb-2">
                         // {{ category_name }}
                     </h2>
                     
                     <div class="space-y-3">
                         {% for faq in faqs %}
-                            <div class="bg-white border border-slate-200 rounded-lg overflow-hidden transition-colors hover:border-blue-300 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] dark:hover:border-[#4A5563]">
+                            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden transition-colors hover:border-blue-300 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] dark:hover:border-[#4A5563]">
                                 <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4 focus:outline-none">
                                     <span class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white">{{ faq.question }}</span>
                                     <span class="faq-icon text-slate-400 shrink-0 transition-transform duration-200">
@@ -51,11 +51,11 @@
             <!-- Default FAQ content if not yet seeded in database -->
             <div class="space-y-8">
                 <div class="space-y-4">
-                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-emerald-400 border-b border-slate-200 dark:border-[#353B44] pb-2">
+                    <h2 class="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6] border-b border-slate-200 dark:border-[#353B44] pb-2">
                         // SAMPLES & COMMERCIAL TERMS
                     </h2>
                     <div class="space-y-3">
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
+                        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
                             <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4">
                                 <span class="text-sm font-semibold text-slate-900 dark:text-white">Do you charge for samples?</span>
                                 <span class="faq-icon text-slate-400 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
+                        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
                             <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4">
                                 <span class="text-sm font-semibold text-slate-900 dark:text-white">Can we order a physical sample kit before placing a commercial order?</span>
                                 <span class="faq-icon text-slate-400 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
+                        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
                             <button type="button" class="faq-toggle-btn w-full p-5 text-left flex items-center justify-between space-x-4">
                                 <span class="text-sm font-semibold text-slate-900 dark:text-white">What Incoterms and payment methods do you support?</span>
                                 <span class="faq-icon text-slate-400 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></span>

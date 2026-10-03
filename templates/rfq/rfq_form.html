@@ -3,14 +3,14 @@
 {% block title %}Request for Quotation (RFQ) | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#0B0F17] dark:border-slate-800 py-12">
+<div class="bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-3">
-            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-slate-300">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-[#9AA0A6]">
                 <span class="theme-dot"></span>
                 <span>Direct B2B Commercial Inquiry</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
+            <h1 class="text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
                 Request for Quotation (RFQ)
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
@@ -20,15 +20,15 @@
     </div>
 </div>
 
-<div class="bg-white dark:bg-[#070A0F] py-16">
+<div class="bg-white dark:bg-[#161A1E] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <!-- Left 8 Cols: The RFQ Form -->
-            <div class="lg:col-span-8 bg-slate-50 border border-slate-200 rounded-xl p-8 sm:p-10 shadow-sm dark:bg-slate-900/90 dark:border-slate-800 dark:shadow-2xl space-y-8">
+            <div class="lg:col-span-8 bg-slate-50 border border-slate-200 rounded-xl p-8 sm:p-10 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44] dark:shadow-2xl space-y-8">
                 
                 {% if preselected_product %}
-                    <div class="p-4 rounded bg-blue-50 border border-blue-200 dark:bg-slate-950 dark:border-slate-800 flex items-center justify-between text-xs font-mono">
+                    <div class="p-4 rounded bg-blue-50 border border-blue-200 dark:bg-[#161A1E] dark:border-[#353B44] flex items-center justify-between text-xs font-mono">
                         <div>
                             <span class="text-blue-700 dark:text-slate-300 uppercase block">Selected Catalog Product:</span>
                             <span class="text-slate-900 dark:text-white font-bold text-sm">{{ preselected_product.name }}</span>
@@ -49,8 +49,8 @@
 
                     <!-- 1. Enterprise Contact Info -->
                     <div class="space-y-4">
-                        <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
-                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">1. Buyer Enterprise Credentials</h3>
+                        <div class="border-b border-slate-200 dark:border-[#353B44] pb-2">
+                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">1. Buyer Enterprise Credentials</h3>
                         </div>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -98,8 +98,8 @@
 
                     <!-- 2. Product & Sourcing Specs -->
                     <div class="space-y-4">
-                        <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
-                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">2. Sourcing Parameters & Volume</h3>
+                        <div class="border-b border-slate-200 dark:border-[#353B44] pb-2">
+                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">2. Sourcing Parameters & Volume</h3>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -157,8 +157,8 @@
 
                     <!-- 3. Logistics & Delivery -->
                     <div class="space-y-4">
-                        <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
-                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">3. Logistics & Shipping Terms</h3>
+                        <div class="border-b border-slate-200 dark:border-[#353B44] pb-2">
+                            <h3 class="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">3. Logistics & Shipping Terms</h3>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -214,7 +214,7 @@
                         </div>
 
                         <!-- B2B Commercial Consent -->
-                        <div class="p-4 rounded-lg bg-white border border-slate-200 dark:bg-slate-950 dark:border-slate-800 flex items-start space-x-3">
+                        <div class="p-4 rounded-lg bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#353B44] flex items-start space-x-3">
                             <div class="mt-0.5">
                                 {{ form.consent }}
                             </div>
@@ -243,9 +243,9 @@
             <div class="lg:col-span-4 space-y-6">
                 
                 <!-- Trust Guarantee Box -->
-                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm dark:bg-slate-900 dark:border-slate-800">
-                    <div class="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-slate-300">
-                        <svg class="w-4 h-4 text-blue-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm dark:bg-[#1E2328] dark:border-[#353B44]">
+                    <div class="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-[#9AA0A6]">
+                        <svg class="w-4 h-4 text-blue-600 dark:text-[#9AA0A6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                         <span>Commercial Protocol</span>
                     </div>
                     <h3 class="text-base font-bold text-slate-900 dark:text-white">The Stellar RFQ Commitment</h3>
@@ -258,7 +258,7 @@
                 </div>
 
                 <!-- Contact Fallback -->
-                <div class="bg-slate-50/60 border border-slate-200 rounded-xl p-6 space-y-3 text-xs dark:bg-slate-900/60 dark:border-slate-800">
+                <div class="bg-slate-50/60 border border-slate-200 rounded-xl p-6 space-y-3 text-xs dark:bg-[#1E2328]/60 dark:border-[#353B44]">
                     <h4 class="font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">Direct Inquiries</h4>
                     <p class="text-slate-500 dark:text-slate-400">For tender submissions, specialized NDA signing, or direct vessel chartering inquiries:</p>
                     <div class="space-y-1 font-mono text-slate-700 dark:text-slate-300 pt-1">

@@ -25,7 +25,7 @@
     <meta property="og:site_name" content="{{ SITE_NAME }}">
     <meta property="og:title" content="{% block og_title %}{{ meta_title|default:SITE_NAME }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ meta_desc|default:SITE_SUBTITLE }}{% endblock %}">
-    <meta property="og:image" content="/static/img/logo.png">
+    <meta property="og:image" content="{% if request.get_host %}{{ request.scheme }}://{{ request.get_host }}{% else %}https://www.stellarshipers.com{% endif %}/static/img/logo.png">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/static/img/favicon.png">
