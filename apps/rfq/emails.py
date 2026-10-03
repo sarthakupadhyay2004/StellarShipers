@@ -1,4 +1,4 @@
-﻿import logging
+import logging
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -51,7 +51,8 @@ Technical Requirements:
 Additional Notes:
 {rfq.message or 'None'}
 
-File Attached: {'YES' if rfq.technical_file else 'No'}
+File Attached: {'YES' if rfq.technical_file else 'No'}{f'''
+File Download URL: {rfq.technical_file.url}''' if rfq.technical_file else ''}
 --------------------------------------------------
 Review in Django Admin: /admin/rfq/rfq/{rfq.pk}/change/
 """

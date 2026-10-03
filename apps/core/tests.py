@@ -1,6 +1,8 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth.models import User
 from apps.products.models import Product, Category
 from apps.rfq.models import RFQ
 
@@ -185,5 +187,91 @@ class StellarShiperHandoffComplianceTests(TestCase):
 
         resp_www = self.client.get(reverse('pages:home'), HTTP_HOST='www.stellarshipers.com')
         self.assertEqual(resp_www.status_code, 200)
+
+    def test_rfq_file_upload_handling(self):
+        sample_file = SimpleUploadedFile(
+            'technical_drawing.pdf',
+            b'%PDF-1.4 dummy pdf specification sheet content',
+            content_type='application/pdf'
+        )
+        data = {
+            'name': 'Pierre Laurent',
+            'company': 'Rhone BioTech SAS',
+            'country': 'France',
+            'email': 'p.laurent@rhonebiotech.fr',
+            'phone': '+33 4 72 00 00 00',
+            'product': self.product.id,
+            'quantity': '15 MT / quarter',
+            'application': 'Molded biocomposites',
+            'technical_requirements': 'Clean, combed fibers with ASTM tensile tests.',
+            'technical_file': sample_file,
+            'delivery_country': 'France',
+            'incoterms': 'CIF',
+            'consent': True,
+            'website_check': ''
+        }
+        response = self.client.post(reverse('rfq:submit'), data=data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('rfq:success'))
+
+        rfq = RFQ.objects.filter(email='p.laurent@rhonebiotech.fr').first()
+        self.assertIsNotNone(rfq)
+        self.assertTrue(bool(rfq.technical_file))
+        self.assertIn('technical_drawing', rfq.technical_file.name)
+
+        # Clean up created file from disk if local storage was used
+        if hasattr(rfq.technical_file.storage, 'path'):
+            try:
+                import os
+                if os.path.exists(rfq.technical_file.path):
+                    os.remove(rfq.technical_file.path)
+            except Exception:
+                pass
+
+    def test_dashboard_technical_file_link(self):
+        sample_file = SimpleUploadedFile(
+            'spec_sheet.pdf',
+            b'%PDF-1.4 dummy spec sheet',
+            content_type='application/pdf'
+        )
+        rfq = RFQ.objects.create(
+            name='Elena Rossi',
+            company='Milano Textiles Srl',
+            country='Italy',
+            delivery_country='Italy',
+            email='e.rossi@milanotextiles.it',
+            quantity='5 MT',
+            application='Spinning yarn',
+            technical_file=sample_file,
+            consent=True
+        )
+
+        # Create staff user for dashboard access
+        staff_user = User.objects.create_user(
+            username='staff_test_rfq',
+            password='Password123!',
+            is_staff=True
+        )
+        self.client.login(username='staff_test_rfq', password='Password123!')
+
+        resp = self.client.get(reverse('dashboard:rfq_detail', kwargs={'pk': rfq.pk}))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Attached Specification Document')
+        self.assertContains(resp, 'View / Download Buyer Specification File')
+        self.assertContains(resp, rfq.technical_file.url)
+
+        # Clean up file
+        if hasattr(rfq.technical_file.storage, 'path'):
+            try:
+                import os
+                if os.path.exists(rfq.technical_file.path):
+                    os.remove(rfq.technical_file.path)
+            except Exception:
+                pass
+
+    def test_storage_configuration_fallback(self):
+        from django.core.files.storage import default_storage
+        self.assertIsNotNone(default_storage)
+
 
 

@@ -26,51 +26,54 @@ class Command(BaseCommand):
         )
 
         # 3. Featured Product: Textile-Grade Raw Banana Fiber (Single Catalog Product)
-        Product.objects.all().delete()
-        Product.objects.create(
-            category=cat_fibers,
+        product, created = Product.objects.get_or_create(
             slug='banana-fiber',
-            name='Textile-grade raw banana fiber',
-            tagline='Unspun, extracted from Musa plant pseudostems for natural-fiber/textile applications',
-            description=(
-                'Natural, mechanically extracted and dried banana fiber sourced from G9 banana pseudostems, '
-                'supplied in cleaned/combed fiber bundles for textile and natural-fiber applications.'
-            ),
-            raw_material='Musa plant pseudostems',
-            extraction_method='Mechanical decortication',
-            processing='Drying only; cleaned/combed fiber bundles; no chemical treatment.',
-            supplier_notes='Supplier capacity: 15 MT/month. Packaging: inner LDPE liner and outer woven HDPE sacks.',
-            harvest_origin='Maharashtra & Tamil Nadu, India',
-            moq='500 kg',
-            packaging_details='Inner LDPE liner and outer woven HDPE sacks for long-distance export transport.',
-            hs_code='5305.00',
-            applications=[
-                'Natural-fiber textile development',
-                'Blended yarn / textile development where technically suitable',
-                'Woven or nonwoven material development',
-                'Home-textile and furnishing applications',
-                'Craft, specialty and other natural-fiber applications'
-            ],
-            verified_specs={},
-            provisional_specs={
-                'Banana Variety': {'value': 'G9', 'note': 'Supplier-stated'},
-                'Raw Material': {'value': 'Musa plant pseudostems', 'note': 'Confirmed'},
-                'Extraction Method': {'value': 'Mechanical decortication', 'note': 'Confirmed'},
-                'Post-extraction processing': {'value': 'Drying only', 'note': 'Supplier-stated'},
-                'Chemical treatment': {'value': 'No chemical treatment / 100% natural', 'note': 'Supplier-stated'},
-                'Typical fiber length': {'value': 'upto 5 ft', 'note': 'Supplier-stated'},
-                'Colour': {'value': 'Golden', 'note': 'Supplier-stated / visually apparent'},
-                'Tensile Strength': {'value': 'test-measured per buyer specification', 'note': 'Testing on-demand'},
-                'Moisture': {'value': 'Requires accredited laboratory testing before export', 'note': 'Testing required'}
-            },
-            is_featured=True,
-            is_active=True,
-            display_order=1
+            defaults={
+                'category': cat_fibers,
+                'name': 'Textile-grade raw banana fiber',
+                'tagline': 'Unspun, extracted from Musa plant pseudostems for natural-fiber/textile applications',
+                'description': (
+                    'Natural, mechanically extracted and dried banana fiber sourced from G9 banana pseudostems, '
+                    'supplied in cleaned/combed fiber bundles for textile and natural-fiber applications.'
+                ),
+                'raw_material': 'Musa plant pseudostems',
+                'extraction_method': 'Mechanical decortication',
+                'processing': 'Drying only; cleaned/combed fiber bundles; no chemical treatment.',
+                'supplier_notes': 'Supplier capacity: 15 MT/month. Packaging: inner LDPE liner and outer woven HDPE sacks.',
+                'harvest_origin': 'Maharashtra & Tamil Nadu, India',
+                'moq': '500 kg',
+                'packaging_details': 'Inner LDPE liner and outer woven HDPE sacks for long-distance export transport.',
+                'hs_code': '5305.00',
+                'applications': [
+                    'Natural-fiber textile development',
+                    'Blended yarn / textile development where technically suitable',
+                    'Woven or nonwoven material development',
+                    'Home-textile and furnishing applications',
+                    'Craft, specialty and other natural-fiber applications'
+                ],
+                'verified_specs': {},
+                'provisional_specs': {
+                    'Banana Variety': {'value': 'G9', 'note': 'Supplier-stated'},
+                    'Raw Material': {'value': 'Musa plant pseudostems', 'note': 'Confirmed'},
+                    'Extraction Method': {'value': 'Mechanical decortication', 'note': 'Confirmed'},
+                    'Post-extraction processing': {'value': 'Drying only', 'note': 'Supplier-stated'},
+                    'Chemical treatment': {'value': 'No chemical treatment / 100% natural', 'note': 'Supplier-stated'},
+                    'Typical fiber length': {'value': 'upto 5 ft', 'note': 'Supplier-stated'},
+                    'Colour': {'value': 'Golden', 'note': 'Supplier-stated / visually apparent'},
+                    'Tensile Strength': {'value': 'test-measured per buyer specification', 'note': 'Testing on-demand'},
+                    'Moisture': {'value': 'Requires accredited laboratory testing before export', 'note': 'Testing required'}
+                },
+                'is_featured': True,
+                'is_active': True,
+                'display_order': 1
+            }
         )
-        self.stdout.write(self.style.SUCCESS('Product "Textile-grade raw banana fiber" updated.'))
+        if created:
+            self.stdout.write(self.style.SUCCESS('Product "Textile-grade raw banana fiber" created.'))
+        else:
+            self.stdout.write('Product "Textile-grade raw banana fiber" already exists, preserving current state.')
 
         # 4. FAQs
-        FAQ.objects.all().delete()
         faq_items = [
             # SOURCING
             ('SOURCING', 'What exactly does STELLAR SHIPERS supply?', 'STELLAR SHIPERS currently supplies natural, mechanically extracted, unspun banana fiber sourced from Indian banana pseudostems for textile and other natural-fiber applications. We work with buyers to develop specifications according to their intended application, required processing and technical requirements.', 1),
@@ -91,6 +94,14 @@ class Command(BaseCommand):
             ('COMMERCIAL', 'How are prices quoted?', 'We do not publish fixed public retail prices. Prices are quoted based on required volume, packaging specifications, destination port, and applicable Incoterms (FOB, CIF, CFR).', 10),
         ]
         for cat, q, a, order in faq_items:
-            FAQ.objects.create(category=cat, question=q, answer=a, display_order=order, is_active=True)
+            FAQ.objects.get_or_create(
+                question=q,
+                defaults={
+                    'category': cat,
+                    'answer': a,
+                    'display_order': order,
+                    'is_active': True
+                }
+            )
 
-        self.stdout.write(self.style.SUCCESS('Database re-seeded successfully with updated specifications.'))
+        self.stdout.write(self.style.SUCCESS('Database seeding check completed successfully.'))

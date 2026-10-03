@@ -139,7 +139,13 @@ def get_sqlite_path():
 if DATABASE_URL:
     try:
         import dj_database_url
-        DATABASES = {'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
+        DATABASES = {
+            'default': dj_database_url.parse(
+                DATABASE_URL,
+                conn_max_age=0 if IS_VERCEL else 600,
+                ssl_require=True
+            )
+        }
     except Exception:
         DATABASES = {
             'default': {
@@ -174,12 +180,54 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Whitenoise configuration for static files (Resilient and optimized for Render)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
 # Media files (User uploads, Technical Spec sheets, Product photos)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Storage Configuration (Supabase Storage S3-compatible backend / Local FileSystem fallback)
+USE_SUPABASE_STORAGE = bool(
+    os.getenv('SUPABASE_STORAGE_ACCESS_KEY') and
+    os.getenv('SUPABASE_STORAGE_BUCKET')
+)
+
+if USE_SUPABASE_STORAGE:
+    endpoint_url = os.getenv("SUPABASE_STORAGE_ENDPOINT")  # e.g., https://<project-ref>.supabase.co/storage/v1/s3
+    bucket_name = os.getenv("SUPABASE_STORAGE_BUCKET", "stellar-media")
+    region_name = os.getenv("SUPABASE_STORAGE_REGION", "ap-south-1")
+
+    # Derive public Supabase CDN domain for direct, unauthenticated client downloads
+    from urllib.parse import urlparse
+    parsed_endpoint = urlparse(endpoint_url) if endpoint_url else None
+    custom_domain = f"{parsed_endpoint.netloc}/storage/v1/object/public/{bucket_name}" if parsed_endpoint and parsed_endpoint.netloc else None
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "access_key": os.getenv("SUPABASE_STORAGE_ACCESS_KEY"),
+                "secret_key": os.getenv("SUPABASE_STORAGE_SECRET_KEY"),
+                "bucket_name": bucket_name,
+                "endpoint_url": endpoint_url,
+                "custom_domain": custom_domain,
+                "region_name": region_name,
+                "default_acl": None,
+                "file_overwrite": False,
+                "querystring_auth": False,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
