@@ -23,12 +23,41 @@
         })();
     </script>
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://stellarshipers.com{{ request.path }}">
+    
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ SITE_NAME }}">
     <meta property="og:title" content="{% block og_title %}{{ meta_title|default:SITE_NAME }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ meta_desc|default:SITE_SUBTITLE }}{% endblock %}">
     <meta property="og:image" content="{% if request.get_host %}{{ request.scheme }}://{{ request.get_host }}{% else %}https://www.stellarshipers.com{% endif %}/static/img/logo.png">
+    
+    <!-- Global Organization Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://stellarshipers.com/#organization",
+      "name": "{{ SITE_NAME }}",
+      "legalName": "{{ SITE_LEGAL_NAME }}",
+      "alternateName": ["Stellar Shiper", "StellarShiper", "Stellar Shipers India"],
+      "url": "https://stellarshipers.com",
+      "logo": "https://stellarshipers.com/static/img/logo.png",
+      "description": "{{ SITE_SUBTITLE }}",
+      "email": "{{ PRIMARY_EMAIL }}",
+      {% if GSTIN %}"taxID": "{{ GSTIN }}",{% endif %}
+      {% if IEC %}"identifier": "DGFT-IEC-{{ IEC }}",{% endif %}
+      {% if SOCIAL_LINKS %}"sameAs": [{% for s in SOCIAL_LINKS %}"{{ s.url }}"{% if not forloop.last %}, {% endif %}{% endfor %}],{% endif %}
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "slogan": "{{ SITE_TAGLINE }}"
+    }
+    </script>
+    
+    {% block schema_ld %}{% endblock %}
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/static/img/favicon.png">

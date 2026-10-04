@@ -2,6 +2,23 @@
 
 {% block title %}{{ SITE_NAME }} | {{ SITE_TAGLINE }} - Indian Sourcing & Export Coordination{% endblock %}
 
+{% block schema_ld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://stellarshipers.com/#website",
+  "url": "https://stellarshipers.com",
+  "name": "{{ SITE_NAME }}",
+  "alternateName": "Stellar Shiper",
+  "description": "{{ SITE_SUPPORTING_LINE }}",
+  "publisher": {
+    "@id": "https://stellarshipers.com/#organization"
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <!-- 1. HERO SECTION -->

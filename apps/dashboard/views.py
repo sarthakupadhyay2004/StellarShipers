@@ -12,7 +12,11 @@ from django.db.models import Q
 from apps.rfq.models import RFQ
 from apps.products.models import Product, Category
 from apps.pages.models import FAQ
-from .forms import DashboardLoginForm, DashboardRFQStatusForm, DashboardFAQForm, DashboardProductForm
+from apps.core.models import CompanyProfile, SocialLink
+from .forms import (
+    DashboardLoginForm, DashboardRFQStatusForm, DashboardFAQForm, DashboardProductForm,
+    DashboardCompanyProfileForm, DashboardSocialLinkForm
+)
 
 class AdminRequiredMixin(UserPassesTestMixin):
     login_url = 'dashboard:login'
@@ -269,3 +273,89 @@ class DashboardFAQDeleteView(AdminRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, "FAQ question deleted.")
         return super().delete(request, *args, **kwargs)
+
+
+# ==============================================================================
+# COMPANY PROFILE, TRADE REGISTRATIONS & SOCIAL CHANNELS
+# ==============================================================================
+
+class DashboardCompanySettingsView(AdminRequiredMixin, View):
+    template_name = 'dashboard/settings.html'
+
+    def get(self, request, *args, **kwargs):
+        profile = CompanyProfile.get_solo()
+        profile_form = DashboardCompanyProfileForm(instance=profile)
+        social_form = DashboardSocialLinkForm()
+        social_links = SocialLink.objects.all().order_by('display_order', 'id')
+        return render(request, self.template_name, {
+            'profile': profile,
+            'profile_form': profile_form,
+            'social_form': social_form,
+            'social_links': social_links,
+        })
+
+    def post(self, request, *args, **kwargs):
+        profile = CompanyProfile.get_solo()
+        profile_form = DashboardCompanyProfileForm(request.POST, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, "Company profile, trade registrations (GSTIN/IEC) & disclaimer updated successfully.")
+            return redirect('dashboard:settings')
+        
+        social_form = DashboardSocialLinkForm()
+        social_links = SocialLink.objects.all().order_by('display_order', 'id')
+        messages.error(request, "Please review the form errors below.")
+        return render(request, self.template_name, {
+            'profile': profile,
+            'profile_form': profile_form,
+            'social_form': social_form,
+            'social_links': social_links,
+        })
+
+
+class DashboardSocialLinkCreateView(AdminRequiredMixin, CreateView):
+    model = SocialLink
+    form_class = DashboardSocialLinkForm
+    template_name = 'dashboard/social_form.html'
+    success_url = reverse_lazy('dashboard:settings')
+
+    def form_valid(self, form):
+        messages.success(self.request, f"Social channel '{form.instance.display_name}' added successfully.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Failed to add social channel. Please review the inputs.")
+        return redirect('dashboard:settings')
+
+
+class DashboardSocialLinkUpdateView(AdminRequiredMixin, UpdateView):
+    model = SocialLink
+    form_class = DashboardSocialLinkForm
+    template_name = 'dashboard/social_form.html'
+    success_url = reverse_lazy('dashboard:settings')
+
+    def form_valid(self, form):
+        messages.success(self.request, f"Social channel '{form.instance.display_name}' updated.")
+        return super().form_valid(form)
+
+
+class DashboardSocialLinkDeleteView(AdminRequiredMixin, DeleteView):
+    model = SocialLink
+    template_name = 'dashboard/social_confirm_delete.html'
+    success_url = reverse_lazy('dashboard:settings')
+
+    def delete(self, request, *args, **kwargs):
+        link = self.get_object()
+        messages.success(self.request, f"Social channel '{link.display_name}' removed.")
+        return super().delete(request, *args, **kwargs)
+
+
+class DashboardSocialLinkToggleView(AdminRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        link = get_object_or_404(SocialLink, pk=pk)
+        link.is_active = not link.is_active
+        link.save()
+        status_str = "visible on website" if link.is_active else "hidden from website"
+        messages.success(request, f"'{link.display_name}' is now {status_str}.")
+        return redirect('dashboard:settings')
+

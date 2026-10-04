@@ -50,9 +50,30 @@
                     </div>
                 </div>
 
-                <!-- Registration & Legal Placeholder Area -->
+                <!-- Registration & Legal Trade Area -->
                 <div class="bg-slate-50/60 border border-slate-200 rounded-xl p-6 space-y-3 text-xs font-mono text-slate-600 dark:bg-[#1E2328]/60 dark:border-[#353B44] dark:text-slate-300">
-                    <div class="font-bold text-slate-900 dark:text-white uppercase text-xs">Official Trade Information</div>
+                    <div class="font-bold text-slate-900 dark:text-white uppercase text-xs flex items-center justify-between">
+                        <span>Official Trade Information</span>
+                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400">DGFT & GST Verified</span>
+                    </div>
+                    
+                    {% if GSTIN or IEC %}
+                    <div class="p-3 bg-white dark:bg-[#161A1E] border border-slate-200 dark:border-slate-700/60 rounded-lg space-y-1.5 text-xs font-mono">
+                        {% if GSTIN %}
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500 dark:text-slate-400">GSTIN:</span>
+                                <span class="font-bold text-slate-900 dark:text-white tracking-wider">{{ GSTIN }}</span>
+                            </div>
+                        {% endif %}
+                        {% if IEC %}
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500 dark:text-slate-400">DGFT IEC:</span>
+                                <span class="font-bold text-slate-900 dark:text-white tracking-wider">{{ IEC }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
                     <p class="text-slate-500 dark:text-slate-400">
                         GSTIN, IEC and export registrations are maintained for official international commercial contracts and customs clearance. Full documentation provided alongside formal proforma invoices.
                     </p>
@@ -60,6 +81,22 @@
                         We routinely execute standard Mutual NDAs for proprietary client fiber compounding or spinning trials.
                     </p>
                 </div>
+
+                {% if SOCIAL_LINKS %}
+                <!-- Corporate Social Channels -->
+                <div class="bg-slate-50/60 border border-slate-200 rounded-xl p-6 space-y-3 text-xs font-mono dark:bg-[#1E2328]/60 dark:border-[#353B44]">
+                    <div class="font-bold text-slate-900 dark:text-white uppercase text-xs">Official Social Channels</div>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        {% for link in SOCIAL_LINKS %}
+                            <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-white hover:border-blue-400 transition-colors">
+                                <span class="font-bold uppercase text-[10px]">{{ link.platform }}</span>
+                                <span>{{ link.display_name }}</span>
+                                <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
             </div>
 
             <!-- Right 7 Cols: Sourcing Enquiry Form -->

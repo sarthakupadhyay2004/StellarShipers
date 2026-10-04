@@ -72,6 +72,28 @@
                         <span class="text-slate-500 dark:text-slate-400 block mb-1 uppercase">Primary Markets:</span>
                         <span class="text-slate-900 dark:text-white">European markets such as Germany, France, Portugal, Sweden, Switzerland</span>
                     </div>
+                    {% if GSTIN or IEC %}
+                    <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">
+                        <span class="text-slate-500 dark:text-slate-400 block mb-1 uppercase">Trade Registrations:</span>
+                        <div class="text-slate-900 dark:text-white space-y-1">
+                            {% if GSTIN %}<div>GSTIN: <span class="font-semibold">{{ GSTIN }}</span></div>{% endif %}
+                            {% if IEC %}<div>DGFT IEC: <span class="font-semibold">{{ IEC }}</span></div>{% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if SOCIAL_LINKS %}
+                    <div class="p-3 bg-white border border-slate-200 dark:bg-[#161A1E] dark:border-[#2D333B] rounded">
+                        <span class="text-slate-500 dark:text-slate-400 block mb-2 uppercase">Official Channels:</span>
+                        <div class="flex flex-wrap gap-2">
+                            {% for link in SOCIAL_LINKS %}
+                                <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-[11px] text-blue-600 dark:text-blue-400 hover:underline">
+                                    <span>{{ link.display_name }}</span>
+                                    <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

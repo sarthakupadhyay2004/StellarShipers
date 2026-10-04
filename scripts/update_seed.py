@@ -1,4 +1,4 @@
-﻿seed_code = '''from django.core.management.base import BaseCommand
+seed_code = '''from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from apps.products.models import Category, Product
 from apps.pages.models import FAQ
@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
         # 1. Superuser
         if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser('admin', 'stellarshipper45@gmail.com', 'stellar2026!')
+            User.objects.create_superuser('admin', 'contact@stellarshipers.com', 'stellar2026!')
             self.stdout.write(self.style.SUCCESS('Superuser \"admin\" created.'))
 
         # 2. Categories

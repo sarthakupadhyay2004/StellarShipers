@@ -187,8 +187,8 @@ If you prefer setting up manually without a Blueprint:
    | `ALLOWED_HOSTS` | `.onrender.com,localhost,127.0.0.1` | Permits your Render subdomain |
    | `CSRF_TRUSTED_ORIGINS` | `https://*.onrender.com` | Prevents CSRF 403 on RFQ submissions |
    | `EMAIL_BACKEND` | `django.core.mail.backends.console.EmailBackend` | Logs RFQs in Render logs (or use SMTP) |
-   | `DEFAULT_FROM_EMAIL` | `STELLAR SHIPERS <stellarshipper45@gmail.com>` | Sender address |
-   | `ADMIN_NOTIFICATION_EMAIL` | `stellarshipper45@gmail.com` | RFQ recipient alert inbox |
+   | `DEFAULT_FROM_EMAIL` | `STELLAR SHIPERS <contact@stellarshipers.com>` | Sender address |
+   | `ADMIN_NOTIFICATION_EMAIL` | `contact@stellarshipers.com` | RFQ recipient alert inbox |
 5. Click **Create Web Service**.
 
 ---

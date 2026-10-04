@@ -4,7 +4,10 @@ from .views import (
     DashboardHomeView,
     DashboardRFQListView, DashboardRFQDetailView, DashboardRFQExportCSVView,
     DashboardProductListView, DashboardProductEditView,
-    DashboardFAQListView, DashboardFAQCreateView, DashboardFAQUpdateView, DashboardFAQDeleteView
+    DashboardFAQListView, DashboardFAQCreateView, DashboardFAQUpdateView, DashboardFAQDeleteView,
+    DashboardCompanySettingsView,
+    DashboardSocialLinkCreateView, DashboardSocialLinkUpdateView,
+    DashboardSocialLinkDeleteView, DashboardSocialLinkToggleView
 )
 
 app_name = 'dashboard'
@@ -28,4 +31,11 @@ urlpatterns = [
     path('faqs/add/', DashboardFAQCreateView.as_view(), name='faq_create'),
     path('faqs/<int:pk>/edit/', DashboardFAQUpdateView.as_view(), name='faq_update'),
     path('faqs/<int:pk>/delete/', DashboardFAQDeleteView.as_view(), name='faq_delete'),
+
+    # Company Profile, Registrations & Socials
+    path('settings/', DashboardCompanySettingsView.as_view(), name='settings'),
+    path('settings/socials/add/', DashboardSocialLinkCreateView.as_view(), name='social_add'),
+    path('settings/socials/<int:pk>/edit/', DashboardSocialLinkUpdateView.as_view(), name='social_edit'),
+    path('settings/socials/<int:pk>/delete/', DashboardSocialLinkDeleteView.as_view(), name='social_delete'),
+    path('settings/socials/<int:pk>/toggle/', DashboardSocialLinkToggleView.as_view(), name='social_toggle'),
 ]

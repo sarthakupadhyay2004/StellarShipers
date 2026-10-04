@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from apps.rfq.models import RFQ
 from apps.products.models import Product, Category
 from apps.pages.models import FAQ
+from apps.core.models import CompanyProfile, SocialLink
 
 class DashboardSecurityTests(TestCase):
     def setUp(self):
@@ -185,3 +186,95 @@ class DashboardSecurityTests(TestCase):
         resp_delete = self.client.post(delete_url, follow=True)
         self.assertEqual(resp_delete.status_code, 200)
         self.assertFalse(FAQ.objects.filter(pk=new_faq.pk).exists())
+
+    def test_company_settings_update(self):
+        self.client.login(username='staff_test', password='Password123!')
+        settings_url = reverse('dashboard:settings')
+        
+        # Test GET settings page
+        resp_get = self.client.get(settings_url)
+        self.assertEqual(resp_get.status_code, 200)
+        self.assertContains(resp_get, 'Corporate Profile & Social Channels')
+
+        # Test POST update company profile with GSTIN and IEC
+        resp_post = self.client.post(settings_url, {
+            'company_name': 'STELLAR SHIPERS',
+            'primary_email': 'contact@stellarshipers.com',
+            'primary_phone': '+91 99999 11111',
+            'address': 'Kochi, Kerala, India',
+            'gstin': '32ABCDE1234F1Z5',
+            'show_gstin': 'on',
+            'iec': '0123456789',
+            'show_iec': 'on',
+            'operational_scope': 'B2B Maritime Cargo & Bulk Agro-Industrial Export Coordination.',
+        }, follow=True)
+        self.assertEqual(resp_post.status_code, 200)
+
+        # Verify DB
+        profile = CompanyProfile.get_solo()
+        self.assertEqual(profile.primary_email, 'contact@stellarshipers.com')
+        self.assertEqual(profile.gstin, '32ABCDE1234F1Z5')
+        self.assertEqual(profile.iec, '0123456789')
+        self.assertTrue(profile.show_gstin)
+
+        # Verify public frontend dynamically reflects updated GSTIN and email
+        resp_home = self.client.get(reverse('pages:home'))
+        self.assertEqual(resp_home.status_code, 200)
+        self.assertContains(resp_home, '32ABCDE1234F1Z5')
+        self.assertContains(resp_home, '0123456789')
+        self.assertContains(resp_home, 'contact@stellarshipers.com')
+
+    def test_social_link_crud_and_toggle(self):
+        self.client.login(username='staff_test', password='Password123!')
+        
+        # Add Social Link
+        add_url = reverse('dashboard:social_add')
+        resp_add = self.client.post(add_url, {
+            'platform': 'linkedin',
+            'display_name': 'LinkedIn',
+            'url': 'https://www.linkedin.com/company/stellarshipers',
+            'display_order': 1,
+            'is_active': 'on',
+        }, follow=True)
+        self.assertEqual(resp_add.status_code, 200)
+
+        link = SocialLink.objects.filter(platform='linkedin').first()
+        self.assertIsNotNone(link)
+        self.assertEqual(link.display_name, 'LinkedIn')
+        self.assertTrue(link.is_active)
+
+        # Verify public frontend reflects the social link
+        resp_home = self.client.get(reverse('pages:home'))
+        self.assertContains(resp_home, 'https://www.linkedin.com/company/stellarshipers')
+
+        # Toggle visibility
+        toggle_url = reverse('dashboard:social_toggle', kwargs={'pk': link.pk})
+        resp_toggle = self.client.post(toggle_url, follow=True)
+        self.assertEqual(resp_toggle.status_code, 200)
+        link.refresh_from_db()
+        self.assertFalse(link.is_active)
+
+        # Public frontend should no longer display inactive link
+        resp_home2 = self.client.get(reverse('pages:home'))
+        self.assertNotContains(resp_home2, 'https://www.linkedin.com/company/stellarshipers')
+
+        # Update Social Link
+        edit_url = reverse('dashboard:social_edit', kwargs={'pk': link.pk})
+        resp_edit = self.client.post(edit_url, {
+            'platform': 'instagram',
+            'display_name': 'Official Instagram',
+            'url': 'https://instagram.com/stellarshipers',
+            'display_order': 2,
+            'is_active': 'on',
+        }, follow=True)
+        self.assertEqual(resp_edit.status_code, 200)
+        link.refresh_from_db()
+        self.assertEqual(link.display_name, 'Official Instagram')
+        self.assertEqual(link.platform, 'instagram')
+
+        # Delete Social Link
+        delete_url = reverse('dashboard:social_delete', kwargs={'pk': link.pk})
+        resp_delete = self.client.post(delete_url, follow=True)
+        self.assertEqual(resp_delete.status_code, 200)
+        self.assertFalse(SocialLink.objects.filter(pk=link.pk).exists())
+

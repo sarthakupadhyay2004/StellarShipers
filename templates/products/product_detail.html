@@ -2,6 +2,32 @@
 
 {% block title %}{{ product.name }} | Sourcing & Specifications - {{ SITE_NAME }}{% endblock %}
 
+{% block schema_ld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ product.name }}",
+  "description": "{{ product.description|escapejs }}",
+  "category": "{{ product.category.name|default:'Natural Plant Fibers' }}",
+  "material": "{{ product.raw_material }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ SITE_NAME }}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "description": "B2B Commercial Quotation (MOQ: {{ product.moq }})"
+    }
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

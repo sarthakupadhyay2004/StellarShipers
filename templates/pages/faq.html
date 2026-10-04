@@ -2,6 +2,29 @@
 
 {% block title %}Frequently Asked Questions (FAQ) | {{ SITE_NAME }}{% endblock %}
 
+{% block schema_ld %}
+{% if faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in faqs %}
+    {
+      "@type": "Question",
+      "name": "{{ faq.question|escapejs }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ faq.answer|striptags|escapejs }}"
+      }
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="bg-slate-50 border-b border-slate-200 dark:bg-[#1E2328] dark:border-[#353B44] py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

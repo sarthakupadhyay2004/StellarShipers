@@ -85,6 +85,7 @@ class FAQView(TemplateView):
             grouped_faqs[cat_name].append(faq)
 
         context['grouped_faqs'] = grouped_faqs
+        context['faqs'] = faqs
         context['meta_title'] = 'Frequently Asked Questions (FAQ) | STELLAR SHIPERS'
         context['meta_desc'] = 'Answers to common questions regarding our technical verification protocols, sample evaluation kits, MOQ, Incoterms, and payment contracts.'
         return context

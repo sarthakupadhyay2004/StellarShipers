@@ -19,6 +19,6 @@ services:
       - key: EMAIL_BACKEND
         value: "django.core.mail.backends.console.EmailBackend"
       - key: DEFAULT_FROM_EMAIL
-        value: "STELLAR SHIPERS <stellarshipper45@gmail.com>"
+        value: "STELLAR SHIPERS <contact@stellarshipers.com>"
       - key: ADMIN_NOTIFICATION_EMAIL
-        value: "stellarshipper45@gmail.com"
+        value: "contact@stellarshipers.com"

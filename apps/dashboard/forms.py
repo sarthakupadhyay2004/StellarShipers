@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from apps.rfq.models import RFQ
 from apps.products.models import Product, Category
 from apps.pages.models import FAQ
+from apps.core.models import CompanyProfile, SocialLink
 
 class DashboardLoginForm(AuthenticationForm):
     username = forms.CharField(
@@ -114,3 +115,75 @@ class DashboardProductForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+class DashboardCompanyProfileForm(forms.ModelForm):
+    class Meta:
+        model = CompanyProfile
+        fields = [
+            'company_name', 'primary_email', 'primary_phone', 'address',
+            'gstin', 'show_gstin', 'iec', 'show_iec', 'operational_scope'
+        ]
+        widgets = {
+            'company_name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'STELLAR SHIPERS',
+            }),
+            'primary_email': forms.EmailInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'contact@stellarshipers.com',
+            }),
+            'primary_phone': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono focus:ring-2 focus:ring-blue-500',
+                'placeholder': '+91 98765 43210 / Available upon inquiry',
+            }),
+            'address': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'India (or registered corporate office jurisdiction)',
+            }),
+            'gstin': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono tracking-wider uppercase focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'e.g. 07AAAAA0000A1Z5',
+            }),
+            'iec': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono tracking-wider uppercase focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'e.g. 0123456789',
+            }),
+            'show_gstin': forms.CheckboxInput(attrs={
+                'class': 'h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500',
+            }),
+            'show_iec': forms.CheckboxInput(attrs={
+                'class': 'h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500',
+            }),
+            'operational_scope': forms.Textarea(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-xs font-mono focus:ring-2 focus:ring-blue-500',
+                'rows': 3,
+                'placeholder': 'B2B Maritime Cargo & Bulk Agro-Industrial Export Coordination...',
+            }),
+        }
+
+
+class DashboardSocialLinkForm(forms.ModelForm):
+    class Meta:
+        model = SocialLink
+        fields = ['platform', 'display_name', 'url', 'display_order', 'is_active']
+        widgets = {
+            'platform': forms.Select(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono focus:ring-2 focus:ring-blue-500',
+            }),
+            'display_name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'e.g. LinkedIn or Instagram',
+            }),
+            'url': forms.URLInput(attrs={
+                'class': 'w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono focus:ring-2 focus:ring-blue-500',
+                'placeholder': 'https://linkedin.com/company/stellarshipers',
+            }),
+            'display_order': forms.NumberInput(attrs={
+                'class': 'w-32 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#161A1E] text-slate-900 dark:text-white text-sm font-mono focus:ring-2 focus:ring-blue-500',
+            }),
+            'is_active': forms.CheckboxInput(attrs={
+                'class': 'h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500',
+            }),
+        }
+
