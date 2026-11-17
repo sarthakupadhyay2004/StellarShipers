@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from apps.core.sitemaps import StaticViewSitemap, ProductSitemap
+from apps.products import api as product_api
 
 # Customize Django Admin Header and Titles
 admin.site.site_header = "STELLAR SHIPERS | Global Sourcing & Export Operations"
@@ -19,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('apps.dashboard.urls', namespace='dashboard')),
     path('products/', include('apps.products.urls', namespace='products')),
+    path('api/v1/products/', product_api.product_list, name='api-product-list'),
+    path('api/v1/products/<slug:slug>/', product_api.product_detail, name='api-product-detail'),
     path('rfq/', include('apps.rfq.urls', namespace='rfq')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('', include('apps.pages.urls', namespace='pages')),
